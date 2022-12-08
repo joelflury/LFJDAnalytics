@@ -1,56 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox maxWidth="200.0" minWidth="200.0">
+      <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../resources/css/menu-container.css">
          <children>
             <VBox alignment="CENTER">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="62.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/img/logo.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </ImageView>
                </children>
             </VBox>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="Button" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="Button" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="Button" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="Button" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../resources/css/menu-button.css" text="HOME" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="ANALYSE" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="TREND" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="REPORTS" />
                </children>
             </VBox>
          </children>
       </VBox>
-      <VBox maxWidth="500.0" minWidth="200.0">
+      <VBox alignment="CENTER" maxHeight="200.0" minWidth="200.0" prefWidth="200.0" styleClass="middle-container" stylesheets="@../resources/css/middle-container.css">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
-            <Button layoutX="10.0" layoutY="36.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Button" />
+            <VBox alignment="CENTER">
+               <children>
+                  <Label styleClass="middle-label" stylesheets="@../resources/css/middle-button.css" text="Analyse" />
+                  <Label styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="letzte 30 Tage" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" minHeight="100.0" minWidth="130.0" styleClass="middle-container-box-frameless" stylesheets="@../resources/css/middle-container-box.css">
+               <children>
+                  <Label styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="3'000 Stk.">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/img/icons8-bestellung-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="800 CHF" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/img/icons8-geld-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Label>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="134.0" styleClass="middle-container-box" stylesheets="@../resources/css/middle-container-box.css" text="Datum" />
+            <VBox alignment="CENTER" minHeight="130.0" minWidth="100.0" styleClass="middle-container-box-frameless" stylesheets="@../resources/css/middle-container-box.css">
+               <children>
+                  <Label styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="3'000 Stk.">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/img/icons8-bestellung-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="1'500 CHF" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/img/icons8-geld-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label styleClass="middle-label-small" stylesheets="@../resources/css/middle-button.css" text="nächste 30 Tage" />
+                  <Label styleClass="middle-label" stylesheets="@../resources/css/middle-button.css" text="Trend" />
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
          <children>
-            <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../resources/css/chart.css" VBox.vgrow="ALWAYS">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
               </yAxis>
             </LineChart>
-            <StackedAreaChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <StackedAreaChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../resources/css/chart.css" VBox.vgrow="ALWAYS">
               <xAxis>
-                <NumberAxis side="BOTTOM" />
+                <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
               </yAxis>
             </StackedAreaChart>
          </children>
