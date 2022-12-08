@@ -1,0 +1,70 @@
+.bottom-container-hbox {
+    -fx-spacing: 30px;
+    -fx-alignment: center;
+    /*min height*/
+    -fx-min-height: 200px;
+}
+
+.bottom-container-button-big {
+    -fx-alignment: center;
+    -fx-min-height: 120px;
+    -fx-min-width: 140px;
+    -fx-background-color: #212121;
+    -fx-border-color: #D18475;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-spacing: 10px;
+
+}
+
+.bottom-container-vbox {
+    -fx-spacing: 10px;
+}
+
+.bottom-container-button-small {
+    -fx-alignment: center_left;
+    -fx-min-height: 60px;
+    -fx-min-width: 140px;
+    -fx-background-color: #212121;
+    -fx-border-color: #D18475;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-spacing: 10px;
+}
+
+.bottom-label-small {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-text-alignment: CENTER;
+    -fx-padding: 5px;
+}
+
+.bottom-label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-padding: 5px;
+}
+
+.bottom-label-small-v {
+    -fx-background-color: #212121;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-text-alignment: CENTER;
+}
+
+.bottom-label-v {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.bottom-container-button-big:hover {
+    -fx-background-color: #D18475;
+    -fx-background-radius: 10;
+}

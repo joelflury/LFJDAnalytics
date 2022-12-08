@@ -1,0 +1,19 @@
+.middle-container-box {
+    -fx-background-color: #212121;
+    -fx-padding: 10px;
+    -fx-border-color: #D18475;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/*.middle-container-box:hover {*/
+/*    -fx-background-color: #D18475;*/
+/*    -fx-background-radius: 20;*/
+/*}*/
+
+.middle-container-box-frameless {
+    -fx-background-color: #212121;
+    -fx-padding: 10px;
+}
