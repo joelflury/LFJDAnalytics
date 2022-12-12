@@ -6,10 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
-public class LFJDAnalyticsApplication  extends Application {
+public class LFJDAnalyticsApplication extends Application {
 
     public static Scene startScene;
     public static Scene loginScene;
@@ -18,12 +17,11 @@ public class LFJDAnalyticsApplication  extends Application {
     public static Scene trendScene;
     public static Scene reportScene;
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         createScenes();
         loginScene.getRoot().requestFocus();
-        primaryStage.setScene(startScene);
+        primaryStage.setScene(loginScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }
