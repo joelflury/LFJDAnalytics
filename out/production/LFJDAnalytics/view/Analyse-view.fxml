@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" fx:controller="controller.AnalyseController" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseController">
    <children>
       <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../resources/css/menu-container.css">
          <children>
