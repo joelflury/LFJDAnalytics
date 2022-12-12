@@ -1,0 +1,20 @@
+.login-container-hbox {
+    -fx-alignment: center;
+    -fx-spacing: 40px;
+}
+
+.login-container-vbox {
+    -fx-spacing: 20px;
+    -fx-alignment: top_center;
+}
+
+
+.login-button {
+    -fx-alignment: center;
+    -fx-min-height: 80px;
+    -fx-min-width: 300px;
+    -fx-background-color: #D18475;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+}

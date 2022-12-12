@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="hBoxRoot" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" onKeyPressed="#handleKeyPressed" prefHeight="600.0" prefWidth="1000.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox alignment="TOP_CENTER" styleClass="login-container-hbox" stylesheets="@../resources/css/loginscreen-conainter.css" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="224.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true" styleClass="image" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../resources/img/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_LEFT" styleClass="login-container-vbox" stylesheets="@../resources/css/loginscreen-conainter.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="login-button" text="Benutzername" VBox.vgrow="ALWAYS" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="login-button" text="Password" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
