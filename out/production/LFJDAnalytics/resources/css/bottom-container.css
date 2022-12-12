@@ -19,6 +19,7 @@
 
 .bottom-container-vbox {
     -fx-spacing: 10px;
+    -fx-alignment: center;
 }
 
 .bottom-container-button-small {

@@ -5,23 +5,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class HomeController {
+public class ReportController {
 
     @FXML
     protected Button btnAnalyse;
     @FXML
     protected Button btnTrend;
     @FXML
-    protected Button btnReports;
+    protected Button btnHome;
 
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage)btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
-        if (stage.isMaximized()){
-            stage.setMaximized(true);
-        }
-
     }
     @FXML
     public void btnTrendClick(){
@@ -30,9 +26,9 @@ public class HomeController {
     }
 
     @FXML
-    public void btnReportsClick(){
-        Stage stage = (Stage)btnReports.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.reportScene);
+    public void btnHomeClick(){
+        Stage stage = (Stage)btnHome.getScene().getWindow();
+        stage.setScene(LFJDAnalyticsApplication.homeScene);
     }
 
 }

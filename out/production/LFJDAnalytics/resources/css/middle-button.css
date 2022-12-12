@@ -6,18 +6,25 @@
     -fx-font-weight: bold;
 }
 
+.middle-label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
 .middle-label-small {
     -fx-background-color: #212121;
     -fx-text-fill: white;
-    -fx-font-size: 12px;
+    -fx-font-size: 16px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
 }
 
-.middle-label {
-    -fx-background-color: transparent;
+.middle-label-very-small {
+    -fx-background-color: #212121;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
     -fx-padding: 10px;
     -fx-font-weight: bold;
 }

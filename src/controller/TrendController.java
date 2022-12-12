@@ -5,12 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class HomeController {
+public class TrendController {
 
     @FXML
     protected Button btnAnalyse;
     @FXML
-    protected Button btnTrend;
+    protected Button btnHome;
     @FXML
     protected Button btnReports;
 
@@ -18,15 +18,11 @@ public class HomeController {
     public void btnAnalyseClick() {
         Stage stage = (Stage)btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
-        if (stage.isMaximized()){
-            stage.setMaximized(true);
-        }
-
     }
     @FXML
-    public void btnTrendClick(){
-        Stage stage = (Stage)btnTrend.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.trendScene);
+    public void btnHomeClick(){
+        Stage stage = (Stage)btnHome.getScene().getWindow();
+        stage.setScene(LFJDAnalyticsApplication.homeScene);
     }
 
     @FXML
