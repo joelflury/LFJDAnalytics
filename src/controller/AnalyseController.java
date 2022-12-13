@@ -3,6 +3,7 @@ package controller;
 import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class AnalyseController {
@@ -29,5 +30,9 @@ public class AnalyseController {
     public void btnReportsClick(){
         Stage stage = (Stage)btnReports.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.reportScene);
+    }
+
+    public void VBoxTimePeriodClick() {
+        LFJDAnalyticsApplication.datePickerStage.show();
     }
 }

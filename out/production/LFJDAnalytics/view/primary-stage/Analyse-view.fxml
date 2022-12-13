@@ -6,15 +6,15 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" styleClass="root-container" stylesheets="@../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1000.0" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseController">
    <children>
-      <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../resources/css/menu-container.css">
+      <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../../resources/css/menu-container.css">
          <children>
             <VBox alignment="CENTER">
                <children>
                   <ImageView fitHeight="62.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/img/logo.png" />
+                        <Image url="@../../resources/img/logo.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -24,10 +24,10 @@
             </VBox>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeClick" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="HOME" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../resources/css/menu-button.css" text="ANALYSE" />
-                  <Button fx:id="btnTrend" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnTrendClick" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="TREND" />
-                  <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../resources/css/menu-button.css" text="REPORTS" />
+                  <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="HOME" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../../resources/css/menu-button.css" text="ANALYSE" />
+                  <Button fx:id="btnTrend" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnTrendClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="TREND" />
+                  <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="REPORTS" />
                </children>
             </VBox>
          </children>
@@ -36,7 +36,7 @@
          <children>
             <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                <children>
-                  <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../resources/css/chart.css" HBox.hgrow="ALWAYS">
+                  <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../../resources/css/chart.css" HBox.hgrow="ALWAYS">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -46,18 +46,18 @@
                   </LineChart>
                </children>
             </HBox>
-            <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Button minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="bottom-container-button-big" stylesheets="@../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER" onMouseClicked="#VBoxTimePeriodClick">
                            <children>
                               <Label styleClass="bottom-label" text="2022" VBox.vgrow="ALWAYS" />
                               <Label styleClass="bottom-label-small" text="Zeitraum" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </graphic></Button>
-                  <Button layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
                         <VBox alignment="CENTER" minHeight="120.0" minWidth="120.0">
                            <children>
@@ -66,7 +66,7 @@
                            </children>
                         </VBox>
                      </graphic></Button>
-                  <Button layoutX="110.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button layoutX="110.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
@@ -75,9 +75,9 @@
                            </children>
                         </VBox>
                      </graphic></Button>
-                  <VBox alignment="CENTER_LEFT" style=";" styleClass="bottom-container-vbox" stylesheets="@../resources/css/bottom-container.css">
+                  <VBox alignment="CENTER_LEFT" style=";" styleClass="bottom-container-vbox" stylesheets="@../../resources/css/bottom-container.css">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="bottom-container-button-small" stylesheets="@../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
+                        <Button mnemonicParsing="false" styleClass="bottom-container-button-small" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
                            <graphic>
                               <VBox alignment="CENTER">
                                  <children>
@@ -87,7 +87,7 @@
                               </VBox>
                            </graphic>
                         </Button>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="bottom-container-button-small" stylesheets="@../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="bottom-container-button-small" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
                            <graphic>
                               <VBox alignment="CENTER">
                                  <children>
