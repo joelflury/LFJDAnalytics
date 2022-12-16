@@ -3,7 +3,12 @@ package controller;
 import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class HomeController {
 
@@ -13,15 +18,18 @@ public class HomeController {
     protected Button btnTrend;
     @FXML
     protected Button btnReports;
+    @FXML
+    protected Label lblDate;
+
+    @FXML
+    public void initialize(){
+        lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
+    }
 
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage)btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
-        if (stage.isMaximized()){
-            stage.setMaximized(true);
-        }
-
     }
     @FXML
     public void btnTrendClick(){

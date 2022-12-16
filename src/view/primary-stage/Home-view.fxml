@@ -61,7 +61,7 @@
                      </graphic></Label>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="134.0" styleClass="middle-container-label-frame" text="Datum" />
+            <Label fx:id="lblDate" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="middle-label" stylesheets="@../../resources/css/middle-button.css" text="Date" VBox.vgrow="ALWAYS" />
             <VBox alignment="CENTER">
                <children>
                   <Label styleClass="middle-label-small" stylesheets="@../../resources/css/middle-button.css" text="3'000 Stk.">
