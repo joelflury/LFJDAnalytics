@@ -30,7 +30,7 @@ public class PeriodPickerController {
     protected void btnChooseClick(){
         Stage stage = (Stage)btnChoose.getScene().getWindow();
         stage.close();
-        //((AnalyseController) LFJDAnalyticsApplication.analyseLoader.getController()).setTimePeriodLabel(dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + "\n" + "to" + "\n" + dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
+        ((AnalyseController) LFJDAnalyticsApplication.analyseLoader.getController()).setFreeTimePeriodLabelText(cobPeriodPicker.getValue().toString());
     }
 
     public void initializeComboboxData(){
@@ -38,9 +38,4 @@ public class PeriodPickerController {
         cobPeriodPicker.setItems(FXCollections.observableArrayList(periods));
     }
 
-    public void btnChooseClick(ActionEvent actionEvent) {
-    }
-
-    public void btnCancelClick(ActionEvent actionEvent) {
-    }
 }

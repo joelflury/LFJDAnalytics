@@ -5,11 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public class AnalyseController {
     @FXML
@@ -20,6 +16,11 @@ public class AnalyseController {
     protected Button btnReports;
     @FXML
     protected Label lblPeriod;
+
+    @FXML
+    protected Label lblFreeTimePeriod;
+    @FXML
+    protected Label lblArticles;
 
     @FXML
     public void btnHomeClick() {
@@ -39,9 +40,18 @@ public class AnalyseController {
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
-    public void setTimePeriodLabel(String text){
+    public void setTimePeriodLabelText(String text){
         lblPeriod.setText(text);
     }
+
+    public void setFreeTimePeriodLabelText(String text){
+        lblFreeTimePeriod.setText(text);
+    }
+
+    public void setArticleLabelText(String text){
+        lblArticles.setText(text);
+    }
+
 
     public void btnFreePeriodClick(ActionEvent actionEvent) {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
@@ -49,9 +59,14 @@ public class AnalyseController {
     }
 
     public void btnTemplatePeriodClick(ActionEvent actionEvent) {
-        ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController().);
+        ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController()).initializeComboboxData();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.periodPickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
+    }
 
+    public void btnChooseArticlesClick(ActionEvent actionEvent) {
+        ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
+        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
+        LFJDAnalyticsApplication.secondaryStage.show();
     }
 }
