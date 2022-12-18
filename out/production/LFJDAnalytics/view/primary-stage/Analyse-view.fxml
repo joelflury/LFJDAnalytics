@@ -48,21 +48,19 @@
             </HBox>
             <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Button minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnFreePeriod" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#btnFreePeriodClick" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <VBox alignment="CENTER" onMouseClicked="#VBoxTimePeriodClick">
+                        <VBox alignment="CENTER">
                            <children>
-                              <Label styleClass="bottom-label" text="2022" VBox.vgrow="ALWAYS" />
-                              <Label styleClass="bottom-label-small" text="Zeitraum" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="lblPeriod" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="bottom-label-small" text="Choose a&#10;Period" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </graphic></Button>
-                  <Button layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button fx:id="btnTemplatePeriod" layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#btnTemplatePeriodClick" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
                         <VBox alignment="CENTER" minHeight="120.0" minWidth="120.0">
                            <children>
-                              <Label styleClass="bottom-label" text="7 Tage" />
-                              <Label styleClass="bottom-label-small" text="Vorlagen" />
+                              <Label styleClass="bottom-label-small" text="Choose a&#10;Period &#10;from&#10;Template" />
                            </children>
                         </VBox>
                      </graphic></Button>

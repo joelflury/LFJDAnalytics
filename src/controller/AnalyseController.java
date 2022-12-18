@@ -1,11 +1,15 @@
 package controller;
 
 import application.LFJDAnalyticsApplication;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class AnalyseController {
     @FXML
@@ -35,12 +39,19 @@ public class AnalyseController {
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
-    public void VBoxTimePeriodClick() {
-        LFJDAnalyticsApplication.datePickerStage.show();
-    }
-
     public void setTimePeriodLabel(String text){
         lblPeriod.setText(text);
     }
 
+    public void btnFreePeriodClick(ActionEvent actionEvent) {
+        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
+        LFJDAnalyticsApplication.secondaryStage.show();
+    }
+
+    public void btnTemplatePeriodClick(ActionEvent actionEvent) {
+        ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController().);
+        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.periodPickerScene);
+        LFJDAnalyticsApplication.secondaryStage.show();
+
+    }
 }
