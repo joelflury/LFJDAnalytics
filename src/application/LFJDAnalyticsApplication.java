@@ -1,6 +1,5 @@
 package application;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +15,6 @@ public class LFJDAnalyticsApplication extends Application {
     public static Stage secondaryStage;
     public static Scene datePickerScene;
     public static FXMLLoader periodPickerLoader;
-
     public static FXMLLoader datePickerLoader;
     public static FXMLLoader articlePickerLoader;
     public static Scene articlePickerScene;
@@ -27,7 +25,6 @@ public class LFJDAnalyticsApplication extends Application {
     public static Scene analyseScene;
     public static Scene trendScene;
     public static Scene reportScene;
-
     public static FXMLLoader analyseLoader;
     public static FXMLLoader startLoader;
     public static FXMLLoader homeLoader;

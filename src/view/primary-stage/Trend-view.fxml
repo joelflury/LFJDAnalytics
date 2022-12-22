@@ -52,8 +52,7 @@
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
-                              <Label styleClass="bottom-label" text="2022" VBox.vgrow="ALWAYS" />
-                              <Label styleClass="bottom-label-small" text="Zeitraum" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="lblPeriod" styleClass="bottom-label-small" text="Choose a&#10;Period" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </graphic></Button>
@@ -61,8 +60,7 @@
                      <graphic>
                         <VBox alignment="CENTER" minHeight="120.0" minWidth="120.0">
                            <children>
-                              <Label styleClass="bottom-label" text="7 Tage" />
-                              <Label styleClass="bottom-label-small" text="Vorlagen" />
+                              <Label fx:id="lblFreeTimePeriod" styleClass="bottom-label-small" text="Choose a&#10;Period&#10;from&#10;Template" />
                            </children>
                         </VBox>
                      </graphic></Button>
@@ -70,8 +68,7 @@
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label styleClass="bottom-label" text="all" />
-                              <Label styleClass="bottom-label-small" text="Produkte" />
+                              <Label fx:id="lblArticles" styleClass="bottom-label-small" text="Choose&#10;Products" />
                            </children>
                         </VBox>
                      </graphic></Button>

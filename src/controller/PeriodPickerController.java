@@ -7,9 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+import modell.Period;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Arrays;
 
 public class PeriodPickerController {
 
@@ -28,14 +30,13 @@ public class PeriodPickerController {
 
     @FXML
     protected void btnChooseClick(){
+        Period.periodFromTemplates(Arrays.asList(Period.periodNames).indexOf(cobPeriodPicker.getValue()));
         Stage stage = (Stage)btnChoose.getScene().getWindow();
         stage.close();
-        ((AnalyseController) LFJDAnalyticsApplication.analyseLoader.getController()).setFreeTimePeriodLabelText(cobPeriodPicker.getValue().toString());
     }
 
     public void initializeComboboxData(){
-        String[] periods = {"Last 7 Days", "Last Month", "Last 3 Months"};
-        cobPeriodPicker.setItems(FXCollections.observableArrayList(periods));
+        cobPeriodPicker.setItems(FXCollections.observableArrayList(Period.periodNames));
     }
 
 }

@@ -2,6 +2,7 @@ package controller;
 
 import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -38,7 +39,7 @@ public class ArticlePickerController {
         } else {
             returnText = articleAmount + " Articles";
         }
-        ((AnalyseController) LFJDAnalyticsApplication.analyseLoader.getController()).setArticleLabelText(returnText);
+
     }
 
     public void btnCancelClick() {
@@ -63,5 +64,4 @@ public class ArticlePickerController {
             }
         }
     }
-
 }

@@ -39,32 +39,32 @@ public class AnalyseController {
         Stage stage = (Stage)btnReports.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
+//
+//    public void setTimePeriodLabelText(String text){
+//        lblPeriod.setText(text);
+//    }
+//
+//    public void setFreeTimePeriodLabelText(String text){
+//        lblFreeTimePeriod.setText(text);
+//    }
+//
+//    public void setArticleLabelText(String text){
+//        lblArticles.setText(text);
+//    }
 
-    public void setTimePeriodLabelText(String text){
-        lblPeriod.setText(text);
-    }
 
-    public void setFreeTimePeriodLabelText(String text){
-        lblFreeTimePeriod.setText(text);
-    }
-
-    public void setArticleLabelText(String text){
-        lblArticles.setText(text);
-    }
-
-
-    public void btnFreePeriodClick(ActionEvent actionEvent) {
+    public void btnFreePeriodClick() {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }
 
-    public void btnTemplatePeriodClick(ActionEvent actionEvent) {
+    public void btnTemplatePeriodClick() {
         ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController()).initializeComboboxData();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.periodPickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }
 
-    public void btnChooseArticlesClick(ActionEvent actionEvent) {
+    public void btnChooseArticlesClick() {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
