@@ -7,7 +7,5 @@ class Consumer {
 
     ArticleDataObject articles = LogicAdapter.getArticles();
     System.out.println(articles.getArticles());
-
-
   }
 }
