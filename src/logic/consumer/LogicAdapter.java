@@ -9,14 +9,14 @@ class LogicAdapter {
             "\"firstDate\": \"" + firstDate + "\"," +
             "\"lastDate\": \"" + lastDate + "\""+
             "}";
-    return (SalesDataObject) RestClientPOST.request("http://localhost", "/getSales", data, SalesDataObject.class);
+    return (SalesDataObject) RestClientPOST.request("http://az-srv01.switzerlandnorth.cloudapp.azure.com", "/getSales", data, SalesDataObject.class);
   }
 
   public static ArticleDataObject getArticles() {
-    return (ArticleDataObject) RestClientGET.request("http://localhost", "/getArticles", ArticleDataObject.class);
+    return (ArticleDataObject) RestClientGET.request("http://az-srv01.switzerlandnorth.cloudapp.azure.com", "/getArticles", ArticleDataObject.class);
   }
     public static DateDataObject getDates() {
-    return (DateDataObject) RestClientGET.request("http://localhost", "/getDates", DateDataObject.class);
+    return (DateDataObject) RestClientGET.request("http://az-srv01.switzerlandnorth.cloudapp.azure.com", "/getDates", DateDataObject.class);
   }
 
 }
