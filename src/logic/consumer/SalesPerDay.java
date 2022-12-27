@@ -2,20 +2,20 @@ package logic.consumer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticlePerDay {
+public class SalesPerDay {
     private int articleID;
     private String date;
     private int amount;
     private float price;
 
-    private static List<ArticlePerDay> articlePerDayList = new ArrayList<>();
+    private static List<SalesPerDay> salesPerDayList = new ArrayList<>();
 
-    public ArticlePerDay(int articleID, String date, int amount, float price) {
+    public SalesPerDay(int articleID, String date, int amount, float price) {
         this.articleID = articleID;
         this.date = date;
         this.price = price;
         this.amount = amount;
-        articlePerDayList.add(this);
+        salesPerDayList.add(this);
     }
 
     public int getArticleID() {
@@ -34,8 +34,8 @@ public class ArticlePerDay {
         return amount;
     }
 
-    public static List<ArticlePerDay> getArticlePerDayList() {
-        return articlePerDayList;
+    public static List<SalesPerDay> getArticlePerDayList() {
+        return salesPerDayList;
     }
 
     @Override

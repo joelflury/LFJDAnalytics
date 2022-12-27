@@ -3,14 +3,14 @@ package logic.consumer;
 import java.util.List;
 
 public class SalesDataObject {
-    private List<ArticlePerDay> articlePerDay;
+    private List<SalesPerDay> salesPerDay;
 
-    public SalesDataObject(List<ArticlePerDay> articlePerDay){
-        this.articlePerDay = articlePerDay;
+    public SalesDataObject(List<SalesPerDay> salesPerDay){
+        this.salesPerDay = salesPerDay;
     }
 
-    public List<ArticlePerDay> getArticlePerDay() {
-        return articlePerDay;
+    public List<SalesPerDay> getArticlePerDay() {
+        return salesPerDay;
     }
 
 }
