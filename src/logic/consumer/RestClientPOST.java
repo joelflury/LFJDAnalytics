@@ -62,4 +62,16 @@ class RestClientPOST {
 
     return gson.fromJson(response,  classDesc);
   }
+
+  static Object request(String url, String path, Object object, Class classDesc) {
+    Client create = Client.create();
+    WebResource service = create.resource(url);
+    Gson gson = new Gson();
+    String json = gson.toJson(object);
+
+    String response = service.path(path).type(MediaType.APPLICATION_JSON)
+            .post(String.class, json);
+
+    return gson.fromJson(response,  classDesc);
+  }
 }
