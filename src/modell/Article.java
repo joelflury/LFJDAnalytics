@@ -33,6 +33,10 @@ public class Article {
         return articles;
     }
 
+    public static void setArticles(Article article) {
+        articles.add(article);
+    }
+
     @Override
     public String toString() {
         return "Article{" +

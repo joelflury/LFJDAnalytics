@@ -26,10 +26,7 @@ public class DatePickerController {
     protected void btnChooseClick() {
         Stage stage = (Stage) btnChoose.getScene().getWindow();
         stage.close();
-        Period.startDate = dpFromDate.getValue();
-        Period.endDate = dpToDate.getValue();
-        System.out.println("Start: " + Period.startDate);
-        System.out.println("Start: " + Period.endDate);
+        AnalyseController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue() + "\n-\n" + dpToDate.getValue());
     }
 
 }

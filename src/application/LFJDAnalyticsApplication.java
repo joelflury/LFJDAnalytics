@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logic.consumer.Consumer;
+import logic.datapreloader.DataPreLoader;
 
 import java.io.IOException;
 
@@ -34,6 +36,8 @@ public class LFJDAnalyticsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        DataPreLoader dataLoader = new DataPreLoader();
+        dataLoader.start();
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();

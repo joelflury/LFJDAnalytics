@@ -1,13 +1,13 @@
 package controller;
 
-import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modell.Article;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +26,20 @@ public class ArticlePickerController {
 
     public void btnChooseClick() {
         int articleAmount = 0;
-        String returnText = "";
+        String returnText;
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-        for (CheckBox cb:checkBoxList) {
-            if (cb.isSelected()){
+        for (CheckBox cb : checkBoxList) {
+            if (cb.isSelected()) {
                 articleAmount++;
             }
         }
-        if (articleAmount == checkBoxList.size()){
+        if (articleAmount == checkBoxList.size()) {
             returnText = "All Articles";
         } else {
             returnText = articleAmount + " Articles";
         }
-
+        AnalyseController.setLblArticlesTextProperty(returnText);
     }
 
     public void btnCancelClick() {
@@ -47,17 +47,17 @@ public class ArticlePickerController {
         stage.close();
     }
 
-    public void createCheckBoxes(){
+    public void createCheckBoxes() {
         checkBoxList.clear();
         vBoxRight.getChildren().clear();
         vBoxLeft.getChildren().clear();
-        String[] articles = {"Hose", "Schuhe", "Jacke", "Kappe"};
-        for (int i = 0; i <articles.length; i++) {
-            CheckBox cbArticle = new CheckBox(articles[i]);
+        List<Article> articleList = Article.getArticles();
+        for (int i = 0; i < articleList.size(); i++) {
+            CheckBox cbArticle = new CheckBox(articleList.get(i).getArticlename());
             cbArticle.setStyle("-fx-text-fill: white");
             checkBoxList.add(cbArticle);
-            VBox.setMargin(cbArticle, new Insets(0,0,5, 0));
-            if (i%2!=0){
+            VBox.setMargin(cbArticle, new Insets(0, 0, 5, 0));
+            if (i % 2 != 0) {
                 vBoxLeft.getChildren().add(cbArticle);
             } else {
                 vBoxRight.getChildren().add(cbArticle);

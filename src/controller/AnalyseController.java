@@ -1,7 +1,8 @@
 package controller;
 
 import application.LFJDAnalyticsApplication;
-import javafx.event.ActionEvent;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,11 +17,18 @@ public class AnalyseController {
     protected Button btnReports;
     @FXML
     protected Label lblPeriod;
-
     @FXML
     protected Label lblFreeTimePeriod;
     @FXML
     protected Label lblArticles;
+    private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
+    private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
+
+    @FXML
+    public void initialize(){
+        lblArticles.textProperty().bind(lblArticlesTextProperty);
+        lblFreeTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
+    }
 
     @FXML
     public void btnHomeClick() {
@@ -39,19 +47,14 @@ public class AnalyseController {
         Stage stage = (Stage)btnReports.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
-//
-//    public void setTimePeriodLabelText(String text){
-//        lblPeriod.setText(text);
-//    }
-//
-//    public void setFreeTimePeriodLabelText(String text){
-//        lblFreeTimePeriod.setText(text);
-//    }
-//
-//    public void setArticleLabelText(String text){
-//        lblArticles.setText(text);
-//    }
 
+    public static void setLblArticlesTextProperty(String testString) {
+        AnalyseController.lblArticlesTextProperty.set(testString);
+    }
+
+    public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
+        AnalyseController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
+    }
 
     public void btnFreePeriodClick() {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
