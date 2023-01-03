@@ -1,4 +1,4 @@
-package logic.consumer;
+package modell;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

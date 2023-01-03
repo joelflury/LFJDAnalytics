@@ -1,4 +1,4 @@
-package logic.consumer;
+package modell;
 import java.util.ArrayList;
 import java.util.List;
 

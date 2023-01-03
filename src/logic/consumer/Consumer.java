@@ -1,6 +1,10 @@
 package logic.consumer;
 
-class Consumer {
+import modell.ArticleDataObject;
+import modell.DateRangeDataObject;
+import modell.SalesDataObject;
+
+public class Consumer {
   public static void main(String[] args) {
     SalesDataObject sales = LogicAdapter.getSales("2022-09-10", "2023-10-10");
     System.out.println(sales.getArticlePerDay());
