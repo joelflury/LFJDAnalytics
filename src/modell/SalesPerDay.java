@@ -38,6 +38,10 @@ public class SalesPerDay {
         return salesPerDayList;
     }
 
+    public static void setSalesPerDayList(SalesPerDay salesPerDay) {
+        SalesPerDay.salesPerDayList.add(salesPerDay);
+    }
+
     @Override
     public String toString() {
         return "ArticlePerDay{" +

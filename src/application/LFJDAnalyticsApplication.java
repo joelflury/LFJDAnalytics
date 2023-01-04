@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class LFJDAnalyticsApplication extends Application {
 
+    private static Stage mainStage;
     public static Stage secondaryStage;
     public static Scene datePickerScene;
     public static FXMLLoader periodPickerLoader;
@@ -36,8 +37,11 @@ public class LFJDAnalyticsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DataPreLoader dataLoader = new DataPreLoader();
-        dataLoader.start();
+        setMainStage(primaryStage);
+        Consumer consumer = new Consumer();
+        consumer.start();
+//        DataPreLoader dataLoader = new DataPreLoader();
+//        dataLoader.start();
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();
@@ -78,4 +82,11 @@ public class LFJDAnalyticsApplication extends Application {
         secondaryStage.initOwner(primaryStage);
     }
 
+    public static Stage getMainStage() {
+        return mainStage;
+    }
+
+    public static void setMainStage(Stage mainStage) {
+        LFJDAnalyticsApplication.mainStage = mainStage;
+    }
 }

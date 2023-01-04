@@ -16,9 +16,7 @@ public class AnalyseController {
     @FXML
     protected Button btnReports;
     @FXML
-    protected Label lblPeriod;
-    @FXML
-    protected Label lblFreeTimePeriod;
+    protected Label lblTimePeriod;
     @FXML
     protected Label lblArticles;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
@@ -27,7 +25,7 @@ public class AnalyseController {
     @FXML
     public void initialize(){
         lblArticles.textProperty().bind(lblArticlesTextProperty);
-        lblFreeTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
+        lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
     }
 
     @FXML
@@ -60,13 +58,6 @@ public class AnalyseController {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }
-
-    public void btnTemplatePeriodClick() {
-        ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController()).initializeComboboxData();
-        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.periodPickerScene);
-        LFJDAnalyticsApplication.secondaryStage.show();
-    }
-
     public void btnChooseArticlesClick() {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);

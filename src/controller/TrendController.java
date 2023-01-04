@@ -1,6 +1,8 @@
 package controller;
 
 import application.LFJDAnalyticsApplication;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,11 +18,16 @@ public class TrendController {
     @FXML
     protected Button btnReports;
     @FXML
-    protected Label lblPeriod;
-    @FXML
-    protected Label lblFreeTimePeriod;
+    protected Label lblTimePeriod;
     @FXML
     protected Label lblArticles;
+    private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
+    private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
+    @FXML
+    public void initialize(){
+        lblArticles.textProperty().bind(lblArticlesTextProperty);
+        lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
+    }
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage)btnAnalyse.getScene().getWindow();
@@ -36,26 +43,21 @@ public class TrendController {
         Stage stage = (Stage)btnReports.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
-    public void setTimePeriodLabelText(String text){
-        lblPeriod.setText(text);
+
+    public static void setLblArticlesTextProperty(String testString) {
+        TrendController.lblArticlesTextProperty.set(testString);
     }
-    public void setFreeTimePeriodLabelText(String text){
-        lblFreeTimePeriod.setText(text);
+
+    public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
+        TrendController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
     }
-    public void setArticleLabelText(String text){
-        lblArticles.setText(text);
-    }
+
     public void btnFreePeriodClick() {
         LFJDAnalyticsApplication.secondaryStage.setUserData(LFJDAnalyticsApplication.analyseLoader);
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }
-    public void btnTemplatePeriodClick() {
-        ((PeriodPickerController)LFJDAnalyticsApplication.periodPickerLoader.getController()).initializeComboboxData();
-        LFJDAnalyticsApplication.secondaryStage.setUserData(LFJDAnalyticsApplication.analyseLoader);
-        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.periodPickerScene);
-        LFJDAnalyticsApplication.secondaryStage.show();
-    }
+
     public void btnChooseArticlesClick() {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setUserData(LFJDAnalyticsApplication.analyseLoader);

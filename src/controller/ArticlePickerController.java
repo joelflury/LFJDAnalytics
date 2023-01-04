@@ -1,5 +1,6 @@
 package controller;
 
+import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -39,12 +40,20 @@ public class ArticlePickerController {
         } else {
             returnText = articleAmount + " Articles";
         }
-        AnalyseController.setLblArticlesTextProperty(returnText);
+        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
+            AnalyseController.setLblArticlesTextProperty(returnText);
+        } else {
+            TrendController.setLblArticlesTextProperty(returnText);
+        }
+        resetStageValues();
     }
+
+
 
     public void btnCancelClick() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+        resetStageValues();
     }
 
     public void createCheckBoxes() {
@@ -64,4 +73,11 @@ public class ArticlePickerController {
             }
         }
     }
+
+    private void resetStageValues() {
+        for (CheckBox cb:checkBoxList) {
+            cb.setSelected(false);
+        }
+    }
+
 }

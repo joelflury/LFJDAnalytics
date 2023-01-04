@@ -25,7 +25,7 @@
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="HOME" />
-                  <Button fx:id="btnAnalyse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAnalyseClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="ANALYSE" />
+                  <Button fx:id="btnAnalyse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAnalyseClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="ANALYSIS" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../../resources/css/menu-button.css" text="TREND" />
                   <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="REPORTS" />
                </children>
@@ -48,23 +48,15 @@
             </HBox>
             <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Button minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#btnFreePeriodClick" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
                         <VBox alignment="CENTER">
                            <children>
-                              <Label fx:id="lblPeriod" styleClass="bottom-label-small" text="Choose a&#10;Period" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="lblTimePeriod" styleClass="bottom-label-small" text="Choose a&#10;Period" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </graphic></Button>
-                  <Button layoutX="10.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
-                     <graphic>
-                        <VBox alignment="CENTER" minHeight="120.0" minWidth="120.0">
-                           <children>
-                              <Label fx:id="lblFreeTimePeriod" styleClass="bottom-label-small" text="Choose a&#10;Period&#10;from&#10;Template" />
-                           </children>
-                        </VBox>
-                     </graphic></Button>
-                  <Button layoutX="110.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
+                  <Button layoutX="110.0" layoutY="10.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#btnChooseArticlesClick" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>

@@ -12,9 +12,7 @@ public class LoginController {
     HBox hBoxRoot;
     @FXML
     protected void handleKeyPressed(KeyEvent key){
-        System.out.println("asad");
         if (key.getCode().equals(KeyCode.ENTER)){
-            System.out.println("asf");
             Stage stage = (Stage)hBoxRoot.getScene().getWindow();
             stage.setScene(LFJDAnalyticsApplication.homeScene);
         }
