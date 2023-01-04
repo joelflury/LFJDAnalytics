@@ -24,6 +24,7 @@ public class ArticlePickerController {
     protected Button btnChoose;
 
     public List<CheckBox> checkBoxList = new ArrayList<>();
+    public List<Article> articleList = new ArrayList<>();
 
     public void btnChooseClick() {
         int articleAmount = 0;
@@ -33,6 +34,11 @@ public class ArticlePickerController {
         for (CheckBox cb : checkBoxList) {
             if (cb.isSelected()) {
                 articleAmount++;
+                for (Article article:Article.getArticles()) {
+                    if (article.getArticlename() == cb.getText()){
+                        articleList.add(article);
+                    }
+                }
             }
         }
         if (articleAmount == checkBoxList.size()) {
@@ -42,6 +48,8 @@ public class ArticlePickerController {
         }
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
             AnalyseController.setLblArticlesTextProperty(returnText);
+            AnalyseController.setArticleList(articleList);
+            AnalyseController.checkIfAllDataPresent();
         } else {
             TrendController.setLblArticlesTextProperty(returnText);
         }

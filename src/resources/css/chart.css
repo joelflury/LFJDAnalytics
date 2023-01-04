@@ -1,3 +1,7 @@
 .chart-plot-background {
     -fx-background-color: #212121;
 }
+
+.axis-label {
+    -fx-text-fill: #FFFFFF;
+}

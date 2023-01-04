@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import modell.Period;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.IllegalFormatCodePointException;
@@ -24,6 +25,9 @@ public class DatePickerController {
     protected DatePicker dpToDate;
     @FXML
     protected ChoiceBox cbTemplatePeriods;
+
+    private LocalDate fromDate;
+    private LocalDate toDate;
 
     @FXML
     public void initialize(){
@@ -47,9 +51,15 @@ public class DatePickerController {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
             if (cbTemplatePeriods.isDisabled()){
                 AnalyseController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                AnalyseController.setToDate(dpToDate.getValue());
+                AnalyseController.setFromDate(dpToDate.getValue());
             } else {
                 AnalyseController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
+                getDatesFromTemplate();
+                AnalyseController.setToDate(toDate);
+                AnalyseController.setFromDate(fromDate);
             }
+            AnalyseController.checkIfAllDataPresent();
         } else {
             if (cbTemplatePeriods.isDisabled()){
                 TrendController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
@@ -58,6 +68,19 @@ public class DatePickerController {
             }
         }
         resetStageValues();
+    }
+
+    private void getDatesFromTemplate() {
+        if (cbTemplatePeriods.getValue().equals("Last 7 Days")){
+            fromDate = LocalDate.now().minusDays(1);
+            toDate = LocalDate.now().minusDays(8);
+        } else if (cbTemplatePeriods.getValue().equals("Last 30 Days")){
+            fromDate = LocalDate.now().minusDays(1);
+            toDate = LocalDate.now().minusDays(31);
+        } else if (cbTemplatePeriods.getValue().equals("Last 3 Months")){
+            fromDate = LocalDate.now().minusDays(1);
+            toDate = LocalDate.now().minusDays(93);
+        }
     }
 
     private void resetStageValues() {

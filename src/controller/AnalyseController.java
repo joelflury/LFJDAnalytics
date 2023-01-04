@@ -7,6 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import modell.Article;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class AnalyseController {
     @FXML
@@ -21,6 +25,10 @@ public class AnalyseController {
     protected Label lblArticles;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
+
+    private static LocalDate fromDate;
+    private static LocalDate toDate;
+    private static List<Article> articleList;
 
     @FXML
     public void initialize(){
@@ -52,6 +60,27 @@ public class AnalyseController {
 
     public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
         AnalyseController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
+    }
+
+    public static void checkIfAllDataPresent(){
+        if (fromDate != null && toDate != null && articleList.size() != 0){
+            fillAnalysisChart();
+        }
+    }
+
+    private static void fillAnalysisChart() {
+    }
+
+    public static void setFromDate(LocalDate fromDate) {
+        AnalyseController.fromDate = fromDate;
+    }
+
+    public static void setToDate(LocalDate toDate) {
+        AnalyseController.toDate = toDate;
+    }
+
+    public static void setArticleList(List<Article> articleList) {
+        AnalyseController.articleList = articleList;
     }
 
     public void btnFreePeriodClick() {
