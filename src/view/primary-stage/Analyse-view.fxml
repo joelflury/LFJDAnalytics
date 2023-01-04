@@ -36,7 +36,7 @@
          <children>
             <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                <children>
-                  <LineChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../../resources/css/chart.css" HBox.hgrow="ALWAYS">
+                  <LineChart fx:id="lcAnalyse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../../resources/css/chart.css" HBox.hgrow="ALWAYS">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -70,7 +70,7 @@
                            <graphic>
                               <VBox alignment="CENTER">
                                  <children>
-                                    <Label styleClass="bottom-label-v" text="2'450" />
+                                    <Label fx:id="lblAmount" styleClass="bottom-label-v" text="2'450" />
                                     <Label layoutX="10.0" layoutY="10.0" styleClass="bottom-label-small-v" text="Bestellungen" />
                                  </children>
                               </VBox>
@@ -80,7 +80,7 @@
                            <graphic>
                               <VBox alignment="CENTER">
                                  <children>
-                                    <Label styleClass="bottom-label-v" text="2'450" />
+                                    <Label fx:id="lblGross" styleClass="bottom-label-v" text="2'450" />
                                     <Label styleClass="bottom-label-small-v" text="Umsatz" />
                                  </children>
                               </VBox>

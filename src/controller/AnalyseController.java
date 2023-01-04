@@ -1,15 +1,22 @@
 package controller;
 
 import application.LFJDAnalyticsApplication;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import modell.Article;
+import modell.SalesPerDay;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnalyseController {
@@ -23,12 +30,14 @@ public class AnalyseController {
     protected Label lblTimePeriod;
     @FXML
     protected Label lblArticles;
+    @FXML
+    protected LineChart lcAnalyse;
+    @FXML
+    protected Label lblAmount;
+    @FXML
+    protected Label lblGross;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
-
-    private static LocalDate fromDate;
-    private static LocalDate toDate;
-    private static List<Article> articleList;
 
     @FXML
     public void initialize(){
@@ -60,27 +69,6 @@ public class AnalyseController {
 
     public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
         AnalyseController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
-    }
-
-    public static void checkIfAllDataPresent(){
-        if (fromDate != null && toDate != null && articleList.size() != 0){
-            fillAnalysisChart();
-        }
-    }
-
-    private static void fillAnalysisChart() {
-    }
-
-    public static void setFromDate(LocalDate fromDate) {
-        AnalyseController.fromDate = fromDate;
-    }
-
-    public static void setToDate(LocalDate toDate) {
-        AnalyseController.toDate = toDate;
-    }
-
-    public static void setArticleList(List<Article> articleList) {
-        AnalyseController.articleList = articleList;
     }
 
     public void btnFreePeriodClick() {
