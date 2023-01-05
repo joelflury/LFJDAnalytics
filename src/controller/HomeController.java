@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 
@@ -63,7 +64,7 @@ public class HomeController {
     private void populateAnalyseChart() {
         List<SalesPerDay> lastMonthData = getLastMonthData();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: Article.getArticles()){
+        for (Article article: Consumer.getArticleData().getArticles()){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             for (SalesPerDay spd:lastMonthData){
@@ -84,7 +85,7 @@ public class HomeController {
         LocalDate today = LocalDate.now();
         int monthAmount = 0;
         double monthGross = 0;
-        for (SalesPerDay spd: SalesPerDay.getArticlePerDayList()) {
+        for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
             LocalDate date = LocalDate.parse(spd.getDate());
             if (date.isBefore(today) && date.isAfter(today.minusDays(32))){
                 monthGross += spd.getPrice() * spd.getAmount();

@@ -39,6 +39,11 @@ public class AnalyseController {
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
 
+    private static LocalDate fromDate;
+    private static LocalDate toDate;
+
+
+
     @FXML
     public void initialize(){
         lblArticles.textProperty().bind(lblArticlesTextProperty);
@@ -63,6 +68,16 @@ public class AnalyseController {
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
+    public void checkIfAllDataPresent() {
+        if (fromDate != null && toDate != null){
+            populateAnalysisChart();
+        }
+    }
+
+    private void populateAnalysisChart() {
+        lblTimePeriod.setText("+asdfasd");
+    }
+
     public static void setLblArticlesTextProperty(String testString) {
         AnalyseController.lblArticlesTextProperty.set(testString);
     }
@@ -79,5 +94,13 @@ public class AnalyseController {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
+    }
+
+    public static void setFromDate(LocalDate fromDate) {
+        AnalyseController.fromDate = fromDate;
+    }
+
+    public static void setToDate(LocalDate toDate) {
+        AnalyseController.toDate = toDate;
     }
 }

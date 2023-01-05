@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import logic.consumer.Consumer;
 import modell.Article;
 
 import java.util.ArrayList;
@@ -24,19 +25,20 @@ public class ArticlePickerController {
     protected Button btnChoose;
 
     public List<CheckBox> checkBoxList = new ArrayList<>();
-    public List<Article> articleList = new ArrayList<>();
+    public List<Article> chosenArticleList = new ArrayList<>();
 
     public void btnChooseClick() {
         int articleAmount = 0;
         String returnText;
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+        List<Article> articleList = Consumer.getArticleData().getArticles();
         for (CheckBox cb : checkBoxList) {
             if (cb.isSelected()) {
                 articleAmount++;
-                for (Article article:Article.getArticles()) {
+                for (Article article:articleList) {
                     if (article.getArticlename() == cb.getText()){
-                        articleList.add(article);
+                        chosenArticleList.add(article);
                     }
                 }
             }
@@ -48,15 +50,13 @@ public class ArticlePickerController {
         }
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
             AnalyseController.setLblArticlesTextProperty(returnText);
-            AnalyseController.setArticleList(articleList);
-            AnalyseController.checkIfAllDataPresent();
+//            AnalyseController.setArticleList(articleList);
+//            AnalyseController.checkIfAllDataPresent();
         } else {
             TrendController.setLblArticlesTextProperty(returnText);
         }
         resetStageValues();
     }
-
-
 
     public void btnCancelClick() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -68,7 +68,7 @@ public class ArticlePickerController {
         checkBoxList.clear();
         vBoxRight.getChildren().clear();
         vBoxLeft.getChildren().clear();
-        List<Article> articleList = Article.getArticles();
+        List<Article> articleList = Consumer.getArticleData().getArticles();
         for (int i = 0; i < articleList.size(); i++) {
             CheckBox cbArticle = new CheckBox(articleList.get(i).getArticlename());
             cbArticle.setStyle("-fx-text-fill: white");

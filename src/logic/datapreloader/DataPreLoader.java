@@ -9,5 +9,6 @@ public class DataPreLoader extends Thread{
     public void run() {
         Consumer consumer = new Consumer();
         consumer.start();
+        //Trend algo
     }
 }
