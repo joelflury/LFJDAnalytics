@@ -41,12 +41,9 @@ public class LFJDAnalyticsApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         setMainStage(primaryStage);
-        try {
-            Consumer consumer = new Consumer();
-            consumer.start();
-        } catch (Exception e){
-            System.out.println(e);
-        }
+
+        Consumer consumer = new Consumer();
+        consumer.start();
 
 
 //        DataPreLoader dataLoader = new DataPreLoader();
@@ -54,7 +51,7 @@ public class LFJDAnalyticsApplication extends Application {
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(startScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }
