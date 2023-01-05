@@ -41,8 +41,14 @@ public class LFJDAnalyticsApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         setMainStage(primaryStage);
-        Consumer consumer = new Consumer();
-        consumer.start();
+        try {
+            Consumer consumer = new Consumer();
+            consumer.start();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+
 //        DataPreLoader dataLoader = new DataPreLoader();
 //        dataLoader.start();
         createScenes();
@@ -74,13 +80,13 @@ public class LFJDAnalyticsApplication extends Application {
 
         datePickerLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/secondary-stage/DatePicker-view.fxml"));
         articlePickerLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/secondary-stage/ArticlePicker-view.fxml"));
-        periodPickerLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/secondary-stage/PeriodPicker-view.fxml"));
+
 
         datePickerScene = new Scene(datePickerLoader.load());
         articlePickerScene = new Scene(articlePickerLoader.load());
-        periodPickerScene = new Scene(periodPickerLoader.load());
 
-        secondaryStage.initStyle(StageStyle.UNDECORATED);
+//        secondaryStage.initStyle(StageStyle.UNDECORATED);
+        secondaryStage.setResizable(false);
         secondaryStage.initModality(Modality.WINDOW_MODAL);
         secondaryStage.initOwner(primaryStage);
     }

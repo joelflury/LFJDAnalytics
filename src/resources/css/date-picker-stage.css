@@ -1,3 +1,10 @@
 .date-picker-root-container {
     -fx-background-color: #D18475;
 }
+
+.date-picker-button {
+    -fx-background-color: #D18475;
+    -fx-border-color: #212121;
+    -fx-text-fill: white;
+    -fx-border-radius: 10;
+}

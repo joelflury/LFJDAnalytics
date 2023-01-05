@@ -13,8 +13,8 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox fx:id="vBoxLeft" prefHeight="200.0" prefWidth="100.0" />
-            <VBox fx:id="vBoxRight" prefHeight="200.0" prefWidth="100.0" />
+            <VBox fx:id="vBoxLeft" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            <VBox fx:id="vBoxRight" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

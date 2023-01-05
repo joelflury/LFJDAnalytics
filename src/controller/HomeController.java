@@ -46,8 +46,6 @@ public class HomeController {
     public void btnAnalyseClick() {
         Stage stage = (Stage)btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
-        stage.setMaximized(false);
-        stage.setMaximized(true);
     }
     @FXML
     public void btnTrendClick(){
