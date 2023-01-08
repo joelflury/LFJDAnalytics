@@ -59,8 +59,8 @@ public class DatePickerController {
                 AnalyseController.setToDate(toDate);
                 AnalyseController.setFromDate(fromDate);
             }
-            AnalyseController controller = new AnalyseController();
-            controller.checkIfAllDataPresent();
+            AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+            analyseController.checkIfAllDataPresent();
         } else {
             if (cbTemplatePeriods.isDisabled()){
                 TrendController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));

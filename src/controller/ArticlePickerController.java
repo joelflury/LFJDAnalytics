@@ -50,8 +50,9 @@ public class ArticlePickerController {
         }
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
             AnalyseController.setLblArticlesTextProperty(returnText);
-//            AnalyseController.setArticleList(articleList);
-//            AnalyseController.checkIfAllDataPresent();
+            AnalyseController.setArticleList(articleList);
+            AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+            analyseController.checkIfAllDataPresent();
         } else {
             TrendController.setLblArticlesTextProperty(returnText);
         }

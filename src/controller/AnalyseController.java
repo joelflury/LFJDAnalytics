@@ -2,15 +2,13 @@ package controller;
 
 import application.LFJDAnalyticsApplication;
 import javafx.beans.property.*;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 
@@ -38,11 +36,13 @@ public class AnalyseController {
     protected Label lblGross;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
-
     private static LocalDate fromDate;
     private static LocalDate toDate;
+    private static List<Article> articleList = new ArrayList<>();
 
-
+    public static void setArticleList(List<Article> articleListParam) {
+        articleList = articleListParam;
+    }
 
     @FXML
     public void initialize(){
@@ -69,13 +69,48 @@ public class AnalyseController {
     }
 
     public void checkIfAllDataPresent() {
-        if (fromDate != null && toDate != null){
+        if (fromDate != null && toDate != null && articleList.size() !=0){
+            Consumer consumer = new Consumer();
+            consumer.getData(fromDate, toDate);
             populateAnalysisChart();
         }
     }
 
     private void populateAnalysisChart() {
-        lblTimePeriod.setText("+asdfasd");
+        List<SalesPerDay> lastMonthData = getLastMonthData();
+        List<XYChart.Series> seriesList = new ArrayList<>();
+        for (Article article: Consumer.getArticleData().getArticles()){
+            XYChart.Series serie = new XYChart.Series();
+            serie.setName(article.getArticlename());
+            for (SalesPerDay spd:lastMonthData){
+                if (spd.getArticleID() == article.getArticleID()){
+                    serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                }
+            }
+            seriesList.add(serie);
+        }
+        for (XYChart.Series serie:seriesList) {
+            lcAnalyse.getData().add(serie);
+        }
+    }
+
+    private List<SalesPerDay> getLastMonthData(){
+        List<SalesPerDay> periodData = new ArrayList<>();
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        LocalDate today = LocalDate.now();
+        int monthAmount = 0;
+        double monthGross = 0;
+        for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
+            LocalDate date = LocalDate.parse(spd.getDate());
+            if (date.isBefore(today) && date.isAfter(today.minusDays(32))){
+                monthGross += spd.getPrice() * spd.getAmount();
+                monthAmount += spd.getAmount();
+                periodData.add(spd);
+            }
+        }
+        lblGross.setText(String.valueOf(formatter.format(monthGross)));
+        lblAmount.setText(monthAmount + " Articles");
+        return periodData;
     }
 
     public static void setLblArticlesTextProperty(String testString) {
@@ -89,6 +124,7 @@ public class AnalyseController {
     public void btnFreePeriodClick() {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
+        lblGross.setText("asdasd");
     }
     public void btnChooseArticlesClick() {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();

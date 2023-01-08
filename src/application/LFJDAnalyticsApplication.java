@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import logic.consumer.Consumer;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class LFJDAnalyticsApplication extends Application {
 
@@ -38,15 +39,13 @@ public class LFJDAnalyticsApplication extends Application {
         setMainStage(primaryStage);
 
         Consumer consumer = new Consumer();
-        consumer.getData();
-
-
+        consumer.getData(LocalDate.now(), LocalDate.now().minusDays(365));
 //        DataPreLoader dataLoader = new DataPreLoader();
 //        dataLoader.getData();
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(analyseScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }

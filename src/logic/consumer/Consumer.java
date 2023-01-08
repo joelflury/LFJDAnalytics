@@ -2,6 +2,8 @@ package logic.consumer;
 
 import modell.*;
 
+import java.time.LocalDate;
+
 public class Consumer {
 
     private static ArticleDataObject articles;
@@ -9,11 +11,9 @@ public class Consumer {
     private static DateRangeDataObject dateRange;
     private static SalesDataObject sales;
 
-    public void getData() {
-        userRet = LogicAdapter.getUserData("dbo", "password");
+    public void getData(LocalDate startDate, LocalDate endDate) {
         articles = LogicAdapter.getArticles();
-        dateRange = LogicAdapter.getDates();
-        sales = LogicAdapter.getSales(dateRange.getFirstDate(), dateRange.getLastDate());
+        sales = LogicAdapter.getSales(String.valueOf(startDate), String.valueOf(endDate));
     }
 
     public int getUserdata(String userName, String password){

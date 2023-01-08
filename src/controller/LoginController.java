@@ -35,8 +35,8 @@ public class LoginController {
                 switch (consumer.getUserdata(tfUsername.getText(), tfPassword.getText())) {
                     case 0:
                         lblLoginError.setText("Wrong Password");
-                        fadeTransition.play();
                         tfPassword.setText("");
+                        fadeTransition.play();
                         break;
                     case 1:
                         lblLoginError.setText("Username not found");
@@ -53,7 +53,6 @@ public class LoginController {
                 lblLoginError.setText("Please enter Username and Password");
                 fadeTransition.play();
             }
-
         }
     }
 }

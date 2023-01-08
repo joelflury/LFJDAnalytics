@@ -24,5 +24,4 @@ public class StartController {
         // Play the Animation
         trans.play();
     }
-
 }
