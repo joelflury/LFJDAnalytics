@@ -2,8 +2,6 @@ package logic.consumer;
 
 import modell.*;
 
-import java.util.List;
-
 public class Consumer {
 
     private static ArticleDataObject articles;
@@ -11,11 +9,15 @@ public class Consumer {
     private static DateRangeDataObject dateRange;
     private static SalesDataObject sales;
 
-    public void start() {
+    public void getData() {
         userRet = LogicAdapter.getUserData("dbo", "password");
         articles = LogicAdapter.getArticles();
         dateRange = LogicAdapter.getDates();
         sales = LogicAdapter.getSales(dateRange.getFirstDate(), dateRange.getLastDate());
+    }
+
+    public int getUserdata(String userName, String password){
+        return LogicAdapter.getUserData(userName, password);
     }
 
     public static ArticleDataObject getArticleData() {

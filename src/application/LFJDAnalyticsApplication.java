@@ -1,17 +1,12 @@
 package application;
 
-import controller.AnalyseController;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import logic.consumer.Consumer;
-import logic.datapreloader.DataPreLoader;
 
 import java.io.IOException;
 
@@ -43,15 +38,15 @@ public class LFJDAnalyticsApplication extends Application {
         setMainStage(primaryStage);
 
         Consumer consumer = new Consumer();
-        consumer.start();
+        consumer.getData();
 
 
 //        DataPreLoader dataLoader = new DataPreLoader();
-//        dataLoader.start();
+//        dataLoader.getData();
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();
-        primaryStage.setScene(startScene);
+        primaryStage.setScene(loginScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }
