@@ -22,8 +22,8 @@
                   <VBox alignment="CENTER_LEFT" styleClass="login-container-vbox" stylesheets="@../../resources/css/loginscreen-conainter.css" HBox.hgrow="ALWAYS">
                      <children>
                         <Label fx:id="lblLogin" alignment="CENTER" contentDisplay="CENTER" styleClass="login-label" text="Insert Username and Password and press Enter" textAlignment="CENTER" />
-                        <TextField fx:id="tfUsername" styleClass="login-textfield" />
-                        <PasswordField fx:id="tfPassword" styleClass="login-textfield" />
+                        <TextField fx:id="tfUsername" promptText="Username" styleClass="login-textfield" />
+                        <PasswordField fx:id="tfPassword" promptText="Password" styleClass="login-textfield" />
                         <Label fx:id="lblLoginError" style="-fx-text-fill: #FF0000;" styleClass="login-label" textAlignment="CENTER" />
                      </children>
                   </VBox>

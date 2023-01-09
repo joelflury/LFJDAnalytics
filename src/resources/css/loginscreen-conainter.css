@@ -10,6 +10,7 @@
 
 
 .login-textfield {
+    -fx-prompt-text-fill: #000000;
     -fx-alignment: center;
     -fx-min-height: 80px;
     -fx-min-width: 300px;
