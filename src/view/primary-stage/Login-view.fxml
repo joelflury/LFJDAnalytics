@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -10,10 +11,13 @@
          <children>
             <HBox alignment="TOP_CENTER" styleClass="login-container-hbox" stylesheets="@../../resources/css/loginscreen-conainter.css" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="224.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true" styleClass="image" HBox.hgrow="ALWAYS">
+                  <ImageView fx:id="ivLoginLogo" fitHeight="224.0" fitWidth="460.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>
                         <Image url="@../../resources/img/logo.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </ImageView>
                </children>
             </HBox>
