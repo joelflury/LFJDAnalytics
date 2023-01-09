@@ -2,7 +2,6 @@ package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.LoadListener;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -10,7 +9,6 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.consumer.Consumer;
-import logic.datapreloader.DataPreLoader;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -40,12 +38,11 @@ public class LFJDAnalyticsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        setMainStage(primaryStage);
 
-//        Consumer consumer = new Consumer();
-//        consumer.getData(LocalDate.now(), LocalDate.now().minusDays(365));
-        DataPreLoader dataLoader = new DataPreLoader();
-        dataLoader.getData();
+        Consumer consumer = new Consumer();
+        consumer.getData(LocalDate.now().minusDays(365), LocalDate.now());
+
+        setMainStage(primaryStage);
         createScenes();
         createSecondaryStage(primaryStage);
         loginScene.getRoot().requestFocus();

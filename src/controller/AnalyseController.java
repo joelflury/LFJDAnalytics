@@ -71,7 +71,7 @@ public class AnalyseController {
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && articleList.size() !=0){
             Consumer consumer = new Consumer();
-            consumer.getData(fromDate, toDate);
+            consumer.getData(toDate, fromDate);
             populateAnalysisChart();
         }
     }

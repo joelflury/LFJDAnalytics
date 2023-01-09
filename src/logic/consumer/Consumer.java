@@ -7,7 +7,6 @@ import java.time.LocalDate;
 public class Consumer {
 
     private static ArticleDataObject articles;
-    private static int userRet;
     private static DateRangeDataObject dateRange;
     private static SalesDataObject sales;
 
@@ -22,10 +21,6 @@ public class Consumer {
 
     public static ArticleDataObject getArticleData() {
         return articles;
-    }
-
-    public static int getUserRet() {
-        return userRet;
     }
 
     public static DateRangeDataObject getDateRange() {
