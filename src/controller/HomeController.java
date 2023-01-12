@@ -85,7 +85,7 @@ public class HomeController {
         double monthGross = 0;
         for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
             LocalDate date = LocalDate.parse(spd.getDate());
-            if (date.isBefore(today) && date.isAfter(today.minusDays(32))){
+            if (date.isBefore(today) && date.isAfter(today.minusDays(365))){
                 monthGross += spd.getPrice() * spd.getAmount();
                 monthAmount += spd.getAmount();
                 lastMonthData.add(spd);
@@ -95,5 +95,4 @@ public class HomeController {
         lblAnalyzeAmount.setText(monthAmount + " Articles");
         return lastMonthData;
     }
-
 }

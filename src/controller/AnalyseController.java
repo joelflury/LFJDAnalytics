@@ -38,10 +38,10 @@ public class AnalyseController {
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
     private static LocalDate toDate;
-    private static List<Article> articleList = new ArrayList<>();
+    private static List<Article> chosenArticleList = new ArrayList<>();
 
-    public static void setArticleList(List<Article> articleListParam) {
-        articleList = articleListParam;
+    public static void setChosenArticleList(List<Article> articleListParam) {
+        chosenArticleList = articleListParam;
     }
 
     @FXML
@@ -69,7 +69,7 @@ public class AnalyseController {
     }
 
     public void checkIfAllDataPresent() {
-        if (fromDate != null && toDate != null && articleList.size() !=0){
+        if (fromDate != null && toDate != null && chosenArticleList.size() !=0){
             Consumer consumer = new Consumer();
             consumer.getData(toDate, fromDate);
             populateAnalysisChart();
@@ -77,9 +77,9 @@ public class AnalyseController {
     }
 
     private void populateAnalysisChart() {
-        List<SalesPerDay> lastMonthData = getLastMonthData();
+        List<SalesPerDay> lastMonthData = getPeriodData();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: Consumer.getArticleData().getArticles()){
+        for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             for (SalesPerDay spd:lastMonthData){
@@ -94,19 +94,15 @@ public class AnalyseController {
         }
     }
 
-    private List<SalesPerDay> getLastMonthData(){
+    private List<SalesPerDay> getPeriodData(){
         List<SalesPerDay> periodData = new ArrayList<>();
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        LocalDate today = LocalDate.now();
         int monthAmount = 0;
         double monthGross = 0;
         for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
-            LocalDate date = LocalDate.parse(spd.getDate());
-            if (date.isBefore(today) && date.isAfter(today.minusDays(32))){
-                monthGross += spd.getPrice() * spd.getAmount();
-                monthAmount += spd.getAmount();
-                periodData.add(spd);
-            }
+            monthGross += spd.getPrice() * spd.getAmount();
+            monthAmount += spd.getAmount();
+            periodData.add(spd);
         }
         lblGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAmount.setText(monthAmount + " Articles");

@@ -48,7 +48,7 @@ public class LFJDAnalyticsApplication extends Application {
         loginScene.getRoot().requestFocus();
         primaryStage.setMaximized(true);
         primaryStage.setResizable(false);
-        primaryStage.setScene(startScene);
+        primaryStage.setScene(analyseScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }

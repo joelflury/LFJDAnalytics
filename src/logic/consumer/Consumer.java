@@ -12,7 +12,11 @@ public class Consumer {
 
     public void getData(LocalDate startDate, LocalDate endDate) {
         articles = LogicAdapter.getArticles();
+        long startTime = System.currentTimeMillis();
         sales = LogicAdapter.getSales(String.valueOf(startDate), String.valueOf(endDate));
+        long endTime = System.currentTimeMillis();
+        long timeElapsed = endTime - startTime;
+        System.out.println("Execution time in milliseconds: " + timeElapsed);
     }
 
     public int getUserdata(String userName, String password){
