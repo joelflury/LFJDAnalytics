@@ -31,9 +31,13 @@ public class AnalyseController {
     @FXML
     protected LineChart lcAnalyse;
     @FXML
+    protected List<XYChart.Series> seriesList;
+    @FXML
     protected Label lblAmount;
     @FXML
     protected Label lblGross;
+    @FXML
+    protected Button btnResetChart;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
@@ -45,7 +49,8 @@ public class AnalyseController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
+        seriesList = new ArrayList<>();
         lblArticles.textProperty().bind(lblArticlesTextProperty);
         lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
         lcAnalyse.setAnimated(false);
@@ -53,24 +58,29 @@ public class AnalyseController {
 
     @FXML
     public void btnHomeClick() {
-        Stage stage = (Stage)btnHome.getScene().getWindow();
+        Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.homeScene);
     }
 
     @FXML
-    public void btnTrendClick(){
-        Stage stage = (Stage)btnTrend.getScene().getWindow();
+    public void btnTrendClick() {
+        Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
 
     @FXML
-    public void btnReportsClick(){
-        Stage stage = (Stage)btnReports.getScene().getWindow();
+    public void btnReportsClick() {
+        Stage stage = (Stage) btnReports.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
+    @FXML
+    public void btnResetChartClick() {
+        lcAnalyse.getData().clear();
+    }
+
     public void checkIfAllDataPresent() {
-        if (fromDate != null && toDate != null && chosenArticleList.size() !=0){
+        if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             Consumer consumer = new Consumer();
             consumer.getSalesData(fromDate, toDate);
             getSalesDataForLabels();
@@ -80,27 +90,30 @@ public class AnalyseController {
 
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
-        List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: chosenArticleList){
+        for (XYChart.Series serie : seriesList) {
+            lcAnalyse.getData().remove(serie);
+        }
+        for (Article article : chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd:Consumer.getSales().getArticlePerDay()){
-                if (spd.getArticleID() == article.getArticleID()){
+            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                if (spd.getArticleID() == article.getArticleID()) {
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                    break;
                 }
             }
             seriesList.add(serie);
         }
-        for (XYChart.Series serie:seriesList) {
+        for (XYChart.Series serie : seriesList) {
             lcAnalyse.getData().add(serie);
         }
     }
 
-    private void getSalesDataForLabels(){
+    private void getSalesDataForLabels() {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
-        for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
+        for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
             monthGross += spd.getPrice() * spd.getAmount();
             monthAmount += spd.getAmount();
         }
@@ -120,8 +133,9 @@ public class AnalyseController {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }
+
     public void btnChooseArticlesClick() {
-        ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
+        ((ArticlePickerController) LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }

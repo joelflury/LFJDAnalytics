@@ -88,6 +88,7 @@
                         </Button>
                      </children>
                   </VBox>
+                  <Button fx:id="btnResetChart" mnemonicParsing="false" onAction="#btnResetChartClick" text="resetChart" />
                </children>
             </HBox>
          </children>
