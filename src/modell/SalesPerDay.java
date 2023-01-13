@@ -9,13 +9,18 @@ public class SalesPerDay {
     private float price;
 
     private static List<SalesPerDay> salesPerDayList = new ArrayList<>();
+    private static List<SalesPerDay> salesForecastList = new ArrayList<>();
 
-    public SalesPerDay(int articleID, String date, int amount, float price) {
+    public SalesPerDay(int articleID, String date, int amount, float price, boolean prediction) {
         this.articleID = articleID;
         this.date = date;
         this.price = price;
         this.amount = amount;
-        salesPerDayList.add(this);
+        if (!prediction){
+            salesPerDayList.add(this);
+        }else{
+            salesForecastList.add(this);
+        }
     }
 
     public int getArticleID() {
@@ -40,6 +45,10 @@ public class SalesPerDay {
 
     public static void setSalesPerDayList(SalesPerDay salesPerDay) {
         SalesPerDay.salesPerDayList.add(salesPerDay);
+    }
+
+    public static List<SalesPerDay> getSalesForecastList() {
+        return salesForecastList;
     }
 
     @Override
