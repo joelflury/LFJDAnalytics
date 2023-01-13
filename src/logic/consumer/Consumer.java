@@ -10,20 +10,23 @@ public class Consumer {
     private static DateRangeDataObject dateRange;
     private static SalesDataObject sales;
 
-    public void getData(LocalDate startDate, LocalDate endDate) {
-        articles = LogicAdapter.getArticles();
-        long startTime = System.currentTimeMillis();
+    public void getSalesData(LocalDate startDate, LocalDate endDate) {
+        //long startTime = System.currentTimeMillis();
         sales = LogicAdapter.getSales(String.valueOf(startDate), String.valueOf(endDate));
-        long endTime = System.currentTimeMillis();
-        long timeElapsed = endTime - startTime;
-        System.out.println("Execution time in milliseconds: " + timeElapsed);
+        //long endTime = System.currentTimeMillis();
+        //long timeElapsed = endTime - startTime;
+        //System.out.println("Execution time in milliseconds: " + timeElapsed);
+    }
+
+    public void getArticleData(){
+        articles = LogicAdapter.getArticles();
     }
 
     public int getUserdata(String userName, String password){
         return LogicAdapter.getUserData(userName, password);
     }
 
-    public static ArticleDataObject getArticleData() {
+    public static ArticleDataObject getArticles() {
         return articles;
     }
 

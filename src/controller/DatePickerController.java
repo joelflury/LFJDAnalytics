@@ -52,7 +52,7 @@ public class DatePickerController {
             if (cbTemplatePeriods.isDisabled()){
                 AnalyseController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
                 AnalyseController.setToDate(dpToDate.getValue());
-                AnalyseController.setFromDate(dpToDate.getValue());
+                AnalyseController.setFromDate(dpFromDate.getValue());
             } else {
                 AnalyseController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
                 getDatesFromTemplate();
@@ -73,14 +73,14 @@ public class DatePickerController {
 
     private void getDatesFromTemplate() {
         if (cbTemplatePeriods.getValue().equals("Last 7 Days")){
-            fromDate = LocalDate.now().minusDays(1);
-            toDate = LocalDate.now().minusDays(8);
+            toDate = LocalDate.now().minusDays(1);
+            fromDate = LocalDate.now().minusDays(8);
         } else if (cbTemplatePeriods.getValue().equals("Last 30 Days")){
-            fromDate = LocalDate.now().minusDays(1);
-            toDate = LocalDate.now().minusDays(31);
+            toDate = LocalDate.now().minusDays(1);
+            fromDate = LocalDate.now().minusDays(31);
         } else if (cbTemplatePeriods.getValue().equals("Last 3 Months")){
-            fromDate = LocalDate.now().minusDays(1);
-            toDate = LocalDate.now().minusDays(93);
+            toDate = LocalDate.now().minusDays(1);
+            fromDate = LocalDate.now().minusDays(93);
         }
     }
 

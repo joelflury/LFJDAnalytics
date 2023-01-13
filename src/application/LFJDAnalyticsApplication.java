@@ -40,7 +40,8 @@ public class LFJDAnalyticsApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Consumer consumer = new Consumer();
-        consumer.getData(LocalDate.now().minusDays(365), LocalDate.now());
+        consumer.getArticleData();
+        consumer.getSalesData(LocalDate.now().minusDays(365), LocalDate.now());
 
         setMainStage(primaryStage);
         createScenes();

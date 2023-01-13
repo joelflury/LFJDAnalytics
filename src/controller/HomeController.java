@@ -3,7 +3,6 @@ package controller;
 import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -62,7 +61,7 @@ public class HomeController {
     private void populateAnalyseChart() {
         List<SalesPerDay> lastMonthData = getLastMonthData();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: Consumer.getArticleData().getArticles()){
+        for (Article article: Consumer.getArticles().getArticles()){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             for (SalesPerDay spd:lastMonthData){

@@ -48,6 +48,7 @@ public class AnalyseController {
     public void initialize(){
         lblArticles.textProperty().bind(lblArticlesTextProperty);
         lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
+        lcAnalyse.setAnimated(false);
     }
 
     @FXML
@@ -71,18 +72,19 @@ public class AnalyseController {
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() !=0){
             Consumer consumer = new Consumer();
-            consumer.getData(toDate, fromDate);
+            consumer.getSalesData(fromDate, toDate);
+            getSalesDataForLabels();
             populateAnalysisChart();
         }
     }
 
     private void populateAnalysisChart() {
-        List<SalesPerDay> lastMonthData = getPeriodData();
+        lcAnalyse.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd:lastMonthData){
+            for (SalesPerDay spd:Consumer.getSales().getArticlePerDay()){
                 if (spd.getArticleID() == article.getArticleID()){
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
                 }
@@ -94,19 +96,16 @@ public class AnalyseController {
         }
     }
 
-    private List<SalesPerDay> getPeriodData(){
-        List<SalesPerDay> periodData = new ArrayList<>();
+    private void getSalesDataForLabels(){
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
         for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
             monthGross += spd.getPrice() * spd.getAmount();
             monthAmount += spd.getAmount();
-            periodData.add(spd);
         }
         lblGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAmount.setText(monthAmount + " Articles");
-        return periodData;
     }
 
     public static void setLblArticlesTextProperty(String testString) {
@@ -120,7 +119,6 @@ public class AnalyseController {
     public void btnFreePeriodClick() {
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
-        lblGross.setText("asdasd");
     }
     public void btnChooseArticlesClick() {
         ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();

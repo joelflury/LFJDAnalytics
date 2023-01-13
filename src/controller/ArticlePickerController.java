@@ -32,7 +32,7 @@ public class ArticlePickerController {
         String returnText;
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
-        List<Article> articleList = Consumer.getArticleData().getArticles();
+        List<Article> articleList = Consumer.getArticles().getArticles();
         for (CheckBox cb : checkBoxList) {
             if (cb.isSelected()) {
                 articleAmount++;
@@ -69,7 +69,7 @@ public class ArticlePickerController {
         checkBoxList.clear();
         vBoxRight.getChildren().clear();
         vBoxLeft.getChildren().clear();
-        List<Article> articleList = Consumer.getArticleData().getArticles();
+        List<Article> articleList = Consumer.getArticles().getArticles();
         for (int i = 0; i < articleList.size(); i++) {
             CheckBox cbArticle = new CheckBox(articleList.get(i).getArticlename());
             cbArticle.setStyle("-fx-text-fill: white");

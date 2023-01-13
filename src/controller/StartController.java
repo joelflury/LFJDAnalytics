@@ -22,8 +22,8 @@ public class StartController {
 
         fadeTrans.setOnFinished(event -> translateTrans.play());
         translateTrans.setOnFinished(event -> {
-            Stage stage = (Stage) lfjdLogo.getScene().getWindow();
-            stage.setScene(LFJDAnalyticsApplication.loginScene);
+//            Stage stage = (Stage) lfjdLogo.getScene().getWindow();
+//            stage.setScene(LFJDAnalyticsApplication.loginScene);
         });
 
         fadeTrans.setFromValue(0);
