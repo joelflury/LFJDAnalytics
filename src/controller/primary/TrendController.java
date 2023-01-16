@@ -1,22 +1,13 @@
-package controller;
+package controller.primary;
 
 import application.LFJDAnalyticsApplication;
+import controller.secondary.ArticlePickerController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import logic.consumer.Consumer;
-import modell.Article;
-import modell.SalesPerDay;
-
-import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TrendController {
 

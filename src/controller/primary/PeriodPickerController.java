@@ -1,4 +1,4 @@
-package controller;
+package controller.primary;
 
 import application.LFJDAnalyticsApplication;
 import javafx.collections.FXCollections;

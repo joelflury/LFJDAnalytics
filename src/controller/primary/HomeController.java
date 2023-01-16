@@ -1,4 +1,4 @@
-package controller;
+package controller.primary;
 
 import application.LFJDAnalyticsApplication;
 import javafx.fxml.FXML;
@@ -79,16 +79,12 @@ public class HomeController {
     private List<SalesPerDay> getLastMonthData(){
         List<SalesPerDay> lastMonthData = new ArrayList<>();
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        LocalDate today = LocalDate.now();
         int monthAmount = 0;
         double monthGross = 0;
         for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
-            LocalDate date = LocalDate.parse(spd.getDate());
-            if (date.isBefore(today) && date.isAfter(today.minusDays(365))){
-                monthGross += spd.getPrice() * spd.getAmount();
-                monthAmount += spd.getAmount();
-                lastMonthData.add(spd);
-            }
+            monthGross += spd.getPrice() * spd.getAmount();
+            monthAmount += spd.getAmount();
+            lastMonthData.add(spd);
         }
         lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAnalyzeAmount.setText(monthAmount + " Articles");

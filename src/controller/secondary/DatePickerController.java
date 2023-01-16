@@ -1,6 +1,8 @@
-package controller;
+package controller.secondary;
 
 import application.LFJDAnalyticsApplication;
+import controller.primary.AnalyseController;
+import controller.primary.TrendController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +14,6 @@ import modell.Period;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.IllegalFormatCodePointException;
 
 public class DatePickerController {
     @FXML
@@ -72,15 +73,20 @@ public class DatePickerController {
     }
 
     private void getDatesFromTemplate() {
-        if (cbTemplatePeriods.getValue().equals("Last 7 Days")){
-            toDate = LocalDate.now().minusDays(1);
-            fromDate = LocalDate.now().minusDays(8);
-        } else if (cbTemplatePeriods.getValue().equals("Last 30 Days")){
-            toDate = LocalDate.now().minusDays(1);
-            fromDate = LocalDate.now().minusDays(31);
-        } else if (cbTemplatePeriods.getValue().equals("Last 3 Months")){
-            toDate = LocalDate.now().minusDays(1);
-            fromDate = LocalDate.now().minusDays(93);
+        int index = cbTemplatePeriods.getSelectionModel().getSelectedIndex();
+        switch (index){
+            case 0:
+                toDate = LocalDate.now().minusDays(1);
+                fromDate = LocalDate.now().minusDays(7);
+                break;
+            case 1:
+                toDate = LocalDate.now().minusDays(1);
+                fromDate = LocalDate.now().minusDays(31);
+                break;
+            case 2:
+                toDate = LocalDate.now().minusDays(1);
+                fromDate = LocalDate.now().minusDays(90);
+                break;
         }
     }
 

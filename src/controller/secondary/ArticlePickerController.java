@@ -1,6 +1,8 @@
-package controller;
+package controller.secondary;
 
 import application.LFJDAnalyticsApplication;
+import controller.primary.AnalyseController;
+import controller.primary.TrendController;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;

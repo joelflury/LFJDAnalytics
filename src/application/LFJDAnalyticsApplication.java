@@ -41,7 +41,7 @@ public class LFJDAnalyticsApplication extends Application {
 
         Consumer consumer = new Consumer();
         consumer.getArticleData();
-        consumer.getSalesData(LocalDate.now().minusDays(365), LocalDate.now());
+        consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
 
         setMainStage(primaryStage);
         createScenes();

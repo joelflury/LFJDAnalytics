@@ -1,6 +1,7 @@
-package controller;
+package controller.primary;
 
 import application.LFJDAnalyticsApplication;
+import controller.secondary.ArticlePickerController;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -90,21 +91,18 @@ public class AnalyseController {
 
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
-        for (XYChart.Series serie : seriesList) {
-            lcAnalyse.getData().remove(serie);
-        }
-        for (Article article : chosenArticleList) {
+        List<XYChart.Series> seriesList = new ArrayList<>();
+        for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-                if (spd.getArticleID() == article.getArticleID()) {
+            for (SalesPerDay spd:Consumer.getSales().getArticlePerDay()){
+                if (spd.getArticleID() == article.getArticleID()){
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                    break;
                 }
             }
             seriesList.add(serie);
         }
-        for (XYChart.Series serie : seriesList) {
+        for (XYChart.Series serie:seriesList) {
             lcAnalyse.getData().add(serie);
         }
     }

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="180.0" minWidth="200.0" styleClass="date-picker-root-container" stylesheets="@../../resources/css/date-picker-stage.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ArticlePickerController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="180.0" minWidth="200.0" styleClass="date-picker-root-container" stylesheets="@../../resources/css/date-picker-stage.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.secondary.ArticlePickerController">
    <children>
       <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Please choose a time period" textFill="WHITE" VBox.vgrow="ALWAYS">
          <VBox.margin>
