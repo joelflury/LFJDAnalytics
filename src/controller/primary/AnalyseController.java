@@ -4,14 +4,17 @@ import application.LFJDAnalyticsApplication;
 import controller.secondary.ArticlePickerController;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
+import util.Util;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -26,19 +29,17 @@ public class AnalyseController {
     @FXML
     protected Button btnReports;
     @FXML
+    protected Button btnPrint;
+    @FXML
     protected Label lblTimePeriod;
     @FXML
     protected Label lblArticles;
     @FXML
     protected LineChart lcAnalyse;
     @FXML
-    protected List<XYChart.Series> seriesList;
-    @FXML
     protected Label lblAmount;
     @FXML
     protected Label lblGross;
-    @FXML
-    protected Button btnResetChart;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
@@ -51,7 +52,6 @@ public class AnalyseController {
 
     @FXML
     public void initialize() {
-        seriesList = new ArrayList<>();
         lblArticles.textProperty().bind(lblArticlesTextProperty);
         lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
         lcAnalyse.setAnimated(false);
@@ -75,11 +75,6 @@ public class AnalyseController {
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
-    @FXML
-    public void btnResetChartClick() {
-        lcAnalyse.getData().clear();
-    }
-
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             Consumer consumer = new Consumer();
@@ -87,6 +82,10 @@ public class AnalyseController {
             getSalesDataForLabels();
             populateAnalysisChart();
         }
+    }
+    @FXML
+    private void printChart(){
+        Util.printChart(lcAnalyse.snapshot(new SnapshotParameters(), new WritableImage(800, 600)));
     }
 
     private void populateAnalysisChart() {

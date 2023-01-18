@@ -58,6 +58,9 @@ public class ArticlePickerController {
             analyseController.checkIfAllDataPresent();
         } else {
             TrendController.setLblArticlesTextProperty(returnText);
+            TrendController.setChosenArticleList(chosenArticleList);
+            TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
+            trendController.checkIfAllDataPresent();
         }
         resetStageValues();
     }

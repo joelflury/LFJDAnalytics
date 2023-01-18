@@ -65,8 +65,13 @@ public class DatePickerController {
         } else {
             if (cbTemplatePeriods.isDisabled()){
                 TrendController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                TrendController.setToDate(dpToDate.getValue());
+                TrendController.setFromDate(dpFromDate.getValue());
             } else {
                 TrendController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
+                getDatesFromTemplate();
+                TrendController.setToDate(toDate);
+                TrendController.setFromDate(fromDate);
             }
         }
         resetStageValues();

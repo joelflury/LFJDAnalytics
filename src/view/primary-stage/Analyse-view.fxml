@@ -88,7 +88,15 @@
                         </Button>
                      </children>
                   </VBox>
-                  <Button fx:id="btnResetChart" mnemonicParsing="false" onAction="#btnResetChartClick" text="resetChart" />
+                  <Button fx:id="btnPrint" layoutX="340.0" layoutY="50.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#printChart" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="lblArticles1" styleClass="bottom-label-small" text="Print" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>
