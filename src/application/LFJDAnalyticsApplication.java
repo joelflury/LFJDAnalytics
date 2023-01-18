@@ -18,11 +18,9 @@ public class LFJDAnalyticsApplication extends Application {
     private static Stage mainStage;
     public static Stage secondaryStage;
     public static Scene datePickerScene;
-    public static FXMLLoader periodPickerLoader;
     public static FXMLLoader datePickerLoader;
     public static FXMLLoader articlePickerLoader;
     public static Scene articlePickerScene;
-    public static Scene periodPickerScene;
     public static Scene startScene;
     public static Scene loginScene;
     public static Scene homeScene;
