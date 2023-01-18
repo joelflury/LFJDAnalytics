@@ -91,6 +91,9 @@ public class AnalyseController {
 
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
+        for (Article art:chosenArticleList) {
+            System.out.println(art.getArticlename());
+        }
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
@@ -111,9 +114,13 @@ public class AnalyseController {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
-        for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-            monthGross += spd.getPrice() * spd.getAmount();
-            monthAmount += spd.getAmount();
+        for (Article article:chosenArticleList) {
+            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                if (article.getArticleID() == spd.getArticleID()){
+                    monthGross += spd.getPrice();
+                    monthAmount += spd.getAmount();
+                }
+            }
         }
         lblGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAmount.setText(monthAmount + " Articles");

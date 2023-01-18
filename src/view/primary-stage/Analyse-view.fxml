@@ -46,7 +46,7 @@
                   </LineChart>
                </children>
             </HBox>
-            <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" styleClass="bottom-container-hbox" stylesheets="@../../resources/css/bottom-container.css" VBox.vgrow="NEVER">
                <children>
                   <Button fx:id="btnFreePeriod" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#btnFreePeriodClick" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css" HBox.hgrow="ALWAYS">
                      <graphic>

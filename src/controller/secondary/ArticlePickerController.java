@@ -30,6 +30,7 @@ public class ArticlePickerController {
     public List<Article> chosenArticleList = new ArrayList<>();
 
     public void btnChooseClick() {
+        chosenArticleList.clear();
         int articleAmount = 0;
         String returnText;
         Stage stage = (Stage) btnCancel.getScene().getWindow();
