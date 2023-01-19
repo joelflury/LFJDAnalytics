@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 
 public class LFJDAnalyticsApplication extends Application {
 
+    public static Consumer consumer;
     private static Stage mainStage;
     public static Stage secondaryStage;
     public static Scene datePickerScene;
@@ -36,10 +38,9 @@ public class LFJDAnalyticsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Consumer consumer = new Consumer();
-        consumer.getArticleData();
-        consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
+        consumer = new Consumer();
+        DataPreLoader dataPreLoader = new DataPreLoader();
+        dataPreLoader.start();
 
         setMainStage(primaryStage);
         createScenes();
@@ -47,7 +48,7 @@ public class LFJDAnalyticsApplication extends Application {
         loginScene.getRoot().requestFocus();
         primaryStage.setMaximized(true);
         primaryStage.setResizable(false);
-        primaryStage.setScene(homeScene);
+        primaryStage.setScene(startScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }

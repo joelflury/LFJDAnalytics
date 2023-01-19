@@ -31,6 +31,4 @@ public class SalesDataObject {
         }
         return selectedSalesList;
     }
-
-
 }

@@ -11,11 +11,7 @@ public class Consumer {
     private static SalesDataObject sales;
 
     public void getSalesData(LocalDate startDate, LocalDate endDate) {
-        //long startTime = System.currentTimeMillis();
         sales = LogicAdapter.getSales(String.valueOf(startDate), String.valueOf(endDate));
-        //long endTime = System.currentTimeMillis();
-        //long timeElapsed = endTime - startTime;
-        //System.out.println("Execution time in milliseconds: " + timeElapsed);
     }
 
     public void getArticleData(){

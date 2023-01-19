@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
-
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeController {
-
     @FXML
     protected Button btnAnalyse;
     @FXML
@@ -38,7 +36,7 @@ public class HomeController {
     @FXML
     public void initialize(){
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-        populateAnalyseChart();
+        lcAnalyse.setAnimated(false);
     }
 
     @FXML
@@ -58,7 +56,7 @@ public class HomeController {
         stage.setScene(LFJDAnalyticsApplication.reportScene);
     }
 
-    private void populateAnalyseChart() {
+    public void populateAnalyseChart() {
         List<SalesPerDay> lastMonthData = getLastMonthData();
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: Consumer.getArticles().getArticles()){
@@ -89,5 +87,11 @@ public class HomeController {
         lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAnalyzeAmount.setText(monthAmount + " Articles");
         return lastMonthData;
+    }
+
+    public void start() {
+        Consumer consumer = new Consumer();
+        consumer.getSalesData(LocalDate.now().minusDays(365), LocalDate.now());
+        populateAnalyseChart();
     }
 }

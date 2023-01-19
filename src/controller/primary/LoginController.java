@@ -50,6 +50,8 @@ public class LoginController {
                     case 2:
                         Stage stage = (Stage) hBoxRoot.getScene().getWindow();
                         stage.setScene(LFJDAnalyticsApplication.homeScene);
+                        HomeController controller = LFJDAnalyticsApplication.homeLoader.getController();
+                        controller.start();
                         break;
                 }
             } else {
