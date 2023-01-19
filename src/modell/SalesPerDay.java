@@ -1,4 +1,6 @@
 package modell;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,20 @@ public class SalesPerDay {
 
     public static List<SalesPerDay> getSalesForecastList() {
         return salesForecastList;
+    }
+
+    public static List<SalesPerDay> getSalesForecastList(LocalDate startDate, LocalDate endDate) {
+        List<SalesPerDay> tempSalesForecastList = new ArrayList<>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        for (SalesPerDay sale:salesForecastList) {
+            LocalDate date = LocalDate.parse(sale.getDate(), dtf);
+            if (date.isAfter(startDate.minusDays(1)) && date.isBefore(endDate.plusDays(1))){
+                tempSalesForecastList.add(sale);
+            }
+        }
+
+        return tempSalesForecastList;
     }
 
     @Override

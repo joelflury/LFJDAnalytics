@@ -29,6 +29,8 @@ public class HomeController {
     @FXML
     protected LineChart lcAnalyse;
     @FXML
+    protected LineChart lcTrend;
+    @FXML
     protected Label lblAnalyzeGross;
     @FXML
     protected Label lblAnalyzeAmount;
@@ -37,6 +39,7 @@ public class HomeController {
     public void initialize(){
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         lcAnalyse.setAnimated(false);
+        lcTrend.setAnimated(false);
     }
 
     @FXML
@@ -74,6 +77,23 @@ public class HomeController {
         }
     }
 
+    public void populateChart(List<SalesPerDay> salesList, LineChart chart) {
+        List<XYChart.Series> seriesList = new ArrayList<>();
+        for (Article article: Consumer.getArticles().getArticles()){
+            XYChart.Series serie = new XYChart.Series();
+            serie.setName(article.getArticlename());
+            for (SalesPerDay spd:salesList){
+                if (spd.getArticleID() == article.getArticleID()){
+                    serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                }
+            }
+            seriesList.add(serie);
+        }
+        for (XYChart.Series serie:seriesList) {
+            chart.getData().add(serie);
+        }
+    }
+
     private List<SalesPerDay> getLastMonthData(){
         List<SalesPerDay> lastMonthData = new ArrayList<>();
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
@@ -91,7 +111,11 @@ public class HomeController {
 
     public void start() {
         Consumer consumer = new Consumer();
-        consumer.getSalesData(LocalDate.now().minusDays(365), LocalDate.now());
-        populateAnalyseChart();
+        consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
+        consumer.getArticleData();
+        //populateAnalyseChart();
+        populateChart(getLastMonthData(), lcAnalyse);
+        populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
+        System.out.println(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)).size());
     }
 }

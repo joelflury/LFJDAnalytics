@@ -35,7 +35,9 @@ public class SalesForcecastAlgorithm {
     }
 
     public void calculate(){
+        System.out.println("test");
         for (Article article:articles) {
+            System.out.println("test inside");
             int amountofDays = (int) ChronoUnit.DAYS.between(firstDate, lastDate);
             List<SalesPerDay> salesLast7days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(8), firstDate.minusDays(1), article);
             List<SalesPerDay> salesLast365days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(365), firstDate.minusDays(1), article);
@@ -49,10 +51,6 @@ public class SalesForcecastAlgorithm {
             }
 
             double differenceYears = calculateAverage(salesLastYear) /calculateAverage(salesThisYear);
-            System.out.println(amountofDays);
-            System.out.println(salesOneYearAgo.size());
-            System.out.println(article.getArticlename());
-            System.out.println(article.getArticleID());
             for (int i = 1; i <= amountofDays; i++) {
                 LocalDate date = LocalDate.now().plusDays(i);
 

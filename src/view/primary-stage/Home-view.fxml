@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.HomeController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.HomeController">
    <children>
       <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../../resources/css/menu-container.css">
          <children>
@@ -94,14 +94,14 @@
                 <NumberAxis label="Amount" minorTickVisible="false" side="LEFT" tickLabelFill="WHITE" />
               </yAxis>
             </LineChart>
-            <StackedAreaChart maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../resources/css/chart.css" VBox.vgrow="ALWAYS">
-              <xAxis>
-                <NumberAxis side="BOTTOM" tickLabelFill="WHITE" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" tickLabelFill="WHITE" />
-              </yAxis>
-            </StackedAreaChart>
+            <LineChart fx:id="lcTrend" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../resources/css/chart.css">
+               <xAxis>
+                  <CategoryAxis label="Month" side="BOTTOM" tickLabelFill="WHITE" tickLabelGap="10.0" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis label="Amount" minorTickVisible="false" side="LEFT" tickLabelFill="WHITE" />
+               </yAxis>
+            </LineChart>
          </children>
       </VBox>
    </children>

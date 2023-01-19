@@ -73,14 +73,12 @@ public class TrendController {
 
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
-            Consumer consumer = new Consumer();
-            consumer.getSalesData(fromDate, toDate);
             getSalesDataForLabels();
-            populateAnalysisChart();
+            populateTrendChart();
         }
     }
 
-    private void populateAnalysisChart() {
+    private void populateTrendChart() {
         lcTrend.getData().clear();
         for (Article art:chosenArticleList) {
             System.out.println(art.getArticlename());
@@ -89,7 +87,7 @@ public class TrendController {
         for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd:Consumer.getSales().getArticlePerDay()){
+            for (SalesPerDay spd:SalesPerDay.getSalesForecastList(fromDate, toDate)){
                 if (spd.getArticleID() == article.getArticleID()){
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
                 }
@@ -106,7 +104,7 @@ public class TrendController {
         int monthAmount = 0;
         double monthGross = 0;
         for (Article article:chosenArticleList) {
-            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+            for (SalesPerDay spd : SalesPerDay.getSalesForecastList(fromDate, toDate)) {
                 if (article.getArticleID() == spd.getArticleID()){
                     monthGross += spd.getPrice();
                     monthAmount += spd.getAmount();

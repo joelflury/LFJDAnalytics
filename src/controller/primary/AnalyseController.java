@@ -90,9 +90,6 @@ public class AnalyseController {
 
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
-        for (Article art:chosenArticleList) {
-            System.out.println(art.getArticlename());
-        }
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
