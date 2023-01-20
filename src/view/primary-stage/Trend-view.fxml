@@ -27,7 +27,6 @@
                   <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="HOME" />
                   <Button fx:id="btnAnalyse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAnalyseClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="ANALYSIS" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../../resources/css/menu-button.css" text="TREND" />
-                  <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="REPORTS" />
                </children>
             </VBox>
          </children>

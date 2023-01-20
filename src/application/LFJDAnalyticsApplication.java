@@ -28,13 +28,11 @@ public class LFJDAnalyticsApplication extends Application {
     public static Scene homeScene;
     public static Scene analyseScene;
     public static Scene trendScene;
-    public static Scene reportScene;
     public static FXMLLoader analyseLoader;
     public static FXMLLoader startLoader;
     public static FXMLLoader homeLoader;
     public static FXMLLoader loginLoader;
     public static FXMLLoader trendLoader;
-    public static FXMLLoader reportLoader;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -65,8 +63,6 @@ public class LFJDAnalyticsApplication extends Application {
         analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight());
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
         trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight());
-        reportLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Report-view.fxml"));
-        reportScene = new Scene(reportLoader.load(), screenSize.getWidth(), screenSize.getHeight());
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {

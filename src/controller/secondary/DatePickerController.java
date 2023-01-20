@@ -5,15 +5,21 @@ import controller.primary.AnalyseController;
 import controller.primary.TrendController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import modell.Period;
 
+import java.net.DatagramSocket;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class DatePickerController {
     @FXML
@@ -32,7 +38,6 @@ public class DatePickerController {
 
     @FXML
     public void initialize(){
-        cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.periodNames));
         dpFromDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         dpToDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         cbTemplatePeriods.disableProperty().bind(dpFromDate.valueProperty().isNotNull().or(dpToDate.valueProperty().isNotNull()));
@@ -47,51 +52,99 @@ public class DatePickerController {
 
     @FXML
     protected void btnChooseClick() {
-        Stage stage = (Stage) btnChoose.getScene().getWindow();
-        stage.close();
+        toDate = dpToDate.getValue();
+        fromDate = dpFromDate.getValue();
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene){
-            if (cbTemplatePeriods.isDisabled()){
-                AnalyseController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                AnalyseController.setToDate(dpToDate.getValue());
-                AnalyseController.setFromDate(dpFromDate.getValue());
+            if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
+                if (cbTemplatePeriods.isDisabled()) {
+                    System.out.println(DAYS.between(fromDate, toDate.plusDays(1)));
+                    AnalyseController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                    AnalyseController.setToDate(dpToDate.getValue());
+                    AnalyseController.setFromDate(dpFromDate.getValue());
+                } else {
+                    AnalyseController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
+                    getDatesFromTemplate();
+                    AnalyseController.setToDate(toDate);
+                    AnalyseController.setFromDate(fromDate);
+                }
+                AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+                analyseController.checkIfAllDataPresent();
+                Stage stage = (Stage) btnChoose.getScene().getWindow();
+                stage.close();
             } else {
-                AnalyseController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
-                getDatesFromTemplate();
-                AnalyseController.setToDate(toDate);
-                AnalyseController.setFromDate(fromDate);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("An Error Happened");
+                alert.setHeaderText("Date Error");
+                alert.setContentText("Please choose a proper Date");
+                alert.showAndWait();
             }
-            AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
-            analyseController.checkIfAllDataPresent();
         } else {
-            if (cbTemplatePeriods.isDisabled()){
-                TrendController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                TrendController.setToDate(dpToDate.getValue());
-                TrendController.setFromDate(dpFromDate.getValue());
+            if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
+                if (cbTemplatePeriods.isDisabled()) {
+                    TrendController.setLblFreeTimePeriodTextProperty(dpFromDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + dpToDate.getValue().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                    TrendController.setToDate(dpToDate.getValue());
+                    TrendController.setFromDate(dpFromDate.getValue());
+                } else {
+                    TrendController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
+                    getDatesFromTemplate();
+                    TrendController.setToDate(toDate);
+                    TrendController.setFromDate(fromDate);
+                }
+                TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
+                trendController.checkIfAllDataPresent();
+                Stage stage = (Stage) btnChoose.getScene().getWindow();
+                stage.close();
             } else {
-                TrendController.setLblFreeTimePeriodTextProperty(cbTemplatePeriods.getValue().toString());
-                getDatesFromTemplate();
-                TrendController.setToDate(toDate);
-                TrendController.setFromDate(fromDate);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("An Error Happened");
+                alert.setHeaderText("Date Error");
+                alert.setContentText("Please choose a proper Date");
+                alert.showAndWait();
             }
         }
         resetStageValues();
     }
 
+    public void setPeriodsForChoiceBox(){
+        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.periodNames));
+        } else {
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.periodNamesForeCast));
+        }
+    }
+
     private void getDatesFromTemplate() {
         int index = cbTemplatePeriods.getSelectionModel().getSelectedIndex();
-        switch (index){
-            case 0:
-                toDate = LocalDate.now().minusDays(1);
-                fromDate = LocalDate.now().minusDays(7);
-                break;
-            case 1:
-                toDate = LocalDate.now().minusDays(1);
-                fromDate = LocalDate.now().minusDays(31);
-                break;
-            case 2:
-                toDate = LocalDate.now().minusDays(1);
-                fromDate = LocalDate.now().minusDays(90);
-                break;
+        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+            switch (index) {
+                case 0:
+                    toDate = LocalDate.now().minusDays(1);
+                    fromDate = LocalDate.now().minusDays(7);
+                    break;
+                case 1:
+                    toDate = LocalDate.now().minusDays(1);
+                    fromDate = LocalDate.now().minusDays(31);
+                    break;
+                case 2:
+                    toDate = LocalDate.now().minusDays(1);
+                    fromDate = LocalDate.now().minusDays(90);
+                    break;
+            }
+        } else {
+            switch (index) {
+                case 0:
+                    toDate = LocalDate.now().plusDays(7);
+                    fromDate = LocalDate.now().plusDays(1);
+                    break;
+                case 1:
+                    toDate = LocalDate.now().plusDays(31);
+                    fromDate = LocalDate.now().plusDays(7);
+                    break;
+                case 2:
+                    toDate = LocalDate.now().plusDays(90);
+                    fromDate = LocalDate.now().plusDays(1);
+                    break;
+            }
         }
     }
 

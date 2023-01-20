@@ -53,12 +53,6 @@ public class HomeController {
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
 
-    @FXML
-    public void btnReportsClick(){
-        Stage stage = (Stage)btnReports.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.reportScene);
-    }
-
     public void populateAnalyseChart() {
         List<SalesPerDay> lastMonthData = getLastMonthData();
         List<XYChart.Series> seriesList = new ArrayList<>();
@@ -116,6 +110,5 @@ public class HomeController {
         //populateAnalyseChart();
         populateChart(getLastMonthData(), lcAnalyse);
         populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
-        System.out.println(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)).size());
     }
 }

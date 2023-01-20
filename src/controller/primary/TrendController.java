@@ -2,6 +2,7 @@ package controller.primary;
 
 import application.LFJDAnalyticsApplication;
 import controller.secondary.ArticlePickerController;
+import controller.secondary.DatePickerController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -65,11 +66,6 @@ public class TrendController {
         Stage stage = (Stage)btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.homeScene);
     }
-    @FXML
-    public void btnReportsClick(){
-        Stage stage = (Stage)btnReports.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.reportScene);
-    }
 
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
@@ -80,9 +76,6 @@ public class TrendController {
 
     private void populateTrendChart() {
         lcTrend.getData().clear();
-        for (Article art:chosenArticleList) {
-            System.out.println(art.getArticlename());
-        }
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: chosenArticleList){
             XYChart.Series serie = new XYChart.Series();
@@ -124,7 +117,7 @@ public class TrendController {
     }
 
     public void btnFreePeriodClick() {
-        LFJDAnalyticsApplication.secondaryStage.setUserData(LFJDAnalyticsApplication.analyseLoader);
+        ((DatePickerController) LFJDAnalyticsApplication.datePickerLoader.getController()).setPeriodsForChoiceBox();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }

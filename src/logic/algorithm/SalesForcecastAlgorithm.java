@@ -35,9 +35,7 @@ public class SalesForcecastAlgorithm {
     }
 
     public void calculate(){
-        System.out.println("test");
         for (Article article:articles) {
-            System.out.println("test inside");
             int amountofDays = (int) ChronoUnit.DAYS.between(firstDate, lastDate);
             List<SalesPerDay> salesLast7days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(8), firstDate.minusDays(1), article);
             List<SalesPerDay> salesLast365days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(365), firstDate.minusDays(1), article);

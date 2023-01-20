@@ -15,6 +15,5 @@ public class DataPreLoader extends Thread{
         LFJDAnalyticsApplication.consumer.getArticleData();
         SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(LocalDate.now().plusDays(365), Consumer.getArticles().getArticles());
         algorithm.calculate();
-        System.out.println(SalesPerDay.getSalesForecastList());
     }
 }

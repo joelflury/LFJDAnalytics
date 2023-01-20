@@ -27,7 +27,6 @@
                   <Button fx:id="btnHome" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnHomeClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="HOME" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../../resources/css/menu-button.css" text="ANALYSIS" />
                   <Button fx:id="btnTrend" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnTrendClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="TREND" />
-                  <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="REPORTS" />
                </children>
             </VBox>
          </children>
@@ -92,7 +91,7 @@
                      <graphic>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="lblArticles1" styleClass="bottom-label-small" text="Print" />
+                              <Label fx:id="lblArticles1" styleClass="bottom-label-small" text="Print Chart" />
                            </children>
                         </VBox>
                      </graphic>

@@ -2,6 +2,7 @@ package controller.primary;
 
 import application.LFJDAnalyticsApplication;
 import controller.secondary.ArticlePickerController;
+import controller.secondary.DatePickerController;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
@@ -69,12 +70,6 @@ public class AnalyseController {
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
 
-    @FXML
-    public void btnReportsClick() {
-        Stage stage = (Stage) btnReports.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.reportScene);
-    }
-
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             Consumer consumer = new Consumer();
@@ -131,6 +126,7 @@ public class AnalyseController {
     }
 
     public void btnFreePeriodClick() {
+        ((DatePickerController) LFJDAnalyticsApplication.datePickerLoader.getController()).setPeriodsForChoiceBox();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }

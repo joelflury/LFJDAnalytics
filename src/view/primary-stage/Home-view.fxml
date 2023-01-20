@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.HomeController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.HomeController">
    <children>
       <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../../resources/css/menu-container.css">
          <children>
@@ -27,7 +27,6 @@
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="menu-button-aktiv" stylesheets="@../../resources/css/menu-button.css" text="HOME" />
                   <Button fx:id="btnAnalyse" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnAnalyseClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="ANALYSIS" />
                   <Button fx:id="btnTrend" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnTrendClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="TREND" />
-                  <Button fx:id="btnReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnReportsClick" styleClass="menu-button" stylesheets="@../../resources/css/menu-button.css" text="REPORTS" />
                </children>
             </VBox>
          </children>
@@ -94,7 +93,7 @@
                 <NumberAxis label="Amount" minorTickVisible="false" side="LEFT" tickLabelFill="WHITE" />
               </yAxis>
             </LineChart>
-            <LineChart fx:id="lcTrend" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../resources/css/chart.css">
+            <LineChart fx:id="lcTrend" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../resources/css/chart.css" VBox.vgrow="ALWAYS">
                <xAxis>
                   <CategoryAxis label="Month" side="BOTTOM" tickLabelFill="WHITE" tickLabelGap="10.0" />
                </xAxis>
