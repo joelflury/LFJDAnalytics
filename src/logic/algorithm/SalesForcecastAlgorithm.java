@@ -11,7 +11,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
-import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 
 
 public class SalesForcecastAlgorithm {
@@ -22,6 +21,11 @@ public class SalesForcecastAlgorithm {
 
     public SalesForcecastAlgorithm( LocalDate lastDate, List<Article> articles) {
         this.firstDate = LocalDate.now();
+        this.lastDate = lastDate;
+        this.articles = articles;
+    }
+    public SalesForcecastAlgorithm(LocalDate firstDate, LocalDate lastDate, List<Article> articles) {
+        this.firstDate = firstDate;
         this.lastDate = lastDate;
         this.articles = articles;
     }
@@ -39,27 +43,33 @@ public class SalesForcecastAlgorithm {
             int amountofDays = (int) ChronoUnit.DAYS.between(firstDate, lastDate);
             List<SalesPerDay> salesLast7days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(8), firstDate.minusDays(1), article);
             List<SalesPerDay> salesLast365days = Consumer.getSales().getArticlePerDay(firstDate.minusDays(365), firstDate.minusDays(1), article);
-            List<SalesPerDay> salesOneYearAgo = Consumer.getSales().getArticlePerDay(firstDate.minusDays(365), lastDate.minusDays(365), article);
             List<SalesPerDay> salesThisYear = Consumer.getSales().getArticlePerDay(LocalDate.now().with(firstDayOfYear()), firstDate, article);
-            List<SalesPerDay> salesLastYear = Consumer.getSales().getArticlePerDay(LocalDate.now().minusDays(365).with(firstDayOfYear()), LocalDate.now().minusDays(365).with(lastDayOfYear()), article);
+            List<SalesPerDay> salesLastYear = Consumer.getSales().getArticlePerDay(LocalDate.now().minusDays(365).with(firstDayOfYear()), LocalDate.now().minusDays(365), article);
+            List<SalesPerDay> sales2YearAgo = Consumer.getSales().getArticlePerDay(LocalDate.now().minusDays(730).with(firstDayOfYear()), LocalDate.now().minusDays(730), article);
             double average7d = calculateAverage(salesLast7days);
-            List<Double> averagePerWeekday = new ArrayList();
-            for (int i = 1; i <= 7; i++){
-                averagePerWeekday.add(calculateAverage(salesLast365days, i));
-            }
-
-            double differenceYears = calculateAverage(salesLastYear) /calculateAverage(salesThisYear);
+            List<Double> differencePerWeekday = calculateDifferenceWeekDay(salesLast365days);
+            double differenceLastYear = calculateAverage(salesLastYear) /calculateAverage(salesThisYear);
+            double difference2YearAgo = calculateAverage(sales2YearAgo) /calculateAverage(salesThisYear);
             for (int i = 1; i <= amountofDays; i++) {
                 LocalDate date = LocalDate.now().plusDays(i);
-
-
-                int predictedSalesamount = (int) ((average7d + salesOneYearAgo.get(i-1).getAmount() + averagePerWeekday.get(getWeekDay(date)-1) / 3) * differenceYears);
-                //int predictedSalesamount = (int) ((average7d + averagePerWeekday.get(getWeekDay(date)-1) / 2) * differenceYears);
+                List<SalesPerDay> salesLastYear20days = Consumer.getSales().getArticlePerDay(date.minusDays(370), date.minusDays(360), article);
+                List<SalesPerDay> sales2YearAgo20days = Consumer.getSales().getArticlePerDay(date.minusDays(735), date.minusDays(725), article);
+                double averageLastYear20Days = calculateAverage(salesLastYear20days);
+                double average2YearAgo20Days = calculateAverage(sales2YearAgo20days);
+                int predictedSalesamount = (int) Math.round(((2* average7d + (3 * averageLastYear20Days * Math.pow(differenceLastYear,2)) + (average2YearAgo20Days * difference2YearAgo))/6) * differencePerWeekday.get(getWeekDay(date)-1));
                 float price = predictedSalesamount * article.getPrice();
                 new SalesPerDay(article.getArticleID(),date.toString(), predictedSalesamount, price, true);
             }
         }
-
+    }
+    private List<Double> calculateDifferenceWeekDay(List<SalesPerDay> salesLast365days){
+        double average365d = calculateAverage(salesLast365days);
+        List<Double> differencePerWeekday = new ArrayList();
+        for (int i = 1; i <= 7; i++){
+            double difference = average365d / calculateAverage(salesLast365days, i);
+            differencePerWeekday.add(difference);
+        }
+        return differencePerWeekday;
     }
 
     private double calculateAverage(List<SalesPerDay> salesList){

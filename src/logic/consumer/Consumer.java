@@ -27,6 +27,7 @@ public class Consumer {
     }
 
     public static DateRangeDataObject getDateRange() {
+        dateRange = LogicAdapter.getDates();
         return dateRange;
     }
 

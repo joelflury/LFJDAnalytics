@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
+import util.TestAlgorithm;
+
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -110,5 +112,6 @@ public class HomeController {
         //populateAnalyseChart();
         populateChart(getLastMonthData(), lcAnalyse);
         populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
+        TestAlgorithm.test();
     }
 }
