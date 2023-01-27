@@ -12,15 +12,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
+import logic.DateRangeAnalyzer.DateRangeAnalyzer;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
+import modell.SalesPerWeek;
 import util.Util;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class AnalyseController {
     @FXML
@@ -86,18 +90,37 @@ public class AnalyseController {
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: chosenArticleList){
+        for (Article article: chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd:Consumer.getSales().getArticlePerDay()){
-                if (spd.getArticleID() == article.getArticleID()){
-                    serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+            List<SalesPerDay> tempSalesPerDayList = Consumer.getSales().getArticlePerDay();
+            LocalDate startDate = LocalDate.parse(tempSalesPerDayList.get(0).getDate());
+            LocalDate endDate = LocalDate.parse(tempSalesPerDayList.get(tempSalesPerDayList.size() - 1).getDate());
+            if (DAYS.between(startDate, endDate) > 62) {
+                List<SalesPerWeek> tempSalesPerWeekList = DateRangeAnalyzer.analyze(tempSalesPerDayList);
+                for (SalesPerWeek spw : tempSalesPerWeekList) {
+                    if (spw.getArticleID() == article.getArticleID()) {
+                        serie.getData().add(new XYChart.Data("KW " +spw.getWeek(), spw.getAmount()));
+                    }
+                }
+                seriesList.add(serie);
+
+                for (XYChart.Series tempSerie : seriesList) {
+                    lcAnalyse.getData().add(tempSerie);
+                }
+
+            } else {
+                for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                    if (spd.getArticleID() == article.getArticleID()) {
+                        serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                    }
+                }
+                seriesList.add(serie);
+
+                for (XYChart.Series tempSerie : seriesList) {
+                    lcAnalyse.getData().add(tempSerie);
                 }
             }
-            seriesList.add(serie);
-        }
-        for (XYChart.Series serie:seriesList) {
-            lcAnalyse.getData().add(serie);
         }
     }
 
@@ -105,14 +128,14 @@ public class AnalyseController {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
-        for (Article article:chosenArticleList) {
-            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-                if (article.getArticleID() == spd.getArticleID()){
-                    monthGross += spd.getPrice();
-                    monthAmount += spd.getAmount();
-                }
-            }
-        }
+         for (Article article : chosenArticleList) {
+             for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                 if (article.getArticleID() == spd.getArticleID()) {
+                     monthGross += spd.getPrice();
+                     monthAmount += spd.getAmount();
+                 }
+             }
+         }
         lblGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAmount.setText(monthAmount + " Articles");
     }

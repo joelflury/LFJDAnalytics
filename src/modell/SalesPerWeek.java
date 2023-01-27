@@ -1,19 +1,17 @@
 package modell;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerWeek {
     private int articleID;
-    private String date;
+    private int week;
     private int amount;
     private float price;
     private static List<SalesPerWeek> salesPerWeekList = new ArrayList<>();
 
-    public SalesPerWeek(int articleID, String date, int amount, float price, boolean prediction) {
+    public SalesPerWeek(int articleID, int week, int amount, float price) {
         this.articleID = articleID;
-        this.date = date;
+        this.week = week;
         this.price = price;
         this.amount = amount;
         salesPerWeekList.add(this);
@@ -23,8 +21,8 @@ public class SalesPerWeek {
         return articleID;
     }
 
-    public String getDate() {
-        return date;
+    public int getWeek() {
+        return week;
     }
 
     public float getPrice() {
@@ -43,11 +41,19 @@ public class SalesPerWeek {
         SalesPerWeek.salesPerWeekList.add(salesPerDay);
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "ArticlePerDay{" +
                 "articleID=" + articleID +
-                ", date='" + date + '\'' +
+                ", week='" + week + '\'' +
                 ", price=" + price +
                 ", amount=" + amount +
                 '}';

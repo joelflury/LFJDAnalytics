@@ -28,6 +28,8 @@ public class TestAlgorithm {
         List<SalesPerDay> predictedSales = SalesPerDay.getSalesForecastList(LocalDate.now().plusDays(1), lastDate);
         Double deviationAverage = 0.0;
         int articleAmount = 0;
+        System.out.println("Deviation Test per Article");
+        System.out.println("Daterange: " + firstDate + " - " + lastDate);
         //Loop trough all articles and calculate the deviation between real sales and predicted sales
         for (Article article:Consumer.getArticles().getArticles()){
             System.out.println(article.getArticlename());
@@ -58,6 +60,7 @@ public class TestAlgorithm {
         }
         deviationAverage = deviationAverage/ articleAmount;
         System.out.println("Average deviation: " + deviationAverage);
+        System.out.println("\n");
     }
 
     // Test the Algorithm to calculate the deviation per day between realsales and predicted sales
@@ -102,5 +105,6 @@ public class TestAlgorithm {
         deviationAverage = deviationAverage/salesAmount;
         System.out.println("Daterange: " + firstDate + " - " + lastDate);
         System.out.println("Average deviation: " + deviationAverage);
+        System.out.println("\n");
     }
 }

@@ -61,8 +61,10 @@ public class DatePickerController {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
             if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
                 AnalyseController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                AnalyseController.setToDate(dpToDate.getValue());
-                AnalyseController.setFromDate(dpFromDate.getValue());
+                System.out.println(toDate);
+                AnalyseController.setToDate(toDate);
+                System.out.println(fromDate);
+                AnalyseController.setFromDate(fromDate);
                 AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
                 analyseController.checkIfAllDataPresent();
                 Stage stage = (Stage) btnChoose.getScene().getWindow();
