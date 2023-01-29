@@ -33,7 +33,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+            <HBox fx:id="hBoxLcAnalyse" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                <children>
                   <LineChart fx:id="lcAnalyse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../../resources/css/chart.css" HBox.hgrow="ALWAYS">
                     <xAxis>

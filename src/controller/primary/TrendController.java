@@ -100,6 +100,7 @@ public class TrendController {
                 for (XYChart.Series tempSerie : seriesList) {
                     lcTrend.getData().add(tempSerie);
                 }
+                seriesList.clear();
             } else {
                 for (SalesPerDay spd : SalesPerDay.getSalesForecastList(fromDate, toDate)) {
                     if (spd.getArticleID() == article.getArticleID()) {
@@ -110,6 +111,7 @@ public class TrendController {
                 for (XYChart.Series tempSerie : seriesList) {
                     lcTrend.getData().add(tempSerie);
                 }
+                seriesList.clear();
             }
         }
     }

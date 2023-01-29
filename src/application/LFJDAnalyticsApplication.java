@@ -46,11 +46,12 @@ public class LFJDAnalyticsApplication extends Application {
         loginScene.getRoot().requestFocus();
         primaryStage.setMaximized(true);
         primaryStage.setResizable(false);
-        primaryStage.setScene(startScene);
+        primaryStage.setScene(loginScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }
 
+    
     private void createScenes() throws IOException {
         Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
         loginLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Login-view.fxml"));

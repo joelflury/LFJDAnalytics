@@ -11,17 +11,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 public class Util {
-    public static void printChart(Image image){
-        File outputFile = new File("C:\\LFJDTest\\");
-        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-        try {
-            ImageIO.write(bImage, "png", outputFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static int getWeekDay(LocalDate date){
+       public static int getWeekDay(LocalDate date){
         String weekDayString = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK)).toString();
         int weekDayInt = 0;
 
