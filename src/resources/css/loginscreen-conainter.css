@@ -25,12 +25,15 @@
     -fx-border-color: white;
     -fx-border-width: 3;
     -fx-border-radius: 10;
+}
 
+.login-textfield:focused {
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
 }
 
 .login-label {
     -fx-font-size: 20px;
     -fx-text-fill: white;
 }
-
-.che

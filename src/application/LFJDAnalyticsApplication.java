@@ -10,9 +10,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
-
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class LFJDAnalyticsApplication extends Application {
 

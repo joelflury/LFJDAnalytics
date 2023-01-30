@@ -4,12 +4,14 @@ import application.LFJDAnalyticsApplication;
 import controller.secondary.ArticlePickerController;
 import controller.secondary.DatePickerController;
 import javafx.beans.property.*;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logic.DateRangeAnalyzer.DateRangeAnalyzer;
@@ -32,9 +34,9 @@ public class AnalyseController {
     @FXML
     protected Button btnTrend;
     @FXML
-    protected Button btnReports;
-    @FXML
     protected Button btnPrint;
+    @FXML
+    protected Button btnSave;
     @FXML
     protected Label lblTimePeriod;
     @FXML
@@ -86,11 +88,12 @@ public class AnalyseController {
     }
     @FXML
     private void printChart(){
-//        LineChart<String, Number> tempChart = lcAnalyse;
-//        Scene tempScene = new Scene(tempChart);
-//        lcAnalyse.applyCss();
-//        System.out.println(lcAnalyse.getScaleX());
-        PrintSaveChart.saveFileAsImage(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight(), LFJDAnalyticsApplication.getMainStage());
+//        PrintSaveChart.printFile(new ImageView(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null)));
+        PrintSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(PrintSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), null)));
+    }
+    @FXML
+    private void saveChart(){
+        PrintSaveChart.saveFileAsImage(PrintSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()));
     }
 
     private void populateAnalysisChart() {

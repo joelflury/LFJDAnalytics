@@ -96,6 +96,15 @@
                         </VBox>
                      </graphic>
                   </Button>
+                  <Button fx:id="btnSave" layoutX="595.0" layoutY="50.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveChart" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="lblArticles11" styleClass="bottom-label-small" text="Save Chart&#10;as Picture" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children>
