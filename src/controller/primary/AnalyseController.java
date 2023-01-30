@@ -10,14 +10,14 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.WritableImage;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logic.DateRangeAnalyzer.DateRangeAnalyzer;
+import logic.PrintSaveChart.PrintSaveChart;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 import modell.SalesPerWeek;
-import util.Util;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
@@ -45,6 +45,8 @@ public class AnalyseController {
     protected Label lblAmount;
     @FXML
     protected Label lblGross;
+    @FXML
+    protected HBox hBoxLcAnalyse;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
@@ -84,7 +86,11 @@ public class AnalyseController {
     }
     @FXML
     private void printChart(){
-        Util.printChart(lcAnalyse.snapshot(new SnapshotParameters(), new WritableImage(800, 600)));
+//        LineChart<String, Number> tempChart = lcAnalyse;
+//        Scene tempScene = new Scene(tempChart);
+//        lcAnalyse.applyCss();
+//        System.out.println(lcAnalyse.getScaleX());
+        PrintSaveChart.saveFileAsImage(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight(), LFJDAnalyticsApplication.getMainStage());
     }
 
     private void populateAnalysisChart() {
@@ -108,6 +114,7 @@ public class AnalyseController {
                 for (XYChart.Series tempSerie : seriesList) {
                     lcAnalyse.getData().add(tempSerie);
                 }
+                seriesList.clear();
 
             } else {
                 for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
@@ -120,6 +127,7 @@ public class AnalyseController {
                 for (XYChart.Series tempSerie : seriesList) {
                     lcAnalyse.getData().add(tempSerie);
                 }
+                seriesList.clear();
             }
         }
     }
