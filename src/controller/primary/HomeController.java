@@ -36,6 +36,10 @@ public class HomeController {
     protected Label lblAnalyzeGross;
     @FXML
     protected Label lblAnalyzeAmount;
+    @FXML
+    protected Label lblTrendGross;
+    @FXML
+    protected Label lblTrendAmount;
 
     @FXML
     public void initialize(){
@@ -74,6 +78,9 @@ public class HomeController {
     }
 
     public void populateChart(List<SalesPerDay> salesList, LineChart chart) {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        int monthAmount = 0;
+        double monthGross = 0;
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article: Consumer.getArticles().getArticles()){
             XYChart.Series serie = new XYChart.Series();
@@ -81,9 +88,16 @@ public class HomeController {
             for (SalesPerDay spd:salesList){
                 if (spd.getArticleID() == article.getArticleID()){
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                    monthGross += spd.getPrice() * spd.getAmount();
+                    monthAmount += spd.getAmount();
                 }
             }
             seriesList.add(serie);
+        }
+        System.out.println(chart.getId());
+        if (chart.getId().equals("lcTrend")){
+            lblTrendGross.setText(String.valueOf(formatter.format(monthGross)));
+            lblTrendAmount.setText(monthAmount + " Articles");
         }
         for (XYChart.Series serie:seriesList) {
             chart.getData().add(serie);

@@ -61,9 +61,7 @@ public class DatePickerController {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
             if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
                 AnalyseController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                System.out.println(toDate);
                 AnalyseController.setToDate(toDate);
-                System.out.println(fromDate);
                 AnalyseController.setFromDate(fromDate);
                 AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
                 analyseController.checkIfAllDataPresent();
@@ -79,8 +77,8 @@ public class DatePickerController {
         } else {
             if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
                 TrendController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                TrendController.setToDate(dpToDate.getValue());
-                TrendController.setFromDate(dpFromDate.getValue());
+                TrendController.setToDate(toDate);
+                TrendController.setFromDate(fromDate);
                 TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
                 trendController.checkIfAllDataPresent();
                 Stage stage = (Stage) btnChoose.getScene().getWindow();

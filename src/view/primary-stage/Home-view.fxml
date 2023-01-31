@@ -61,7 +61,7 @@
                <children>
                   <Label styleClass="middle-label" stylesheets="@../../resources/css/middle-button.css" text="Trend" />
                   <Label styleClass="middle-label-very-small" stylesheets="@../../resources/css/middle-button.css" text="next 30 Days" />
-                  <Label styleClass="middle-label-small" stylesheets="@../../resources/css/middle-button.css" text="3'000 Stk.">
+                  <Label fx:id="lblTrendGross" styleClass="middle-label-small" stylesheets="@../../resources/css/middle-button.css" text="3'000 Stk.">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,7 +70,7 @@
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="middle-label-small" stylesheets="@../../resources/css/middle-button.css" text="1'500 CHF" textFill="WHITE">
+                  <Label fx:id="lblTrendAmount" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="middle-label-small" stylesheets="@../../resources/css/middle-button.css" text="1'500 CHF" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
