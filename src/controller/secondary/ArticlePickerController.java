@@ -29,6 +29,10 @@ public class ArticlePickerController {
     public List<CheckBox> checkBoxList = new ArrayList<>();
     public List<Article> chosenArticleList = new ArrayList<>();
 
+    public void initialize(){
+        btnChoose.disableProperty().bind();
+    }
+
     public void btnChooseClick() {
         chosenArticleList.clear();
         int articleAmount = 0;
