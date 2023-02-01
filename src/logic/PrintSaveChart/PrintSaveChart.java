@@ -56,7 +56,6 @@ public class PrintSaveChart {
         Optional<Printer> opt = dialog.showAndWait();
         if (opt.isPresent()) {
             printer = opt.get();
-            // start printing ...
         }
         return printer;
     }
