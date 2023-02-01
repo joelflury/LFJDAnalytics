@@ -25,6 +25,8 @@ public class HomeController {
     @FXML
     protected Button btnTrend;
     @FXML
+    protected Button btnAboutUs;
+    @FXML
     protected Label lblDate;
     @FXML
     protected LineChart lcAnalyse;
@@ -55,6 +57,12 @@ public class HomeController {
     public void btnTrendClick(){
         Stage stage = (Stage)btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
+    }
+
+    @FXML
+    public void btnAboutUsClick(){
+        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+        stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
     public void populateChart(List<SalesPerDay> salesList, LineChart chart) {

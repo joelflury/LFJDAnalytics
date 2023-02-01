@@ -33,6 +33,8 @@ public class TrendController {
     @FXML
     protected Button btnReports;
     @FXML
+    protected Button btnAboutUs;
+    @FXML
     protected Label lblTimePeriod;
     @FXML
     protected Label lblArticles;
@@ -69,6 +71,11 @@ public class TrendController {
     public void btnHomeClick(){
         Stage stage = (Stage)btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.homeScene);
+    }
+    @FXML
+    public void btnAboutUsClick(){
+        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+        stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
     public void checkIfAllDataPresent() {

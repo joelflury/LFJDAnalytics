@@ -28,11 +28,13 @@ public class LFJDAnalyticsApplication extends Application {
     public static Scene homeScene;
     public static Scene analyseScene;
     public static Scene trendScene;
+    public static Scene aboutUsScene;
     public static FXMLLoader analyseLoader;
     public static FXMLLoader startLoader;
     public static FXMLLoader homeLoader;
     public static FXMLLoader loginLoader;
     public static FXMLLoader trendLoader;
+    public static FXMLLoader aboutUsLoader;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -48,7 +50,13 @@ public class LFJDAnalyticsApplication extends Application {
         primaryStage.setResizable(false);
 //        primaryStage.setScene(loginScene);
         primaryStage.setScene(startScene);
+
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
+        //Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
+        //primaryStage.setX(screenSize.getMinX());
+        //primaryStage.setY(screenSize.getMinY());
+        //primaryStage.setWidth(screenSize.getWidth());
+        //primaryStage.setHeight(screenSize.getHeight());
         primaryStage.show();
     }
 
@@ -65,6 +73,8 @@ public class LFJDAnalyticsApplication extends Application {
         analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
         trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
+        aboutUsLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/AboutUs-view.fxml"));
+        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight());
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {

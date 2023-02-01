@@ -1,3 +1,22 @@
 .root-container {
     -fx-background-color: #212121;
 }
+
+.aboutus-label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.email-label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.email-label:hover {
+    -fx-underline: true;
+    -fx-cursor: HAND;
+}
