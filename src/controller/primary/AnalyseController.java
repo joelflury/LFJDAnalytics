@@ -34,6 +34,8 @@ public class AnalyseController {
     @FXML
     protected Button btnTrend;
     @FXML
+    protected Button btnAboutUs;
+    @FXML
     protected Button btnPrint;
     @FXML
     protected Button btnSave;
@@ -77,7 +79,12 @@ public class AnalyseController {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
+    public void btnAboutUsClick(){
+        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+        stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
+    }
 
+    @FXML
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             Consumer consumer = new Consumer();
