@@ -53,6 +53,11 @@ public class LoginController {
                         HomeController controller = LFJDAnalyticsApplication.homeLoader.getController();
                         controller.start();
                         break;
+                    case 3:
+                        lblLoginError.setText("Connection to Server failed");
+                        tfPassword.setText("");
+                        fadeTransition.play();
+                        break;
                 }
             } else {
                 lblLoginError.setText("Please enter Username and Password");

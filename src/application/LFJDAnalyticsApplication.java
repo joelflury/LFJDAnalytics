@@ -10,6 +10,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
+
+import java.awt.*;
 import java.io.IOException;
 
 public class LFJDAnalyticsApplication extends Application {
@@ -41,10 +43,11 @@ public class LFJDAnalyticsApplication extends Application {
         setMainStage(primaryStage);
         createScenes();
         createSecondaryStage(primaryStage);
-        loginScene.getRoot().requestFocus();
+//        loginScene.getRoot().requestFocus();
         primaryStage.setMaximized(true);
         primaryStage.setResizable(false);
-        primaryStage.setScene(loginScene);
+//        primaryStage.setScene(loginScene);
+        primaryStage.setScene(startScene);
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
         primaryStage.show();
     }
@@ -57,11 +60,11 @@ public class LFJDAnalyticsApplication extends Application {
         startLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Start-view.fxml"));
         startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight());
         homeLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Home-view.fxml"));
-        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
         analyseLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Analyse-view.fxml"));
-        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
-        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {

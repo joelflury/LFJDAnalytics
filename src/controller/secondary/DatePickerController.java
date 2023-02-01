@@ -41,7 +41,7 @@ public class DatePickerController {
         dpFromDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         dpToDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         cbTemplatePeriods.disableProperty().bind(dpFromDate.valueProperty().isNotNull().or(dpToDate.valueProperty().isNotNull()));
-        btnChoose.disableProperty().bind(cbTemplatePeriods.valueProperty().isNull().orElse(!dpFromDate.disableProperty().getValue()));
+//        btnChoose.disableProperty().bind(cbTemplatePeriods.valueProperty().isNull().orElse(!dpFromDate.disableProperty().getValue()));
     }
 
     @FXML

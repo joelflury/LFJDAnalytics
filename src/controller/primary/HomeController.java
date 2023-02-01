@@ -25,8 +25,6 @@ public class HomeController {
     @FXML
     protected Button btnTrend;
     @FXML
-    protected Button btnReports;
-    @FXML
     protected Label lblDate;
     @FXML
     protected LineChart lcAnalyse;
@@ -59,24 +57,6 @@ public class HomeController {
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
 
-    public void populateAnalyseChart() {
-        List<SalesPerDay> lastMonthData = getLastMonthData();
-        List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: Consumer.getArticles().getArticles()){
-            XYChart.Series serie = new XYChart.Series();
-            serie.setName(article.getArticlename());
-            for (SalesPerDay spd:lastMonthData){
-                if (spd.getArticleID() == article.getArticleID()){
-                    serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                }
-            }
-            seriesList.add(serie);
-        }
-        for (XYChart.Series serie:seriesList) {
-            lcAnalyse.getData().add(serie);
-        }
-    }
-
     public void populateChart(List<SalesPerDay> salesList, LineChart chart) {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
@@ -94,37 +74,23 @@ public class HomeController {
             }
             seriesList.add(serie);
         }
-        System.out.println(chart.getId());
         if (chart.getId().equals("lcTrend")){
             lblTrendGross.setText(String.valueOf(formatter.format(monthGross)));
             lblTrendAmount.setText(monthAmount + " Articles");
+        }else if (chart.getId().equals("lcAnalyse")){
+            lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
+            lblAnalyzeAmount.setText(monthAmount + " Articles");
         }
         for (XYChart.Series serie:seriesList) {
             chart.getData().add(serie);
         }
     }
 
-    private List<SalesPerDay> getLastMonthData(){
-        List<SalesPerDay> lastMonthData = new ArrayList<>();
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        int monthAmount = 0;
-        double monthGross = 0;
-        for (SalesPerDay spd: Consumer.getSales().getArticlePerDay()) {
-            monthGross += spd.getPrice() * spd.getAmount();
-            monthAmount += spd.getAmount();
-            lastMonthData.add(spd);
-        }
-        lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
-        lblAnalyzeAmount.setText(monthAmount + " Articles");
-        return lastMonthData;
-    }
-
     public void start() {
         Consumer consumer = new Consumer();
         consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
         consumer.getArticleData();
-        //populateAnalyseChart();
-        populateChart(getLastMonthData(), lcAnalyse);
+        populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
         populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
         TestAlgorithm.test();
     }

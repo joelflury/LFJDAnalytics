@@ -28,7 +28,7 @@ public class PrintSaveChart {
     public static void saveFileAsImage(BufferedImage image) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
 //        File outputFile = new File(directoryChooser.showDialog(stage).toURI() + "\\chart" + LocalDate.now() + ".png");
-        File outputFile = new File("C:\\Program Files\\LFJDAnalytics\\test.png");
+        File outputFile = new File(".\\Chart.png");
         try {
             ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {

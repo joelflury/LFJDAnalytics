@@ -30,7 +30,7 @@ public class ArticlePickerController {
     public List<Article> chosenArticleList = new ArrayList<>();
 
     public void initialize(){
-        btnChoose.disableProperty().bind();
+//        btnChoose.disableProperty().bind();
     }
 
     public void btnChooseClick() {

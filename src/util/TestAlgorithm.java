@@ -105,6 +105,5 @@ public class TestAlgorithm {
         deviationAverage = deviationAverage/salesAmount;
         System.out.println("Daterange: " + firstDate + " - " + lastDate);
         System.out.println("Average deviation: " + deviationAverage);
-        System.out.println("\n");
     }
 }
