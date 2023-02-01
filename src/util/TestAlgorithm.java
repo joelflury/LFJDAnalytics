@@ -60,7 +60,7 @@ public class TestAlgorithm {
         }
         deviationAverage = deviationAverage/ articleAmount;
         System.out.println("Average deviation: " + deviationAverage);
-        System.out.println("\n");
+        System.out.println();
     }
 
     // Test the Algorithm to calculate the deviation per day between realsales and predicted sales
@@ -105,5 +105,6 @@ public class TestAlgorithm {
         deviationAverage = deviationAverage/salesAmount;
         System.out.println("Daterange: " + firstDate + " - " + lastDate);
         System.out.println("Average deviation: " + deviationAverage);
+        System.out.println();
     }
 }

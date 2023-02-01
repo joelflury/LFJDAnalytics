@@ -48,11 +48,6 @@ public class HomeController {
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         lcAnalyse.setAnimated(false);
         lcTrend.setAnimated(false);
-        //Calculate ForeCastAlgorithm, if datapreloader was not able to calculate
-        if (SalesPerDay.getSalesForecastList().size() == 0){
-            DataPreLoader dataPreLoader = new DataPreLoader();
-            dataPreLoader.start();
-        }
     }
 
     @FXML
@@ -102,11 +97,21 @@ public class HomeController {
     }
 
     public void start() {
-        Consumer consumer = new Consumer();
-        consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
-        consumer.getArticleData();
-        populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
-        populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
-        TestAlgorithm.test();
+        try {
+            Consumer consumer = new Consumer();
+            //Start DataPreloader if not already done
+            if (SalesPerDay.getSalesForecastList().size() == 0) {
+                DataPreLoader dataPreLoader = new DataPreLoader();
+                dataPreLoader.start();
+                dataPreLoader.join();
+            }
+            consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
+            consumer.getArticleData();
+            populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
+            populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
+            TestAlgorithm.test();
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

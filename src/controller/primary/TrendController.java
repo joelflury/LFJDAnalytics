@@ -5,14 +5,18 @@ import controller.secondary.ArticlePickerController;
 import controller.secondary.DatePickerController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import logic.DateRangeAnalyzer.DateRangeAnalyzer;
-import logic.consumer.Consumer;
+import logic.PrintSaveChart.PrintSaveChart;
 import modell.Article;
 import modell.SalesPerDay;
 import modell.SalesPerWeek;
@@ -46,11 +50,15 @@ public class TrendController {
     protected Label lblAmount;
     @FXML
     protected Label lblGross;
+    @FXML
+    protected HBox hBoxLcTrend;
     private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
     private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
     private static LocalDate toDate;
     private static List<Article> chosenArticleList = new ArrayList<>();
+    private PrintSaveChart printSaveChart = new PrintSaveChart();
+    private Stage stage = LFJDAnalyticsApplication.getMainStage();
     @FXML
     public void initialize(){
         lblArticles.textProperty().bind(lblArticlesTextProperty);
@@ -78,6 +86,14 @@ public class TrendController {
         stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
+    @FXML
+    private void printChart(){
+        printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), null)));
+    }
+    @FXML
+    private void saveChart(){
+        printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), stage);
+    }
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             getSalesDataForLabels();

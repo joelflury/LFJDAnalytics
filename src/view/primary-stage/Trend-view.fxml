@@ -39,14 +39,14 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
-            <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+            <HBox fx:id="hBoxLcTrend" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="343.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                <children>
                   <LineChart fx:id="lcTrend" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="200.0" stylesheets="@../../resources/css/chart.css" HBox.hgrow="ALWAYS">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" tickLabelFill="WHITE" />
+                      <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
                </children>
@@ -93,11 +93,20 @@
                         </Button>
                      </children>
                   </VBox>
-                  <Button layoutX="170.0" layoutY="50.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css">
+                  <Button fx:id="btnPrint" layoutX="340.0" layoutY="50.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#printChart" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css">
                      <graphic>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label styleClass="bottom-label-small" text="Print Chart" VBox.vgrow="ALWAYS" />
+                              <Label fx:id="lblArticles1" styleClass="bottom-label-small" text="Print Chart" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSave" layoutX="595.0" layoutY="50.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveChart" prefHeight="57.0" prefWidth="110.0" styleClass="bottom-container-button-big" stylesheets="@../../resources/css/bottom-container.css">
+                     <graphic>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="lblArticles11" styleClass="bottom-label-small" text="Save Chart&#10;as Picture" />
                            </children>
                         </VBox>
                      </graphic>

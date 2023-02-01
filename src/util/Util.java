@@ -6,6 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -39,6 +42,21 @@ public class Util {
                 break;
         }
         return weekDayInt;
+    }
+
+    public static String hashStringSHA515(String string){
+        StringBuffer hexString = new StringBuffer();
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] hashedPassword = md.digest(string.getBytes(StandardCharsets.UTF_8));
+               for (int i=0;i < hashedPassword.length && i < 25; i++){
+                   hexString.append(Integer.toHexString(0xFF & hashedPassword[i]));
+               }
+           }catch (Exception e){
+               hexString.append("0xFF");
+           }
+        return hexString.toString();
+
     }
 }
 

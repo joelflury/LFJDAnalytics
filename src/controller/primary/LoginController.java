@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.consumer.Consumer;
+import util.Util;
 
 public class LoginController {
     @FXML
@@ -35,7 +36,7 @@ public class LoginController {
         if (key.getCode().equals(KeyCode.ENTER)) {
             if (!tfUsername.getText().equals("") && !tfPassword.getText().equals("")) {
                 Consumer consumer = new Consumer();
-                switch (consumer.getUserdata(tfUsername.getText(), tfPassword.getText())) {
+                switch (consumer.getUserdata(tfUsername.getText(), Util.hashStringSHA515(tfPassword.getText()))) {
                     case 0:
                         lblLoginError.setText("Wrong Password");
                         tfPassword.setText("");

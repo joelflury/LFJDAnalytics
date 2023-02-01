@@ -56,6 +56,9 @@ public class AnalyseController {
     private static LocalDate fromDate;
     private static LocalDate toDate;
     private static List<Article> chosenArticleList = new ArrayList<>();
+    private PrintSaveChart printSaveChart = new PrintSaveChart();
+    private Stage stage = LFJDAnalyticsApplication.getMainStage();
+
 
     public static void setChosenArticleList(List<Article> articleListParam) {
         chosenArticleList = articleListParam;
@@ -95,12 +98,11 @@ public class AnalyseController {
     }
     @FXML
     private void printChart(){
-//        PrintSaveChart.printFile(new ImageView(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null)));
-        PrintSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(PrintSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), null)));
+        printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), null)));
     }
     @FXML
     private void saveChart(){
-        PrintSaveChart.saveFileAsImage(PrintSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()));
+        printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
     }
 
     private void populateAnalysisChart() {
