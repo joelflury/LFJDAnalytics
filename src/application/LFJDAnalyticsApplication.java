@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class LFJDAnalyticsApplication extends Application {
@@ -74,7 +73,7 @@ public class LFJDAnalyticsApplication extends Application {
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
         trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
         aboutUsLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/AboutUs-view.fxml"));
-        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {

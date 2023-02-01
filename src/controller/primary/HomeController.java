@@ -7,6 +7,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import logic.DataPreLoader.DataPreLoader;
+import logic.algorithm.SalesForcecastAlgorithm;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
@@ -46,6 +48,11 @@ public class HomeController {
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         lcAnalyse.setAnimated(false);
         lcTrend.setAnimated(false);
+        //Calculate ForeCastAlgorithm, if datapreloader was not able to calculate
+        if (SalesPerDay.getSalesForecastList().size() == 0){
+            DataPreLoader dataPreLoader = new DataPreLoader();
+            dataPreLoader.start();
+        }
     }
 
     @FXML

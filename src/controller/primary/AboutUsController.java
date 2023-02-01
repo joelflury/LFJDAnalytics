@@ -39,7 +39,7 @@ public class AboutUsController {
     }
     @FXML
     public void btnContact(){
-        //Standard Email Programm wird aufgerufen
+        //Standard E-Mail Programm wird aufgerufen
         try {
             Desktop.getDesktop().mail(new URI("mailto:info@lfjd-analytics.ch"));
         } catch (IOException | URISyntaxException e) {
