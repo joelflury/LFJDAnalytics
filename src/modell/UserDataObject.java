@@ -1,10 +1,10 @@
 package modell;
 
 public class UserDataObject {
-    private String userName;
-    private String password;
+    private final String userName;
+    private final String password;
 
-    public UserDataObject(String userName, String password){
+    public UserDataObject(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }

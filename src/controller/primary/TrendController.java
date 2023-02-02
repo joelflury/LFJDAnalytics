@@ -20,7 +20,9 @@ import logic.PrintSaveChart.PrintSaveChart;
 import modell.Article;
 import modell.SalesPerDay;
 import modell.SalesPerWeek;
+import util.Util;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,8 +37,6 @@ public class TrendController {
     @FXML
     protected Button btnHome;
     @FXML
-    protected Button btnReports;
-    @FXML
     protected Button btnAboutUs;
     @FXML
     protected Label lblTimePeriod;
@@ -44,8 +44,6 @@ public class TrendController {
     protected Label lblArticles;
     @FXML
     protected LineChart lcTrend;
-    @FXML
-    protected List<XYChart.Series> seriesList;
     @FXML
     protected Label lblAmount;
     @FXML
@@ -57,10 +55,11 @@ public class TrendController {
     private static LocalDate fromDate;
     private static LocalDate toDate;
     private static List<Article> chosenArticleList = new ArrayList<>();
-    private PrintSaveChart printSaveChart = new PrintSaveChart();
-    private Stage stage = LFJDAnalyticsApplication.getMainStage();
+    private final PrintSaveChart printSaveChart = new PrintSaveChart();
+    private final Stage stage = LFJDAnalyticsApplication.getMainStage();
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         lblArticles.textProperty().bind(lblArticlesTextProperty);
         lblTimePeriod.textProperty().bind(lblFreeTimePeriodTextProperty);
         lcTrend.setAnimated(false);
@@ -72,28 +71,39 @@ public class TrendController {
 
     @FXML
     public void btnAnalyseClick() {
-        Stage stage = (Stage)btnAnalyse.getScene().getWindow();
+        Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
     }
+
     @FXML
-    public void btnHomeClick(){
-        Stage stage = (Stage)btnHome.getScene().getWindow();
+    public void btnHomeClick() {
+        Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.homeScene);
     }
+
     @FXML
-    public void btnAboutUsClick(){
-        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+    public void btnAboutUsClick() {
+        Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
     @FXML
-    private void printChart(){
+    private void printChart() {
         printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), null)));
     }
+
     @FXML
-    private void saveChart(){
-        printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), stage);
+    private void saveChart() {
+        try {
+            printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), stage);
+        } catch (IOException e) {
+            Util.showAlert("Save Error", "The System was unable to save the file", "Please check filepath and permissions");
+
+        } catch (Exception e) {
+            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+        }
     }
+
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             getSalesDataForLabels();
@@ -104,7 +114,7 @@ public class TrendController {
     private void populateTrendChart() {
         lcTrend.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: chosenArticleList) {
+        for (Article article : chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             List<SalesPerDay> tempSalesPerDayList = SalesPerDay.getSalesForecastList(fromDate, toDate);
@@ -140,9 +150,9 @@ public class TrendController {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
-        for (Article article:chosenArticleList) {
+        for (Article article : chosenArticleList) {
             for (SalesPerDay spd : SalesPerDay.getSalesForecastList(fromDate, toDate)) {
-                if (article.getArticleID() == spd.getArticleID()){
+                if (article.getArticleID() == spd.getArticleID()) {
                     monthGross += spd.getPrice();
                     monthAmount += spd.getAmount();
                 }
@@ -167,7 +177,7 @@ public class TrendController {
     }
 
     public void btnChooseArticlesClick() {
-        ((ArticlePickerController)LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
+        ((ArticlePickerController) LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
         LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
         LFJDAnalyticsApplication.secondaryStage.show();
     }

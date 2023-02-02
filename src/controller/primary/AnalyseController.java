@@ -20,7 +20,9 @@ import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 import modell.SalesPerWeek;
+import util.Util;
 
+import java.io.FileNotFoundException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,13 +53,13 @@ public class AnalyseController {
     protected Label lblGross;
     @FXML
     protected HBox hBoxLcAnalyse;
-    private static StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
-    private static StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
+    private static final StringProperty lblArticlesTextProperty = new SimpleStringProperty("Choose\nProducts");
+    private static final StringProperty lblFreeTimePeriodTextProperty = new SimpleStringProperty("Choose a\nPeriod");
     private static LocalDate fromDate;
     private static LocalDate toDate;
     private static List<Article> chosenArticleList = new ArrayList<>();
-    private PrintSaveChart printSaveChart = new PrintSaveChart();
-    private Stage stage = LFJDAnalyticsApplication.getMainStage();
+    private final PrintSaveChart printSaveChart = new PrintSaveChart();
+    private final Stage stage = LFJDAnalyticsApplication.getMainStage();
 
 
     public static void setChosenArticleList(List<Article> articleListParam) {
@@ -82,8 +84,9 @@ public class AnalyseController {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
-    public void btnAboutUsClick(){
-        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+
+    public void btnAboutUsClick() {
+        Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
@@ -96,19 +99,28 @@ public class AnalyseController {
             populateAnalysisChart();
         }
     }
+
     @FXML
-    private void printChart(){
+    private void printChart() {
         printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), null)));
     }
+
     @FXML
-    private void saveChart(){
-        printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
+    private void saveChart() {
+        try {
+            printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
+        } catch (FileNotFoundException e) {
+            Util.showAlert("Save Error", "The System was unable to save the file", "Please check filepath and permissions");
+
+        } catch (Exception e) {
+            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+        }
     }
 
     private void populateAnalysisChart() {
         lcAnalyse.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: chosenArticleList) {
+        for (Article article : chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             List<SalesPerDay> tempSalesPerDayList = Consumer.getSales().getArticlePerDay();
@@ -116,7 +128,7 @@ public class AnalyseController {
                 List<SalesPerWeek> tempSalesPerWeekList = DateRangeAnalyzer.analyze(tempSalesPerDayList);
                 for (SalesPerWeek spw : tempSalesPerWeekList) {
                     if (spw.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data("KW " +spw.getWeek(), spw.getAmount()));
+                        serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));
                     }
                 }
                 seriesList.add(serie);
@@ -146,14 +158,14 @@ public class AnalyseController {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
         double monthGross = 0;
-         for (Article article : chosenArticleList) {
-             for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-                 if (article.getArticleID() == spd.getArticleID()) {
-                     monthGross += spd.getPrice();
-                     monthAmount += spd.getAmount();
-                 }
-             }
-         }
+        for (Article article : chosenArticleList) {
+            for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                if (article.getArticleID() == spd.getArticleID()) {
+                    monthGross += spd.getPrice();
+                    monthAmount += spd.getAmount();
+                }
+            }
+        }
         lblGross.setText(String.valueOf(formatter.format(monthGross)));
         lblAmount.setText(monthAmount + " Articles");
     }

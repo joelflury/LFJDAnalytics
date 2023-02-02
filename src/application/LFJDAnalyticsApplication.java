@@ -51,29 +51,24 @@ public class LFJDAnalyticsApplication extends Application {
         primaryStage.setScene(startScene);
 
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
-        //Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
-        //primaryStage.setX(screenSize.getMinX());
-        //primaryStage.setY(screenSize.getMinY());
-        //primaryStage.setWidth(screenSize.getWidth());
-        //primaryStage.setHeight(screenSize.getHeight());
         primaryStage.show();
     }
 
-    
+
     private void createScenes() throws IOException {
         Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
         loginLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Login-view.fxml"));
-        loginScene = new Scene(loginLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        loginScene = new Scene(loginLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         startLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Start-view.fxml"));
         startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight());
         homeLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Home-view.fxml"));
-        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
+        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         analyseLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Analyse-view.fxml"));
-        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
+        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
-        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
+        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         aboutUsLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/AboutUs-view.fxml"));
-        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight()-20);
+        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {

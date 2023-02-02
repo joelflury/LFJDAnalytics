@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 
-public class DataPreLoader extends Thread{
+public class DataPreLoader extends Thread {
     @Override
     public void run() {
         LFJDAnalyticsApplication.consumer.getSalesData(LocalDate.now().minusDays(735).with(firstDayOfYear()), LocalDate.now());

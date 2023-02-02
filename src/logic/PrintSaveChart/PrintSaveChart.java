@@ -5,10 +5,10 @@ import javafx.print.*;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.HBox;
 import javafx.scene.transform.Scale;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import util.Util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,36 +20,46 @@ import java.util.Optional;
 
 public class PrintSaveChart {
 
-    public BufferedImage createPicture(WritableImage snapShot, double width, double height){
+    public BufferedImage createPicture(WritableImage snapShot, double width, double height) {
         BufferedImage bufferedImage = new BufferedImage(550, 400, BufferedImage.TYPE_INT_ARGB);
         BufferedImage image = SwingFXUtils.fromFXImage(snapShot, bufferedImage);
         Graphics2D gd = (Graphics2D) image.getGraphics();
         gd.translate(width, height);
         return image;
     }
-    public void saveFileAsImage(BufferedImage image, Stage stage) {
+
+    public void saveFileAsImage(BufferedImage image, Stage stage) throws Exception {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        File outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\chart" + LocalDate.now() + ".png");
         try {
+            File outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\chart" + LocalDate.now() + ".png");
             ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IOException();
+        } catch (Exception e) {
+            throw new Exception();
         }
     }
 
     public void printFile(ImageView imageView) {
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
-        Printer printer = getPrinter();
-        printerJob.setPrinter(printer);
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
-        scaleImageViewToPrintableSection(pageLayout, imageView);
-        boolean success = printerJob.printPage(pageLayout, imageView);
-        if(success){
-            printerJob.endJob();
+        try {
+
+            PrinterJob printerJob = PrinterJob.createPrinterJob();
+            Printer printer = getPrinter();
+            printerJob.setPrinter(printer);
+            PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
+            scaleImageViewToPrintableSection(pageLayout, imageView);
+            boolean success = printerJob.printPage(pageLayout, imageView);
+            if (success) {
+                printerJob.endJob();
+            }
+        } catch (NullPointerException e) {
+            Util.showAlert("Print Error", "The System was unable to print", "Please check the printer");
+        } catch (Exception e) {
+            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
     }
 
-    private Printer getPrinter(){
+    private Printer getPrinter() {
         Printer printer = null;
         ChoiceDialog dialog = new ChoiceDialog(Printer.getDefaultPrinter(), Printer.getAllPrinters());
         dialog.setHeaderText("Choose the printer!");
@@ -72,7 +82,7 @@ public class PrintSaveChart {
         double widthLeft = pWidth - nWidth;
         double heightLeft = pHeight - nHeight;
 
-        double scale = 0;
+        double scale;
 
         if (widthLeft < heightLeft) {
             scale = pWidth / nWidth;

@@ -1,10 +1,11 @@
 package modell;
+
 import java.util.List;
 
 public class ArticleDataObject {
-    private List<Article> articles;
+    private final List<Article> articles;
 
-    public ArticleDataObject(List<Article> articles){
+    public ArticleDataObject(List<Article> articles) {
         this.articles = articles;
     }
 

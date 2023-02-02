@@ -1,13 +1,14 @@
 package modell;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerWeek {
-    private int articleID;
-    private int week;
+    private final int articleID;
+    private final int week;
     private int amount;
     private float price;
-    private static List<SalesPerWeek> salesPerWeekList = new ArrayList<>();
+    private static final List<SalesPerWeek> salesPerWeekList = new ArrayList<>();
 
     public SalesPerWeek(int articleID, int week, int amount, float price) {
         this.articleID = articleID;

@@ -5,7 +5,6 @@ import controller.primary.AnalyseController;
 import controller.primary.TrendController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -13,10 +12,8 @@ import javafx.stage.Stage;
 import modell.Period;
 import util.Util;
 
-import java.net.DatagramSocket;
-import java.time.Duration;
+
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
@@ -60,39 +57,45 @@ public class DatePickerController {
         } else {
             getDatesFromTemplate();
         }
-        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
-            if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
-                AnalyseController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                AnalyseController.setToDate(toDate);
-                AnalyseController.setFromDate(fromDate);
-                AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
-                analyseController.checkIfAllDataPresent();
-                Stage stage = (Stage) btnChoose.getScene().getWindow();
-                stage.close();
+        try {
+            if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+                if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
+                    AnalyseController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                    AnalyseController.setToDate(toDate);
+                    AnalyseController.setFromDate(fromDate);
+                    AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+                    analyseController.checkIfAllDataPresent();
+                    Stage stage = (Stage) btnChoose.getScene().getWindow();
+                    stage.close();
+                } else {
+                    Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+                }
             } else {
-                Util.showAlert("Wrog Dates selected", "Datepicker Problem", "Please select a valid Date");
+                if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
+                    TrendController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
+                    TrendController.setToDate(toDate);
+                    TrendController.setFromDate(fromDate);
+                    TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
+                    trendController.checkIfAllDataPresent();
+                    Stage stage = (Stage) btnChoose.getScene().getWindow();
+                    stage.close();
+                } else {
+                    Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+                }
             }
-        } else {
-            if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
-                TrendController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-                TrendController.setToDate(toDate);
-                TrendController.setFromDate(fromDate);
-                TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
-                trendController.checkIfAllDataPresent();
-                Stage stage = (Stage) btnChoose.getScene().getWindow();
-                stage.close();
-            } else {
-                Util.showAlert("Wrog Dates selected", "Datepicker Problem", "Please select a valid Date");
-            }
+        } catch (NullPointerException e) {
+            Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+        } catch (Exception e) {
+            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
         resetStageValues();
     }
 
     public void setPeriodsForChoiceBox() {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
-            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.periodNames));
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNames()));
         } else {
-            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.periodNamesForeCast));
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNamesForeCast()));
         }
     }
 

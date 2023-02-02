@@ -38,6 +38,7 @@ public class Util {
         }
         return weekDayInt;
     }
+
     public static String hashStringSHA515(String string) {
         StringBuffer hexString = new StringBuffer();
         try {
@@ -52,7 +53,8 @@ public class Util {
         return hexString.toString();
 
     }
-    public static void showAlert(String title, String header, String content){
+
+    public static void showAlert(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(header);

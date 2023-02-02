@@ -2,10 +2,8 @@ package controller.primary;
 
 import application.LFJDAnalyticsApplication;
 import javafx.animation.FadeTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;

@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import logic.DataPreLoader.DataPreLoader;
-import logic.algorithm.SalesForcecastAlgorithm;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
@@ -44,7 +43,7 @@ public class HomeController {
     protected Label lblTrendAmount;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         lcAnalyse.setAnimated(false);
         lcTrend.setAnimated(false);
@@ -52,18 +51,19 @@ public class HomeController {
 
     @FXML
     public void btnAnalyseClick() {
-        Stage stage = (Stage)btnAnalyse.getScene().getWindow();
+        Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
     }
+
     @FXML
-    public void btnTrendClick(){
-        Stage stage = (Stage)btnTrend.getScene().getWindow();
+    public void btnTrendClick() {
+        Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
 
     @FXML
-    public void btnAboutUsClick(){
-        Stage stage = (Stage)btnAboutUs.getScene().getWindow();
+    public void btnAboutUsClick() {
+        Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
     }
 
@@ -72,11 +72,11 @@ public class HomeController {
         int monthAmount = 0;
         double monthGross = 0;
         List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article: Consumer.getArticles().getArticles()){
+        for (Article article : Consumer.getArticles().getArticles()) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            for (SalesPerDay spd:salesList){
-                if (spd.getArticleID() == article.getArticleID()){
+            for (SalesPerDay spd : salesList) {
+                if (spd.getArticleID() == article.getArticleID()) {
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
                     monthGross += spd.getPrice() * spd.getAmount();
                     monthAmount += spd.getAmount();
@@ -84,14 +84,14 @@ public class HomeController {
             }
             seriesList.add(serie);
         }
-        if (chart.getId().equals("lcTrend")){
+        if (chart.getId().equals("lcTrend")) {
             lblTrendGross.setText(String.valueOf(formatter.format(monthGross)));
             lblTrendAmount.setText(monthAmount + " Articles");
-        }else if (chart.getId().equals("lcAnalyse")){
+        } else if (chart.getId().equals("lcAnalyse")) {
             lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
             lblAnalyzeAmount.setText(monthAmount + " Articles");
         }
-        for (XYChart.Series serie:seriesList) {
+        for (XYChart.Series serie : seriesList) {
             chart.getData().add(serie);
         }
     }
@@ -110,7 +110,7 @@ public class HomeController {
             populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
             populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
             TestAlgorithm.test();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

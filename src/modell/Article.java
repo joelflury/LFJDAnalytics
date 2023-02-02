@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Article {
-    private int articleID;
-    private String articlename;
-    private float price;
+    private final int articleID;
+    private final String articlename;
+    private final float price;
 
-    private static List<Article> articles = new ArrayList<>();
+    private static final List<Article> articles = new ArrayList<>();
 
     public Article(int articleID, String articlename, float price) {
         this.articleID = articleID;
@@ -33,8 +33,8 @@ public class Article {
         return articles;
     }
 
-    public static void setArticles(Article article) {
-        articles.add(article);
+    public static void clearArticles() {
+        articles.clear();
     }
 
     @Override

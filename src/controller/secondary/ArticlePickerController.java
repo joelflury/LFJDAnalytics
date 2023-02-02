@@ -31,8 +31,8 @@ public class ArticlePickerController {
 
     public void btnChooseClick() {
         boolean isAnyBoxChecked = false;
-        for (CheckBox cb: checkBoxList){
-            if (cb.isSelected()){
+        for (CheckBox cb : checkBoxList) {
+            if (cb.isSelected()) {
                 isAnyBoxChecked = true;
                 break;
             }
@@ -48,7 +48,7 @@ public class ArticlePickerController {
                 if (cb.isSelected()) {
                     articleAmount++;
                     for (Article article : articleList) {
-                        if (article.getArticlename() == cb.getText()) {
+                        if (article.getArticlename().equals(cb.getText())) {
                             chosenArticleList.add(article);
                         }
                     }

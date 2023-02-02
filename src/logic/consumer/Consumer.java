@@ -7,18 +7,17 @@ import java.time.LocalDate;
 public class Consumer {
 
     private static ArticleDataObject articles;
-    private static DateRangeDataObject dateRange;
     private static SalesDataObject sales;
 
-    public void getSalesData(LocalDate startDate, LocalDate endDate) {
-        sales = LogicAdapter.getSales(String.valueOf(startDate), String.valueOf(endDate));
+    public void getSalesData(LocalDate fromDate, LocalDate toDate) {
+        sales = LogicAdapter.getSales(String.valueOf(fromDate), String.valueOf(toDate));
     }
 
-    public void getArticleData(){
+    public void getArticleData() {
         articles = LogicAdapter.getArticles();
     }
 
-    public int getUserdata(String userName, String password){
+    public int getUserdata(String userName, String password) {
         return LogicAdapter.getUserData(userName, password);
     }
 
@@ -27,8 +26,7 @@ public class Consumer {
     }
 
     public static DateRangeDataObject getDateRange() {
-        dateRange = LogicAdapter.getDates();
-        return dateRange;
+        return LogicAdapter.getDates();
     }
 
     public static SalesDataObject getSales() {

@@ -29,16 +29,18 @@ public class AboutUsController {
 
     @FXML
     public void btnAnalyseClick() {
-        Stage stage = (Stage)btnAnalyse.getScene().getWindow();
+        Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.analyseScene);
     }
+
     @FXML
-    public void btnTrendClick(){
-        Stage stage = (Stage)btnTrend.getScene().getWindow();
+    public void btnTrendClick() {
+        Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.trendScene);
     }
+
     @FXML
-    public void btnContact(){
+    public void btnContact() {
         //Standard E-Mail Programm wird aufgerufen
         try {
             Desktop.getDesktop().mail(new URI("mailto:info@lfjd-analytics.ch"));
