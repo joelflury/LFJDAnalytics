@@ -1,20 +1,15 @@
 package util;
 
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import javafx.scene.control.Alert;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
 public class Util {
-       public static int getWeekDay(LocalDate date){
+    public static int getWeekDay(LocalDate date) {
         String weekDayString = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK)).toString();
         int weekDayInt = 0;
 
@@ -43,21 +38,28 @@ public class Util {
         }
         return weekDayInt;
     }
-
-    public static String hashStringSHA515(String string){
+    public static String hashStringSHA515(String string) {
         StringBuffer hexString = new StringBuffer();
-        try{
+        try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] hashedPassword = md.digest(string.getBytes(StandardCharsets.UTF_8));
-               for (int i=0;i < hashedPassword.length && i < 25; i++){
-                   hexString.append(Integer.toHexString(0xFF & hashedPassword[i]));
-               }
-           }catch (Exception e){
-               hexString.append("0xFF");
-           }
+            for (int i = 0; i < hashedPassword.length && i < 25; i++) {
+                hexString.append(Integer.toHexString(0xFF & hashedPassword[i]));
+            }
+        } catch (Exception e) {
+            hexString.append("0xFF");
+        }
         return hexString.toString();
 
     }
+    public static void showAlert(String title, String header, String content){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 }
 
 

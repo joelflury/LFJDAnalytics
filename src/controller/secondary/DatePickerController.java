@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import modell.Period;
+import util.Util;
 
 import java.net.DatagramSocket;
 import java.time.Duration;
@@ -69,11 +70,7 @@ public class DatePickerController {
                 Stage stage = (Stage) btnChoose.getScene().getWindow();
                 stage.close();
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("An Error Happened");
-                alert.setHeaderText("Date Error");
-                alert.setContentText("Please choose a proper Date");
-                alert.showAndWait();
+                Util.showAlert("Wrog Dates selected", "Datepicker Problem", "Please select a valid Date");
             }
         } else {
             if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
@@ -85,11 +82,7 @@ public class DatePickerController {
                 Stage stage = (Stage) btnChoose.getScene().getWindow();
                 stage.close();
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("An Error Happened");
-                alert.setHeaderText("Date Error");
-                alert.setContentText("Please choose a proper Date");
-                alert.showAndWait();
+                Util.showAlert("Wrog Dates selected", "Datepicker Problem", "Please select a valid Date");
             }
         }
         resetStageValues();

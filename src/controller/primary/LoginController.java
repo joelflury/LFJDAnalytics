@@ -26,7 +26,6 @@ public class LoginController {
     protected Label lblLoginError;
     @FXML
     protected ImageView ivLoginLogo;
-
     @FXML
     protected void handleKeyPressed(KeyEvent key) {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), lblLoginError);
