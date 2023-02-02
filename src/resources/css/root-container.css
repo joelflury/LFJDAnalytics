@@ -11,7 +11,7 @@
 
 .email-label {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: #0d6efd;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
@@ -19,4 +19,11 @@
 .email-label:hover {
     -fx-underline: true;
     -fx-cursor: HAND;
+}
+
+.title-label {
+    -fx-text-fill: #D18475;
+    -fx-font-size: 24px;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
 }
