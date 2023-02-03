@@ -118,8 +118,9 @@ public class TrendController {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
             List<SalesPerDay> tempSalesPerDayList = SalesPerDay.getSalesForecastList(fromDate, toDate);
-            if (DAYS.between(fromDate, toDate) > 62) {
-                List<SalesPerWeek> tempSalesPerWeekList = DateRangeAnalyzer.analyze(tempSalesPerDayList);
+            DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
+            if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
+                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList);
                 for (SalesPerWeek spw : tempSalesPerWeekList) {
                     if (spw.getArticleID() == article.getArticleID()) {
                         serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));

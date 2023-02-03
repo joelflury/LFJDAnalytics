@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DateRangeAnalyzer {
-    public static List<SalesPerWeek> analyze(List<SalesPerDay> salesList) {
+    private int amountOfDaysUntilSwitchToWeek = 62;
+
+    public List<SalesPerWeek> analyze(List<SalesPerDay> salesList) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<SalesPerWeek> tempLSalesList = new ArrayList<>();
 
@@ -33,5 +35,9 @@ public class DateRangeAnalyzer {
             }
         }
         return tempLSalesList;
+    }
+
+    public int getAmountOfDaysUntilSwitchToWeek() {
+        return amountOfDaysUntilSwitchToWeek;
     }
 }
