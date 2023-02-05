@@ -92,4 +92,77 @@ public class LFJDAnalyticsApplication extends Application {
     public static void setMainStage(Stage mainStage) {
         LFJDAnalyticsApplication.mainStage = mainStage;
     }
+
+    public static Consumer getConsumer() {
+        return consumer;
+    }
+
+    public static Stage getSecondaryStage() {
+        return secondaryStage;
+    }
+
+    public static Scene getDatePickerScene() {
+        return datePickerScene;
+    }
+
+    public static FXMLLoader getDatePickerLoader() {
+        return datePickerLoader;
+    }
+
+    public static FXMLLoader getArticlePickerLoader() {
+        return articlePickerLoader;
+    }
+
+    public static Scene getArticlePickerScene() {
+        return articlePickerScene;
+    }
+
+    public static Scene getStartScene() {
+        return startScene;
+    }
+
+    public static Scene getLoginScene() {
+        return loginScene;
+    }
+
+    public static Scene getHomeScene() {
+        return homeScene;
+    }
+
+    public static Scene getAnalyseScene() {
+        return analyseScene;
+    }
+
+    public static Scene getTrendScene() {
+        return trendScene;
+    }
+
+    public static Scene getAboutUsScene() {
+        return aboutUsScene;
+    }
+
+    public static FXMLLoader getAnalyseLoader() {
+        return analyseLoader;
+    }
+
+    public static FXMLLoader getStartLoader() {
+        return startLoader;
+    }
+
+    public static FXMLLoader getHomeLoader() {
+        return homeLoader;
+    }
+
+    public static FXMLLoader getLoginLoader() {
+        return loginLoader;
+    }
+
+    public static FXMLLoader getTrendLoader() {
+        return trendLoader;
+    }
+
+    public static FXMLLoader getAboutUsLoader() {
+        return aboutUsLoader;
+    }
 }
+
