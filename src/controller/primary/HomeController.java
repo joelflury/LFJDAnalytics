@@ -78,7 +78,7 @@ public class HomeController {
             for (SalesPerDay spd : salesList) {
                 if (spd.getArticleID() == article.getArticleID()) {
                     serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                    monthGross += spd.getPrice() * spd.getAmount();
+                    monthGross += spd.getPrice();
                     monthAmount += spd.getAmount();
                 }
             }
