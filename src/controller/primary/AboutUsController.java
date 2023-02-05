@@ -24,24 +24,23 @@ public class AboutUsController {
     @FXML
     public void btnHomeClick() {
         Stage stage = (Stage) btnHome.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.homeScene);
+        stage.setScene(LFJDAnalyticsApplication.getHomeScene());
     }
 
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage) btnAnalyse.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.analyseScene);
+        stage.setScene(LFJDAnalyticsApplication.getAnalyseScene());
     }
 
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.trendScene);
+        stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
     @FXML
     public void btnContact() {
-        //Standard E-Mail Programm wird aufgerufen
         try {
             Desktop.getDesktop().mail(new URI("mailto:info@lfjd-analytics.ch"));
         } catch (IOException | URISyntaxException e) {

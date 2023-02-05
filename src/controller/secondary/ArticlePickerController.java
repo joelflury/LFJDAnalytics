@@ -59,15 +59,15 @@ public class ArticlePickerController {
             } else {
                 returnText = articleAmount + " Articles";
             }
-            if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+            if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
                 AnalyseController.setLblArticlesTextProperty(returnText);
                 AnalyseController.setChosenArticleList(chosenArticleList);
-                AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+                AnalyseController analyseController = LFJDAnalyticsApplication.getAnalyseLoader().getController();
                 analyseController.checkIfAllDataPresent();
             } else {
                 TrendController.setLblArticlesTextProperty(returnText);
                 TrendController.setChosenArticleList(chosenArticleList);
-                TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
+                TrendController trendController = LFJDAnalyticsApplication.getTrendLoader().getController();
                 trendController.checkIfAllDataPresent();
             }
             resetStageValues();
