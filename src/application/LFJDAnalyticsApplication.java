@@ -38,7 +38,6 @@ public class LFJDAnalyticsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        consumer = new Consumer();
         DataPreLoader dataPreLoader = new DataPreLoader();
         dataPreLoader.start();
 

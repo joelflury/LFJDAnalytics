@@ -11,9 +11,10 @@ import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 public class DataPreLoader extends Thread {
     @Override
     public void run() {
-        LFJDAnalyticsApplication.consumer.getSalesData(LocalDate.now().minusDays(735).with(firstDayOfYear()), LocalDate.now());
-        LFJDAnalyticsApplication.consumer.getArticleData();
-        SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(LocalDate.now().plusDays(365), Consumer.getArticles().getArticles());
+        Consumer consumer = new Consumer();
+        consumer.getSalesData(LocalDate.now().minusDays(735).with(firstDayOfYear()), LocalDate.now());
+        consumer.getArticleData();
+        SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(LocalDate.now().plusDays(365), consumer.getArticles().getArticles());
         algorithm.calculate();
     }
 }
