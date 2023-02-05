@@ -58,12 +58,12 @@ public class DatePickerController {
             getDatesFromTemplate();
         }
         try {
-            if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+            if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
                 if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isBefore(LocalDate.now().plusDays(1)) && toDate.isBefore(LocalDate.now().plusDays(1))) {
                     AnalyseController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
                     AnalyseController.setToDate(toDate);
                     AnalyseController.setFromDate(fromDate);
-                    AnalyseController analyseController = LFJDAnalyticsApplication.analyseLoader.getController();
+                    AnalyseController analyseController = LFJDAnalyticsApplication.getAnalyseLoader().getController();
                     analyseController.checkIfAllDataPresent();
                     Stage stage = (Stage) btnChoose.getScene().getWindow();
                     stage.close();
@@ -75,7 +75,7 @@ public class DatePickerController {
                     TrendController.setLblFreeTimePeriodTextProperty(fromDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)) + "\nto\n" + toDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
                     TrendController.setToDate(toDate);
                     TrendController.setFromDate(fromDate);
-                    TrendController trendController = LFJDAnalyticsApplication.trendLoader.getController();
+                    TrendController trendController = LFJDAnalyticsApplication.getTrendLoader().getController();
                     trendController.checkIfAllDataPresent();
                     Stage stage = (Stage) btnChoose.getScene().getWindow();
                     stage.close();
@@ -92,7 +92,7 @@ public class DatePickerController {
     }
 
     public void setPeriodsForChoiceBox() {
-        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
             cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNames()));
         } else {
             cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNamesForeCast()));
@@ -101,7 +101,7 @@ public class DatePickerController {
 
     private void getDatesFromTemplate() {
         int index = cbTemplatePeriods.getSelectionModel().getSelectedIndex();
-        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.analyseScene) {
+        if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
             switch (index) {
                 case 0:
                     toDate = LocalDate.now().minusDays(1);

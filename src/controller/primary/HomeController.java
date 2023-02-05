@@ -52,19 +52,19 @@ public class HomeController {
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage) btnAnalyse.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.analyseScene);
+        stage.setScene(LFJDAnalyticsApplication.getAnalyseScene());
     }
 
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.trendScene);
+        stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
     @FXML
     public void btnAboutUsClick() {
         Stage stage = (Stage) btnAboutUs.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
+        stage.setScene(LFJDAnalyticsApplication.getAboutUsScene());
     }
 
     public void populateChart(List<SalesPerDay> salesList, LineChart chart) {
@@ -109,7 +109,6 @@ public class HomeController {
             consumer.getArticleData();
             populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
             populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(30)), lcTrend);
-            TestAlgorithm.test();
         } catch (Exception e) {
             System.out.println(e);
         }

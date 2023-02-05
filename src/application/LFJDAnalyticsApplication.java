@@ -16,25 +16,25 @@ import java.io.IOException;
 
 public class LFJDAnalyticsApplication extends Application {
 
-    public static Consumer consumer;
+    private static Consumer consumer;
     private static Stage mainStage;
-    public static Stage secondaryStage;
-    public static Scene datePickerScene;
-    public static FXMLLoader datePickerLoader;
-    public static FXMLLoader articlePickerLoader;
-    public static Scene articlePickerScene;
-    public static Scene startScene;
-    public static Scene loginScene;
-    public static Scene homeScene;
-    public static Scene analyseScene;
-    public static Scene trendScene;
-    public static Scene aboutUsScene;
-    public static FXMLLoader analyseLoader;
-    public static FXMLLoader startLoader;
-    public static FXMLLoader homeLoader;
-    public static FXMLLoader loginLoader;
-    public static FXMLLoader trendLoader;
-    public static FXMLLoader aboutUsLoader;
+    private static Stage secondaryStage;
+    private static Scene datePickerScene;
+    private static FXMLLoader datePickerLoader;
+    private static FXMLLoader articlePickerLoader;
+    private static Scene articlePickerScene;
+    private static Scene startScene;
+    private static Scene loginScene;
+    private static Scene homeScene;
+    private static Scene analyseScene;
+    private static Scene trendScene;
+    private static Scene aboutUsScene;
+    private static FXMLLoader analyseLoader;
+    private static FXMLLoader startLoader;
+    private static FXMLLoader homeLoader;
+    private static FXMLLoader loginLoader;
+    private static FXMLLoader trendLoader;
+    private static FXMLLoader aboutUsLoader;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -58,7 +58,7 @@ public class LFJDAnalyticsApplication extends Application {
         loginLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Login-view.fxml"));
         loginScene = new Scene(loginLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         startLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Start-view.fxml"));
-        startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight());
+        startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         homeLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Home-view.fxml"));
         homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
         analyseLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Analyse-view.fxml"));
@@ -162,6 +162,10 @@ public class LFJDAnalyticsApplication extends Application {
 
     public static FXMLLoader getAboutUsLoader() {
         return aboutUsLoader;
+    }
+
+    public static Consumer consumer() {
+        return consumer;
     }
 }
 

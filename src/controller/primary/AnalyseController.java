@@ -76,18 +76,18 @@ public class AnalyseController {
     @FXML
     public void btnHomeClick() {
         Stage stage = (Stage) btnHome.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.homeScene);
+        stage.setScene(LFJDAnalyticsApplication.getHomeScene());
     }
 
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.trendScene);
+        stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
     public void btnAboutUsClick() {
         Stage stage = (Stage) btnAboutUs.getScene().getWindow();
-        stage.setScene(LFJDAnalyticsApplication.aboutUsScene);
+        stage.setScene(LFJDAnalyticsApplication.getAboutUsScene());
     }
 
     @FXML
@@ -107,14 +107,7 @@ public class AnalyseController {
 
     @FXML
     private void saveChart() {
-        try {
-            printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
-        } catch (FileNotFoundException e) {
-            Util.showAlert(1,"Save Error", "The System was unable to save the file", "Please check filepath and permissions");
-
-        } catch (Exception e) {
-            Util.showAlert(1,"Unexpected Error", "An unexpected Error occurred", "Please try again");
-        }
+        printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
     }
 
     private void populateAnalysisChart() {
@@ -126,7 +119,7 @@ public class AnalyseController {
             List<SalesPerDay> tempSalesPerDayList = Consumer.getSales().getArticlePerDay();
             DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
             if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
-                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList);
+                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getArticleID(), article.getPrice());
                 for (SalesPerWeek spw : tempSalesPerWeekList) {
                     if (spw.getArticleID() == article.getArticleID()) {
                         serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));
@@ -180,15 +173,15 @@ public class AnalyseController {
     }
 
     public void btnFreePeriodClick() {
-        ((DatePickerController) LFJDAnalyticsApplication.datePickerLoader.getController()).setPeriodsForChoiceBox();
-        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.datePickerScene);
-        LFJDAnalyticsApplication.secondaryStage.show();
+        ((DatePickerController) LFJDAnalyticsApplication.getDatePickerLoader().getController()).setPeriodsForChoiceBox();
+        LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getDatePickerScene());
+        LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
     public void btnChooseArticlesClick() {
-        ((ArticlePickerController) LFJDAnalyticsApplication.articlePickerLoader.getController()).createCheckBoxes();
-        LFJDAnalyticsApplication.secondaryStage.setScene(LFJDAnalyticsApplication.articlePickerScene);
-        LFJDAnalyticsApplication.secondaryStage.show();
+        ((ArticlePickerController) LFJDAnalyticsApplication.getArticlePickerLoader().getController()).createCheckBoxes();
+        LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getArticlePickerScene());
+        LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
     public static void setFromDate(LocalDate fromDate) {
