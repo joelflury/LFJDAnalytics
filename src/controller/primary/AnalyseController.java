@@ -61,7 +61,6 @@ public class AnalyseController {
     private final PrintSaveChart printSaveChart = new PrintSaveChart();
     private final Stage stage = LFJDAnalyticsApplication.getMainStage();
 
-
     public static void setChosenArticleList(List<Article> articleListParam) {
         chosenArticleList = articleListParam;
     }
@@ -96,7 +95,7 @@ public class AnalyseController {
             Consumer consumer = new Consumer();
             consumer.getSalesData(fromDate, toDate);
             getSalesDataForLabels();
-            populateAnalysisChart();
+            Util.populateChart(lcAnalyse, fromDate, toDate, chosenArticleList);
         }
     }
 
@@ -108,44 +107,6 @@ public class AnalyseController {
     @FXML
     private void saveChart() {
         printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
-    }
-
-    private void populateAnalysisChart() {
-        lcAnalyse.getData().clear();
-        List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article : chosenArticleList) {
-            XYChart.Series serie = new XYChart.Series();
-            serie.setName(article.getArticlename());
-            List<SalesPerDay> tempSalesPerDayList = Consumer.getSales().getArticlePerDay();
-            DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
-            if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
-                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getArticleID(), article.getPrice());
-                for (SalesPerWeek spw : tempSalesPerWeekList) {
-                    if (spw.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));
-                    }
-                }
-                seriesList.add(serie);
-
-                for (XYChart.Series tempSerie : seriesList) {
-                    lcAnalyse.getData().add(tempSerie);
-                }
-                seriesList.clear();
-
-            } else {
-                for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-                    if (spd.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                    }
-                }
-                seriesList.add(serie);
-
-                for (XYChart.Series tempSerie : seriesList) {
-                    lcAnalyse.getData().add(tempSerie);
-                }
-                seriesList.clear();
-            }
-        }
     }
 
     private void getSalesDataForLabels() {

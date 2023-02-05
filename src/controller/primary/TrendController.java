@@ -100,43 +100,7 @@ public class TrendController {
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             getSalesDataForLabels();
-            populateTrendChart();
-        }
-    }
-
-    private void populateTrendChart() {
-        lcTrend.getData().clear();
-        List<XYChart.Series> seriesList = new ArrayList<>();
-        for (Article article : chosenArticleList) {
-            XYChart.Series serie = new XYChart.Series();
-            serie.setName(article.getArticlename());
-            List<SalesPerDay> tempSalesPerDayList = SalesPerDay.getSalesForecastList(fromDate, toDate);
-            DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
-            if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
-                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getArticleID(), article.getPrice());
-                for (SalesPerWeek spw : tempSalesPerWeekList) {
-                    if (spw.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));
-                    }
-                }
-                seriesList.add(serie);
-
-                for (XYChart.Series tempSerie : seriesList) {
-                    lcTrend.getData().add(tempSerie);
-                }
-                seriesList.clear();
-            } else {
-                for (SalesPerDay spd : SalesPerDay.getSalesForecastList(fromDate, toDate)) {
-                    if (spd.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                    }
-                }
-                seriesList.add(serie);
-                for (XYChart.Series tempSerie : seriesList) {
-                    lcTrend.getData().add(tempSerie);
-                }
-                seriesList.clear();
-            }
+            Util.populateChart(lcTrend, fromDate, toDate, chosenArticleList);
         }
     }
 

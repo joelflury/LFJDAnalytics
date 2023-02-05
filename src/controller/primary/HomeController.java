@@ -11,7 +11,6 @@ import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
-import util.TestAlgorithm;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;

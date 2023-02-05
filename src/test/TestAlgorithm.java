@@ -1,4 +1,4 @@
-package util;
+package test;
 
 import logic.algorithm.SalesForcecastAlgorithm;
 import logic.consumer.Consumer;
@@ -10,11 +10,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TestAlgorithm {
-    static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    static Consumer consumer = new Consumer();
-    static LocalDate fromDate = LocalDate.now().minusDays(90);
-    static LocalDate toDate = LocalDate.parse(Consumer.getDateRange().getToDate(), dtf);
-    static SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(fromDate, toDate, Article.getArticles());
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static Consumer consumer = new Consumer();
+    private static LocalDate fromDate = LocalDate.now().minusDays(90);
+    private static LocalDate toDate = LocalDate.parse(Consumer.getDateRange().getToDate(), dtf);
+    private static SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(fromDate, toDate, Article.getArticles());
 
     public static void test() {
         algorithm.calculate();

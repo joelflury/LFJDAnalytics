@@ -7,7 +7,6 @@ public class Article {
     private final int articleID;
     private final String articlename;
     private final float price;
-
     private static final List<Article> articles = new ArrayList<>();
 
     public Article(int articleID, String articlename, float price) {

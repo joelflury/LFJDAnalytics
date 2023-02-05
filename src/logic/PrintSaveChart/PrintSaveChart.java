@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -33,11 +32,11 @@ public class PrintSaveChart {
         File outputFile = null;
         String fileName = "chart_" + LocalDate.now() + ".png";
         try {
-            outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\"+ fileName);
+            outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\" + fileName);
             ImageIO.write(image, "png", outputFile);
-            Util.showAlert(2,"Files saved", "Your file has been saved", "Your File " + fileName + " has been saved: \n" + outputFile);
+            Util.showAlert(2, "Files saved", "Your file has been saved", "Your File " + fileName + " has been saved: \n" + outputFile);
         } catch (Exception e) {
-            Util.showAlert(1,"Save Error", "The System was unable to save the file", "Please check your permissions");
+            Util.showAlert(1, "Save Error", "The System was unable to save the file", "Please check your permissions");
         }
     }
 
@@ -53,7 +52,7 @@ public class PrintSaveChart {
                 printerJob.endJob();
             }
         } catch (Exception e) {
-            Util.showAlert(1,"Print Error", "The System was unable to print", "Please check the printer");
+            Util.showAlert(1, "Print Error", "The System was unable to print", "Please check the printer");
         }
     }
 

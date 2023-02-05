@@ -1,11 +1,9 @@
 package logic.consumer;
 
 import modell.*;
-
 import java.time.LocalDate;
 
 public class Consumer {
-
     private static ArticleDataObject articles;
     private static SalesDataObject sales;
 

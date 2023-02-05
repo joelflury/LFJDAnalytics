@@ -2,7 +2,6 @@ package logic.consumer;
 
 import com.sun.jersey.api.client.ClientHandlerException;
 import modell.*;
-
 import java.util.ArrayList;
 
 class LogicAdapter {

@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
-import modell.Period;
 import util.Util;
 
 
@@ -30,7 +29,6 @@ public class DatePickerController {
     protected DatePicker dpToDate;
     @FXML
     protected ChoiceBox cbTemplatePeriods;
-
     private LocalDate fromDate;
     private LocalDate toDate;
 
@@ -39,7 +37,6 @@ public class DatePickerController {
         dpFromDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         dpToDate.disableProperty().bind(cbTemplatePeriods.valueProperty().isNotNull());
         cbTemplatePeriods.disableProperty().bind(dpFromDate.valueProperty().isNotNull().or(dpToDate.valueProperty().isNotNull()));
-//        btnChoose.disableProperty().bind(cbTemplatePeriods.valueProperty().isNull().orElse(!dpFromDate.disableProperty().getValue()));
     }
 
     @FXML
@@ -93,9 +90,9 @@ public class DatePickerController {
 
     public void setPeriodsForChoiceBox() {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
-            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNames()));
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Util.getPeriodNames()));
         } else {
-            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Period.getPeriodNamesForeCast()));
+            cbTemplatePeriods.setItems(FXCollections.observableArrayList(Util.getPeriodNamesForeCast()));
         }
     }
 

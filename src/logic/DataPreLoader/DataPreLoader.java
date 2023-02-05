@@ -1,6 +1,5 @@
 package logic.DataPreLoader;
 
-import application.LFJDAnalyticsApplication;
 import logic.algorithm.SalesForcecastAlgorithm;
 import logic.consumer.Consumer;
 

@@ -3,7 +3,6 @@ package logic.consumer;
 import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-
 import javax.ws.rs.core.MediaType;
 
 class RestClientGET {

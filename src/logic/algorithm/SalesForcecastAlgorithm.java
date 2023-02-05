@@ -4,7 +4,6 @@ import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 import util.Util;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -18,7 +17,7 @@ public class SalesForcecastAlgorithm {
     private final LocalDate fromDate;
     private final LocalDate toDate;
     private List<Article> articles;
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public SalesForcecastAlgorithm(LocalDate lastDate, List<Article> articles) {
         this.fromDate = LocalDate.now();
@@ -89,6 +88,4 @@ public class SalesForcecastAlgorithm {
         }
         return average / dataAmount;
     }
-
-
 }

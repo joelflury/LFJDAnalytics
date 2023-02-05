@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DateRangeAnalyzer {
-    private int amountOfDaysUntilSwitchToWeek = 62;
+    private final int AMOUNT_OF_DAYS_UNTIL_SWITCH_TO_WEEK = 62;
 
     public List<SalesPerWeek> analyze(List<SalesPerDay> salesList, int articleID, float articlePrice) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -34,6 +34,6 @@ public class DateRangeAnalyzer {
     }
 
     public int getAmountOfDaysUntilSwitchToWeek() {
-        return amountOfDaysUntilSwitchToWeek;
+        return AMOUNT_OF_DAYS_UNTIL_SWITCH_TO_WEEK;
     }
 }

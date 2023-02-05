@@ -26,8 +26,8 @@ public class ArticlePickerController {
     protected Button btnCancel;
     @FXML
     protected Button btnChoose;
-    public List<CheckBox> checkBoxList = new ArrayList<>();
-    public List<Article> chosenArticleList = new ArrayList<>();
+    private List<CheckBox> checkBoxList = new ArrayList<>();
+    private List<Article> chosenArticleList = new ArrayList<>();
 
     public void btnChooseClick() {
         boolean isAnyBoxChecked = false;

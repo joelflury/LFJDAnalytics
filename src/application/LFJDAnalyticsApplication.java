@@ -10,13 +10,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.DataPreLoader.DataPreLoader;
-import logic.consumer.Consumer;
 
 import java.io.IOException;
 
 public class LFJDAnalyticsApplication extends Application {
 
-    private static Consumer consumer;
     private static Stage mainStage;
     private static Stage secondaryStage;
     private static Scene datePickerScene;
@@ -35,6 +33,7 @@ public class LFJDAnalyticsApplication extends Application {
     private static FXMLLoader loginLoader;
     private static FXMLLoader trendLoader;
     private static FXMLLoader aboutUsLoader;
+    private final int PIXEL_TO_RETRACT = 23;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -52,21 +51,20 @@ public class LFJDAnalyticsApplication extends Application {
         primaryStage.show();
     }
 
-
     private void createScenes() throws IOException {
         Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
         loginLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Login-view.fxml"));
-        loginScene = new Scene(loginLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        loginScene = new Scene(loginLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
         startLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Start-view.fxml"));
-        startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        startScene = new Scene(startLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
         homeLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Home-view.fxml"));
-        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        homeScene = new Scene(homeLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
         analyseLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Analyse-view.fxml"));
-        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        analyseScene = new Scene(analyseLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
         trendLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Trend-view.fxml"));
-        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        trendScene = new Scene(trendLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
         aboutUsLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/AboutUs-view.fxml"));
-        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight() - 23);
+        aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
     }
 
     private void createSecondaryStage(Stage primaryStage) throws IOException {
@@ -90,10 +88,6 @@ public class LFJDAnalyticsApplication extends Application {
 
     public static void setMainStage(Stage mainStage) {
         LFJDAnalyticsApplication.mainStage = mainStage;
-    }
-
-    public static Consumer getConsumer() {
-        return consumer;
     }
 
     public static Stage getSecondaryStage() {
@@ -164,8 +158,5 @@ public class LFJDAnalyticsApplication extends Application {
         return aboutUsLoader;
     }
 
-    public static Consumer consumer() {
-        return consumer;
-    }
 }
 
