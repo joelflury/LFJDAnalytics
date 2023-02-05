@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.DataPreLoader.DataPreLoader;
 import logic.consumer.Consumer;
 
@@ -44,10 +45,8 @@ public class LFJDAnalyticsApplication extends Application {
         setMainStage(primaryStage);
         createScenes();
         createSecondaryStage(primaryStage);
-//        loginScene.getRoot().requestFocus();
         primaryStage.setMaximized(true);
         primaryStage.setResizable(false);
-//        primaryStage.setScene(loginScene);
         primaryStage.setScene(startScene);
 
         primaryStage.getIcons().add(new Image("file:src/resources/img/logo6.png"));
@@ -81,6 +80,7 @@ public class LFJDAnalyticsApplication extends Application {
         articlePickerScene = new Scene(articlePickerLoader.load());
 
         secondaryStage.setResizable(false);
+        secondaryStage.initStyle(StageStyle.UNDECORATED);
         secondaryStage.initModality(Modality.WINDOW_MODAL);
         secondaryStage.initOwner(primaryStage);
     }

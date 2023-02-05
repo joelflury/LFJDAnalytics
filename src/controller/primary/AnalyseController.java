@@ -110,10 +110,10 @@ public class AnalyseController {
         try {
             printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
         } catch (FileNotFoundException e) {
-            Util.showAlert("Save Error", "The System was unable to save the file", "Please check filepath and permissions");
+            Util.showAlert(1,"Save Error", "The System was unable to save the file", "Please check filepath and permissions");
 
         } catch (Exception e) {
-            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+            Util.showAlert(1,"Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
     }
 

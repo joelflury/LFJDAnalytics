@@ -30,19 +30,22 @@ public class PrintSaveChart {
 
     public void saveFileAsImage(BufferedImage image, Stage stage) throws Exception {
         DirectoryChooser directoryChooser = new DirectoryChooser();
+        File outputFile = null;
+        String fileName = "chart_" + LocalDate.now() + ".png";
         try {
-            File outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\chart" + LocalDate.now() + ".png");
+            outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\"+ fileName);
             ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {
             throw new IOException();
         } catch (Exception e) {
             throw new Exception();
+        } finally {
+            Util.showAlert(2,"Files saved", "Your file has been saved", "Your File " + fileName + " has been saved: \n" + outputFile);
         }
     }
 
     public void printFile(ImageView imageView) {
         try {
-
             PrinterJob printerJob = PrinterJob.createPrinterJob();
             Printer printer = getPrinter();
             printerJob.setPrinter(printer);
@@ -53,9 +56,9 @@ public class PrintSaveChart {
                 printerJob.endJob();
             }
         } catch (NullPointerException e) {
-            Util.showAlert("Print Error", "The System was unable to print", "Please check the printer");
+            Util.showAlert(1,"Print Error", "The System was unable to print", "Please check the printer");
         } catch (Exception e) {
-            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+            Util.showAlert(1,"Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
     }
 

@@ -54,8 +54,13 @@ public class Util {
 
     }
 
-    public static void showAlert(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    public static void showAlert(int alertType, String title, String header, String content) {
+        Alert alert = null;
+        if (alertType == 1){
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else if (alertType == 2){
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
