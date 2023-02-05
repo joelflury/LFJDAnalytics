@@ -85,8 +85,8 @@ public class HomeController {
             seriesList.add(serie);
         }
         if (chart.getId().equals("lcTrend")) {
-            lblTrendGross.setText(String.valueOf(formatter.format(monthGross)));
-            lblTrendAmount.setText(monthAmount + " Articles");
+            lblTrendGross.setText(monthAmount + " Articles");
+            lblTrendAmount.setText(String.valueOf(formatter.format(monthGross)));
         } else if (chart.getId().equals("lcAnalyse")) {
             lblAnalyzeGross.setText(String.valueOf(formatter.format(monthGross)));
             lblAnalyzeAmount.setText(monthAmount + " Articles");
@@ -105,10 +105,10 @@ public class HomeController {
                 dataPreLoader.start();
                 dataPreLoader.join();
             }
-            consumer.getSalesData(LocalDate.now().minusDays(31), LocalDate.now());
+            consumer.getSalesData(LocalDate.now().minusDays(29), LocalDate.now());
             consumer.getArticleData();
             populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
-            populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(31)), lcTrend);
+            populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(30)), lcTrend);
             TestAlgorithm.test();
         } catch (Exception e) {
             System.out.println(e);

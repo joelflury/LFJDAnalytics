@@ -37,14 +37,8 @@ public class LoginController {
             if (!tfUsername.getText().equals("") && !tfPassword.getText().equals("")) {
                 Consumer consumer = new Consumer();
                 switch (consumer.getUserdata(tfUsername.getText(), Util.hashStringSHA515(tfPassword.getText()))) {
-                    case 0:
-                        lblLoginError.setText("Wrong Password");
-                        tfPassword.setText("");
-                        fadeTransition.play();
-                        break;
-                    case 1:
-                        lblLoginError.setText("Username not found");
-                        tfUsername.setText("");
+                    case 0, 1:
+                        lblLoginError.setText("Wrong User Data");
                         tfPassword.setText("");
                         fadeTransition.play();
                         break;

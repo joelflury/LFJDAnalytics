@@ -72,7 +72,7 @@ public class ArticlePickerController {
             }
             resetStageValues();
         } else {
-            Util.showAlert("No Article selected", "Articlepicker Problem", "Please select at least one Article");
+            Util.showAlert(2,"No Article selected", "Articlepicker Problem", "Please select at least one Article");
         }
     }
 

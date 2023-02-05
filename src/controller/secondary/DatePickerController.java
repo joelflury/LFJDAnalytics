@@ -68,7 +68,7 @@ public class DatePickerController {
                     Stage stage = (Stage) btnChoose.getScene().getWindow();
                     stage.close();
                 } else {
-                    Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+                    Util.showAlert(2,"Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
                 }
             } else {
                 if (toDate.isAfter(fromDate) && DAYS.between(fromDate, toDate.plusDays(1)) <= 365 && fromDate.isAfter(LocalDate.now())) {
@@ -80,13 +80,13 @@ public class DatePickerController {
                     Stage stage = (Stage) btnChoose.getScene().getWindow();
                     stage.close();
                 } else {
-                    Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+                    Util.showAlert(2,"Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
                 }
             }
         } catch (NullPointerException e) {
-            Util.showAlert("Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
+            Util.showAlert(2,"Wrong Dates selected", "Datepicker Problem", "Please select a valid Date");
         } catch (Exception e) {
-            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+            Util.showAlert(2,"Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
         resetStageValues();
     }

@@ -97,10 +97,10 @@ public class TrendController {
         try {
             printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), stage);
         } catch (IOException e) {
-            Util.showAlert("Save Error", "The System was unable to save the file", "Please check filepath and permissions");
+            Util.showAlert(1,"Save Error", "The System was unable to save the file", "Please check filepath and permissions");
 
         } catch (Exception e) {
-            Util.showAlert("Unexpected Error", "An unexpected Error occurred", "Please try again");
+            Util.showAlert(1,"Unexpected Error", "An unexpected Error occurred", "Please try again");
         }
     }
 
