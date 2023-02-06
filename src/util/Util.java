@@ -77,13 +77,12 @@ public class Util {
 
     }
 
-    public static void populateChart(LineChart chart, LocalDate fromDate, LocalDate toDate, List<Article> chosenArticleList) {
+    public static void populateChart(LineChart chart, LocalDate fromDate, LocalDate toDate, List<Article> chosenArticleList, List<SalesPerDay> tempSalesPerDayList) {
         chart.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article : chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
             serie.setName(article.getArticlename());
-            List<SalesPerDay> tempSalesPerDayList = Consumer.getSales().getArticlePerDay();
             DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
             if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
                 List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getArticleID(), article.getPrice());
@@ -100,7 +99,7 @@ public class Util {
                 seriesList.clear();
 
             } else {
-                for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
+                for (SalesPerDay spd : tempSalesPerDayList) {
                     if (spd.getArticleID() == article.getArticleID()) {
                         serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
                     }

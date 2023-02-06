@@ -104,10 +104,10 @@ public class HomeController {
                 dataPreLoader.start();
                 dataPreLoader.join();
             }
-            consumer.getSalesData(LocalDate.now().minusDays(29), LocalDate.now());
+            consumer.getSalesData(LocalDate.now().minusDays(30), LocalDate.now());
             consumer.getArticleData();
             populateChart(Consumer.getSales().getArticlePerDay(), lcAnalyse);
-            populateChart(SalesPerDay.getSalesForecastList(LocalDate.now(), LocalDate.now().plusDays(30)), lcTrend);
+            populateChart(SalesPerDay.getSalesForecastList(LocalDate.now().plusDays(1), LocalDate.now().plusDays(31)), lcTrend);
         } catch (Exception e) {
             System.out.println(e);
         }
