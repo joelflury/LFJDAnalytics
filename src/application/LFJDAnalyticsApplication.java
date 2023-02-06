@@ -76,6 +76,7 @@ public class LFJDAnalyticsApplication extends Application {
         datePickerScene = new Scene(datePickerLoader.load());
         articlePickerScene = new Scene(articlePickerLoader.load());
 
+        secondaryStage.setScene(datePickerScene);
         secondaryStage.setResizable(false);
         secondaryStage.initStyle(StageStyle.UNDECORATED);
         secondaryStage.initModality(Modality.WINDOW_MODAL);

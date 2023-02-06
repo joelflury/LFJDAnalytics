@@ -31,12 +31,15 @@ public class PrintSaveChart {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File outputFile = null;
         String fileName = "chart_" + LocalDate.now() + ".png";
-        try {
-            outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\" + fileName);
-            ImageIO.write(image, "png", outputFile);
-            Util.showAlert(2, "Files saved", "Your file has been saved", "Your File " + fileName + " has been saved: \n" + outputFile);
-        } catch (Exception e) {
-            Util.showAlert(1, "Save Error", "The System was unable to save the file", "Please check your permissions");
+        outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\" + fileName);
+        if (outputFile != null) {
+            try {
+
+                ImageIO.write(image, "png", outputFile);
+                Util.showAlert(2, "Files saved", "Your file has been saved", "Your File " + fileName + " has been saved: \n" + outputFile);
+            } catch (Exception e) {
+                Util.showAlert(1, "Save Error", "The System was unable to save the file", "Please check your permissions");
+            }
         }
     }
 
@@ -50,6 +53,7 @@ public class PrintSaveChart {
             boolean success = printerJob.printPage(pageLayout, imageView);
             if (success) {
                 printerJob.endJob();
+                Util.showAlert(2, "Printing Successfully", "Printing Successfully", "Your file was successfully printed " );
             }
         } catch (Exception e) {
             Util.showAlert(1, "Print Error", "The System was unable to print", "Please check the printer");
