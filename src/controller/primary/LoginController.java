@@ -45,8 +45,8 @@ public class LoginController {
                     case 2:
                         Stage stage = (Stage) hBoxRoot.getScene().getWindow();
                         stage.setScene(LFJDAnalyticsApplication.getHomeScene());
-                        HomeController controller = LFJDAnalyticsApplication.getHomeLoader().getController();
-                        controller.start();
+                        HomeController homeController = LFJDAnalyticsApplication.getHomeLoader().getController();
+                        homeController.start();
                         break;
                     case 3:
                         lblLoginError.setText("Connection to Server failed");

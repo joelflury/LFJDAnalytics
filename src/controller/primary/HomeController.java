@@ -41,6 +41,9 @@ public class HomeController {
     @FXML
     protected Label lblTrendAmount;
 
+    /**
+     * Gets called when the Controller is being initialized
+     */
     @FXML
     public void initialize() {
         lblDate.setText(LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
@@ -48,24 +51,38 @@ public class HomeController {
         lcTrend.setAnimated(false);
     }
 
+    /**
+     * Calls the Analyse Scene
+     */
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAnalyseScene());
     }
 
+    /**
+     * Calls the Trend Scene
+     */
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
+    /**
+     * Calls the AboutUs Scene
+     */
     @FXML
     public void btnAboutUsClick() {
         Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAboutUsScene());
     }
 
+    /**
+     * Populates the Chart
+     * @param salesList The Data to be filled with
+     * @param chart The Chart to be filled
+     */
     public void populateChart(List<SalesPerDay> salesList, LineChart chart) {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
@@ -95,6 +112,9 @@ public class HomeController {
         }
     }
 
+    /**
+     * Gets called from the LoginController. Gets Data for Forecast and Analisys and calls the populateChart Method
+     */
     public void start() {
         try {
             Consumer consumer = new Consumer();

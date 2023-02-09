@@ -115,7 +115,7 @@ public class Util {
         }
     }
 
-    public static void showAlert(int alertType, String title, String header, String content) {
+    public static void showDialog(int alertType, String title, String header, String content) {
         Alert alert = null;
         if (alertType == 1) {
             alert = new Alert(Alert.AlertType.ERROR);

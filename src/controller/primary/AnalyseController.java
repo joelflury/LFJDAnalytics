@@ -65,6 +65,9 @@ public class AnalyseController {
         chosenArticleList = articleListParam;
     }
 
+    /**
+     * Gets called when the Controller is being initialized
+     */
     @FXML
     public void initialize() {
         lblArticles.textProperty().bind(lblArticlesTextProperty);
@@ -72,23 +75,35 @@ public class AnalyseController {
         lcAnalyse.setAnimated(false);
     }
 
+    /**
+     * Calls the Home Scene
+     */
     @FXML
     public void btnHomeClick() {
         Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getHomeScene());
     }
 
+    /**
+     * Calls the Trend Scene
+     */
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
+    /**
+     * Calls the AboutUs Scene
+     */
     public void btnAboutUsClick() {
         Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAboutUsScene());
     }
 
+    /**
+     * Checks if all Data is present to fill the Chart
+     */
     @FXML
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
@@ -99,16 +114,25 @@ public class AnalyseController {
         }
     }
 
+    /**
+     * Calls the function from Class Util to print the chart
+     */
     @FXML
     private void printChart() {
         printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), null)));
     }
 
+    /**
+     * Calls the function from Class Util to save the chart
+     */
     @FXML
     private void saveChart() {
         printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcAnalyse.snapshot(new SnapshotParameters(), null), hBoxLcAnalyse.getWidth(), hBoxLcAnalyse.getHeight()), stage);
     }
 
+    /**
+     * Gets the Amount of ordered articles and the gross of them to then present these values in the corresponding labels
+     */
     private void getSalesDataForLabels() {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
@@ -125,30 +149,48 @@ public class AnalyseController {
         lblAmount.setText(monthAmount + " Articles");
     }
 
+    /**
+     * Sets the value for the Article Label after they have been chosen
+     */
     public static void setLblArticlesTextProperty(String testString) {
         AnalyseController.lblArticlesTextProperty.set(testString);
     }
 
+    /**
+     * Sets the value for the time period Label after they have been chosen
+     */
     public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
         AnalyseController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
     }
 
+    /**
+     * Calls the DatePicker Stage and also sets the Periods for the Choicebox
+     */
     public void btnFreePeriodClick() {
         ((DatePickerController) LFJDAnalyticsApplication.getDatePickerLoader().getController()).setPeriodsForChoiceBox();
         LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getDatePickerScene());
         LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
+    /**
+     * Calls the ArticlePicker Stage and also calls the createCheckBoxes Method
+     */
     public void btnChooseArticlesClick() {
         ((ArticlePickerController) LFJDAnalyticsApplication.getArticlePickerLoader().getController()).createCheckBoxes();
         LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getArticlePickerScene());
         LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
+    /**
+     * setter for the variable fromDate
+     */
     public static void setFromDate(LocalDate fromDate) {
         AnalyseController.fromDate = fromDate;
     }
 
+    /**
+     * setter for the variable toDate
+     */
     public static void setToDate(LocalDate toDate) {
         AnalyseController.toDate = toDate;
     }

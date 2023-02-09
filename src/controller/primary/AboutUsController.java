@@ -21,24 +21,36 @@ public class AboutUsController {
     @FXML
     protected Label btnContact;
 
+    /**
+     * Calls the Home Scene
+     */
     @FXML
     public void btnHomeClick() {
         Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getHomeScene());
     }
 
+    /**
+     * Calls the Analyze Scene
+     */
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAnalyseScene());
     }
 
+    /**
+     * Calls the Trend Scene
+     */
     @FXML
     public void btnTrendClick() {
         Stage stage = (Stage) btnTrend.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getTrendScene());
     }
 
+    /**
+     * Trys to Open the default email programm with info@lfjd-analytics.ch as sender
+     */
     @FXML
     public void btnContact() {
         try {
