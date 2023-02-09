@@ -8,27 +8,21 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import logic.DateRangeAnalyzer.DateRangeAnalyzer;
 import logic.PrintSaveChart.PrintSaveChart;
 import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
-import modell.SalesPerWeek;
 import util.Util;
 
-import java.io.FileNotFoundException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class AnalyseController {
     @FXML
@@ -110,7 +104,7 @@ public class AnalyseController {
             Consumer consumer = new Consumer();
             consumer.getSalesData(fromDate, toDate);
             getSalesDataForLabels();
-            Util.populateChart(lcAnalyse, fromDate, toDate, chosenArticleList);
+            Util.populateChart(lcAnalyse, fromDate, toDate, chosenArticleList, Consumer.getSales().getArticlePerDay());
         }
     }
 

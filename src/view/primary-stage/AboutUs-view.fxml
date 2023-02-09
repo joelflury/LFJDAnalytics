@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.AboutUsController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="root-container" stylesheets="@../../resources/css/root-container.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.primary.AboutUsController">
    <children>
       <VBox maxWidth="200.0" minWidth="200.0" styleClass="menu-container" stylesheets="@../../resources/css/menu-container.css">
          <children>
@@ -31,11 +34,11 @@
             </VBox>
          </children>
       </VBox>
-      <VBox maxHeight="1.7976931348623157E308" styleClass="middle-container" stylesheets="@../../resources/css/middle-container.css" HBox.hgrow="ALWAYS">
+      <VBox fillWidth="false" maxHeight="1.7976931348623157E308" styleClass="middle-container" stylesheets="@../../resources/css/middle-container.css" HBox.hgrow="ALWAYS">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="310.0">
                <children>
-                  <ImageView fitHeight="126.0" fitWidth="411.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="80.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/img/logo.png" />
                      </image>
@@ -45,20 +48,20 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" styleClass="title-label" stylesheets="@../../resources/css/middle-button.css" text="About Us" textAlignment="CENTER" underline="true" VBox.vgrow="ALWAYS" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="LFJD Analytics hat es sich zum Ziel genommen, hre Daten erfolgreich zu&#10;analysieren und ihrenzu erwartenden Trend aufzuzeigen!&#10;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="37.0" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="LFJD Analytics bietet:&#10;- aufzeichnen ihrer Datenvorgänge&#10;- analysieren ihrer zu erwartenden Trends&#10;- einzigartiger Algorithmus" textAlignment="CENTER" wrapText="true" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="LFJD Analytics hat es sich zum Ziel genommen, hre Daten erfolgreich zu&#10;analysieren und ihrenzu erwartenden Trend aufzuzeigen!&#10;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="37.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" styleClass="aboutus-label" text="LFJD Analytics bietet:&#10;- aufzeichnen ihrer Datenvorgänge&#10;- analysieren ihrer zu erwartenden Trends&#10;- einzigartiger Algorithmus" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="Lukas Müller, Dominik Bolliger, Joël Flury, Filipe Da Costa" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" styleClass="title-label" stylesheets="@../../resources/css/middle-button.css" text="Impressum" textAlignment="CENTER" underline="true" VBox.vgrow="ALWAYS" />
                   <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" onMouseClicked="#btnContact" styleClass="aboutus-label" text="LFJD Analytics &#10;ABB Technikerschule&#10;Wiesenstrasse 26, 5400 Baden" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
                   <Label fx:id="btnContact" accessibleRole="BUTTON" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" onMouseClicked="#btnContact" styleClass="email-label" stylesheets="@../../resources/css/middle-button.css" text="info@lfjd-analytics.ch" textAlignment="CENTER" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="103.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="Copyright:&#10; &#10;Das Copyright für die Software liegt bei LFJD Analytics&#10;&#10;Urherberrecht:&#10;&#10;Das Urheberrecht an Inhalten, Bildern, Fotos oder anderen Inhalten auf der Webseite gehören ausschliesslich&#10;der LFJD Analytics oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente&#10;ist dieschriftliche Zustimmung der Urheberrechtsinhaber im Voraus schriftlich einzuholen.&#10;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="103.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="aboutus-label" text="Copyright:&#10;Das Copyright für die Software liegt bei LFJD Analytics&#10;&#10;Urherberrecht:&#10;Das Urheberrecht an Inhalten, Bildern, Fotos oder anderen Inhalten auf der Webseite gehören ausschliesslich&#10;der LFJD Analytics oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente&#10;ist dieschriftliche Zustimmung der Urheberrechtsinhaber im Voraus schriftlich einzuholen.&#10;" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin></Label>

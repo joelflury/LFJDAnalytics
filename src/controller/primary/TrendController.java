@@ -9,26 +9,20 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import logic.DateRangeAnalyzer.DateRangeAnalyzer;
 import logic.PrintSaveChart.PrintSaveChart;
 import modell.Article;
 import modell.SalesPerDay;
-import modell.SalesPerWeek;
 import util.Util;
 
-import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class TrendController {
 
@@ -100,7 +94,7 @@ public class TrendController {
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             getSalesDataForLabels();
-            Util.populateChart(lcTrend, fromDate, toDate, chosenArticleList);
+            Util.populateChart(lcTrend, fromDate, toDate, chosenArticleList, SalesPerDay.getSalesForecastList(fromDate, toDate));
         }
     }
 

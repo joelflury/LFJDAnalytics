@@ -101,30 +101,30 @@ public class DatePickerController {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
             switch (index) {
                 case 0:
-                    toDate = LocalDate.now().minusDays(1);
+                    toDate = LocalDate.now();
                     fromDate = LocalDate.now().minusDays(7);
                     break;
                 case 1:
-                    toDate = LocalDate.now().minusDays(1);
-                    fromDate = LocalDate.now().minusDays(31);
+                    toDate = LocalDate.now();
+                    fromDate = LocalDate.now().minusDays(30);
                     break;
                 case 2:
-                    toDate = LocalDate.now().minusDays(1);
+                    toDate = LocalDate.now();
                     fromDate = LocalDate.now().minusDays(90);
                     break;
             }
         } else {
             switch (index) {
                 case 0:
-                    toDate = LocalDate.now().plusDays(7);
+                    toDate = LocalDate.now().plusDays(8);
                     fromDate = LocalDate.now().plusDays(1);
                     break;
                 case 1:
                     toDate = LocalDate.now().plusDays(31);
-                    fromDate = LocalDate.now().plusDays(7);
+                    fromDate = LocalDate.now().plusDays(1);
                     break;
                 case 2:
-                    toDate = LocalDate.now().plusDays(90);
+                    toDate = LocalDate.now().plusDays(91);
                     fromDate = LocalDate.now().plusDays(1);
                     break;
             }
