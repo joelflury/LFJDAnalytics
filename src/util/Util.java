@@ -24,14 +24,11 @@ public class Util {
     private static final String[] periodNames = new String[]{"Last 7 Days", "Last Month", "Last 3 Months"};
     private static final String[] periodNamesForeCast = new String[]{"Next 7 Days", "Next Month", "Next 3 Months"};
 
-    public static String[] getPeriodNames() {
-        return periodNames;
-    }
-
-    public static String[] getPeriodNamesForeCast() {
-        return periodNamesForeCast;
-    }
-
+    /**
+     * retunrs the Weekday from a String of the weekday
+     * @param date
+     * @return  the weekday as integer
+     */
     public static int getWeekDay(LocalDate date) {
         String weekDayString = DayOfWeek.of(date.get(ChronoField.DAY_OF_WEEK)).toString();
         int weekDayInt = 0;
@@ -62,6 +59,11 @@ public class Util {
         return weekDayInt;
     }
 
+    /**
+     * Transforms a hash value out of the enterd password to check it in the DB
+     * @param string
+     * @return
+     */
     public static String hashStringSHA515(String string) {
         StringBuffer hexString = new StringBuffer();
         try {
@@ -77,6 +79,14 @@ public class Util {
 
     }
 
+    /**
+     * This method populates the Chart given with the data given from the parameters
+     * @param chart                 The chart to populate
+     * @param fromDate              the fromDate to analyze the Date range in the DateRangeAnalayzer
+     * @param toDate                the toDate to analyze the Date range in the DateRangeAnalayzer
+     * @param chosenArticleList     All articles chosen from the suer
+     * @param tempSalesPerDayList   a list with all the data to populate
+     */
     public static void populateChart(LineChart chart, LocalDate fromDate, LocalDate toDate, List<Article> chosenArticleList, List<SalesPerDay> tempSalesPerDayList) {
         chart.getData().clear();
         List<XYChart.Series> seriesList = new ArrayList<>();
@@ -114,6 +124,13 @@ public class Util {
         }
     }
 
+    /**
+     * Shows a dialog with the given params
+     * @param alertType the type of alert: 1 for Erros dialogs and 2 for info dialogs
+     * @param title     The Title text of the dialog
+     * @param header    The header text of the dialog
+     * @param content   The content text of the dialog
+     */
     public static void showDialog(int alertType, String title, String header, String content) {
         Alert alert = null;
         if (alertType == 1) {
@@ -125,6 +142,17 @@ public class Util {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    /*
+     * Following are all the setters and getters for this Class
+     */
+    public static String[] getPeriodNames() {
+        return periodNames;
+    }
+
+    public static String[] getPeriodNamesForeCast() {
+        return periodNamesForeCast;
     }
 
 }
