@@ -35,6 +35,14 @@ public class LFJDAnalyticsApplication extends Application {
     private static FXMLLoader aboutUsLoader;
     private final int PIXEL_TO_RETRACT = 23;
 
+    /**
+     *
+     * @param primaryStage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         DataPreLoader dataPreLoader = new DataPreLoader();
@@ -51,6 +59,10 @@ public class LFJDAnalyticsApplication extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Prepares all the Scenes and loaders
+     * @throws IOException
+     */
     private void createScenes() throws IOException {
         Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
         loginLoader = new FXMLLoader(LFJDAnalyticsApplication.class.getResource("/view/primary-stage/Login-view.fxml"));
@@ -67,6 +79,11 @@ public class LFJDAnalyticsApplication extends Application {
         aboutUsScene = new Scene(aboutUsLoader.load(), screenSize.getWidth(), screenSize.getHeight() - PIXEL_TO_RETRACT);
     }
 
+    /**
+     * Creates the seconday Stage and all the Scenes and loaders for it
+     * @param primaryStage  the primary stage to set it as owner of the secondary stage
+     * @throws IOException
+     */
     private void createSecondaryStage(Stage primaryStage) throws IOException {
         secondaryStage = new Stage();
 
@@ -83,6 +100,9 @@ public class LFJDAnalyticsApplication extends Application {
         secondaryStage.initOwner(primaryStage);
     }
 
+    /*
+     * Following are all the setters and getters for this Class
+     */
     public static Stage getMainStage() {
         return mainStage;
     }
