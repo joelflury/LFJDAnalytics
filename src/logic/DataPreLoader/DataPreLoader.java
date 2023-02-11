@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 
 public class DataPreLoader extends Thread {
+    /**
+     * Gets the Data for the Dashboard and runs the algorithm function for the forecast data. Runs in a thread so the GUI isn't blocked.
+     */
     @Override
     public void run() {
         Consumer consumer = new Consumer();

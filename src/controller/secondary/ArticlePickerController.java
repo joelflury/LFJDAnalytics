@@ -29,6 +29,14 @@ public class ArticlePickerController {
     private List<CheckBox> checkBoxList = new ArrayList<>();
     private List<Article> chosenArticleList = new ArrayList<>();
 
+    /**
+     * Gets triggered when the Choose button is clicked
+     * 1. Checks if any Article is chosen
+     * 2. Creates a List of all chosen articles
+     * 3. Gets the amount of the chosen articles to set the label text
+     * 4. Checks which Controller did call this Scene
+     * 5. Sends back the Data to the calling scene
+     */
     public void btnChooseClick() {
         boolean isAnyBoxChecked = false;
         for (CheckBox cb : checkBoxList) {
@@ -76,12 +84,18 @@ public class ArticlePickerController {
         }
     }
 
+    /**
+     * Closes the stage and resets the values
+     */
     public void btnCancelClick() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
         resetStageValues();
     }
 
+    /**
+     * Regarding the Articles in the Database this function creates Checkboxes for every Article
+     */
     public void createCheckBoxes() {
         checkBoxList.clear();
         vBoxRight.getChildren().clear();
@@ -100,6 +114,9 @@ public class ArticlePickerController {
         }
     }
 
+    /**
+     * Resets the stage values
+     */
     private void resetStageValues() {
         for (CheckBox cb : checkBoxList) {
             cb.setSelected(false);

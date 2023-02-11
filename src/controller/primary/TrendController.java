@@ -63,34 +63,52 @@ public class TrendController {
         chosenArticleList = articleListParam;
     }
 
+    /**
+     * Calls the Analyze Scene
+     */
     @FXML
     public void btnAnalyseClick() {
         Stage stage = (Stage) btnAnalyse.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAnalyseScene());
     }
 
+    /**
+     * Calls the Home Scene
+     */
     @FXML
     public void btnHomeClick() {
         Stage stage = (Stage) btnHome.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getHomeScene());
     }
 
+    /**
+     * Calls the AboutUs Scene
+     */
     @FXML
     public void btnAboutUsClick() {
         Stage stage = (Stage) btnAboutUs.getScene().getWindow();
         stage.setScene(LFJDAnalyticsApplication.getAboutUsScene());
     }
 
+    /**
+     * Calls the Print function from te Util Class
+     */
     @FXML
     private void printChart() {
         printSaveChart.printFile(new ImageView(SwingFXUtils.toFXImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), null)));
     }
 
+    /**
+     * Calls the Save function from te Util Class
+     */
     @FXML
     private void saveChart() {
         printSaveChart.saveFileAsImage(printSaveChart.createPicture(hBoxLcTrend.snapshot(new SnapshotParameters(), null), hBoxLcTrend.getWidth(), hBoxLcTrend.getHeight()), stage);
     }
 
+    /**
+     * Checks if all Data is present to fill the Chart
+     */
     public void checkIfAllDataPresent() {
         if (fromDate != null && toDate != null && chosenArticleList.size() != 0) {
             getSalesDataForLabels();
@@ -98,6 +116,9 @@ public class TrendController {
         }
     }
 
+    /**
+     * Gets the Amount of ordered articles and the gross of them to then present these values in the corresponding labels
+     */
     private void getSalesDataForLabels() {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         int monthAmount = 0;
@@ -114,30 +135,48 @@ public class TrendController {
         lblAmount.setText(monthAmount + " Articles");
     }
 
+    /**
+     * Sets the value for the Article Label after they have been chosen
+     */
     public static void setLblArticlesTextProperty(String testString) {
         TrendController.lblArticlesTextProperty.set(testString);
     }
 
+    /**
+     * Sets the value for the time period Label after they have been chosen
+     */
     public static void setLblFreeTimePeriodTextProperty(String lblFreeTimePeriodTextProperty) {
         TrendController.lblFreeTimePeriodTextProperty.set(lblFreeTimePeriodTextProperty);
     }
 
+    /**
+     * Calls the DatePicker Stage and also sets the Periods for the Choicebox
+     */
     public void btnFreePeriodClick() {
         ((DatePickerController) LFJDAnalyticsApplication.getDatePickerLoader().getController()).setPeriodsForChoiceBox();
         LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getDatePickerScene());
         LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
+    /**
+     * Calls the ArticlePicker Stage and also calls the createCheckBoxes Method
+     */
     public void btnChooseArticlesClick() {
         ((ArticlePickerController) LFJDAnalyticsApplication.getArticlePickerLoader().getController()).createCheckBoxes();
         LFJDAnalyticsApplication.getSecondaryStage().setScene(LFJDAnalyticsApplication.getArticlePickerScene());
         LFJDAnalyticsApplication.getSecondaryStage().show();
     }
 
+    /**
+     * setter for the variable fromDate
+     */
     public static void setFromDate(LocalDate fromDate) {
         TrendController.fromDate = fromDate;
     }
 
+    /**
+     * setter for the variable toDate
+     */
     public static void setToDate(LocalDate toDate) {
         TrendController.toDate = toDate;
     }

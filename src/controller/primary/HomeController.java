@@ -113,7 +113,7 @@ public class HomeController {
     }
 
     /**
-     * Gets called from the LoginController. Gets Data for Forecast and Analisys and calls the populateChart Method
+     * Gets called from the LoginController. Gets Data for Forecast and Analysis and calls the populateChart Method
      */
     public void start() {
         try {

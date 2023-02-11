@@ -11,6 +11,13 @@ import java.util.List;
 public class DateRangeAnalyzer {
     private final int AMOUNT_OF_DAYS_UNTIL_SWITCH_TO_WEEK = 62;
 
+    /**
+     * This function checks if the period is longer than 60 Days and if so blblalaal
+     * @param salesList     The List of Data to be analyzed
+     * @param articleID
+     * @param articlePrice
+     * @return
+     */
     public List<SalesPerWeek> analyze(List<SalesPerDay> salesList, int articleID, float articlePrice) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<SalesPerWeek> tempLSalesList = new ArrayList<>();

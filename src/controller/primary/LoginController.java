@@ -27,6 +27,10 @@ public class LoginController {
     @FXML
     protected ImageView ivLoginLogo;
 
+    /**
+     * Listen to Key Events. If Enter is pressed the Login Data gets sent to the API.
+     * If the Data is correct
+     */
     @FXML
     protected void handleKeyPressed(KeyEvent key) {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), lblLoginError);

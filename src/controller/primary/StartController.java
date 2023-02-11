@@ -13,6 +13,9 @@ public class StartController {
     @FXML
     protected ImageView lfjdLogo;
 
+    /**
+     * Handles all the Animations for the Start Scene
+     */
     @FXML
     public void initialize() {
         TranslateTransition translateTrans = new TranslateTransition(Duration.seconds(2), lfjdLogo);

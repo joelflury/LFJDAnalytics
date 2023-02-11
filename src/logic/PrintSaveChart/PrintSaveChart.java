@@ -19,6 +19,13 @@ import java.util.Optional;
 
 public class PrintSaveChart {
 
+    /**
+     * Makes a picture of the snapshot from a Chart and sends back an image
+     * @param snapShot  snapShot of the Chart
+     * @param width     width of the Chart
+     * @param height    height of the Chart
+     * @return  the image
+     */
     public BufferedImage createPicture(WritableImage snapShot, double width, double height) {
         BufferedImage bufferedImage = new BufferedImage(550, 400, BufferedImage.TYPE_INT_ARGB);
         BufferedImage image = SwingFXUtils.fromFXImage(snapShot, bufferedImage);
@@ -27,11 +34,21 @@ public class PrintSaveChart {
         return image;
     }
 
+    /**
+     * Saves the files as an image file on a chosen Path
+     * @param image
+     * @param stage
+     */
     public void saveFileAsImage(BufferedImage image, Stage stage) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File outputFile = null;
         String fileName = "chart_" + LocalDate.now() + ".png";
-        outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\" + fileName);
+        try {
+            outputFile = new File(directoryChooser.showDialog(stage).getAbsolutePath() + "\\" + fileName);
+
+        } catch (NullPointerException e){
+            //Don nothing because it's ok if canceled
+        }
         if (outputFile != null) {
             try {
                 ImageIO.write(image, "png", outputFile);
@@ -42,23 +59,33 @@ public class PrintSaveChart {
         }
     }
 
+    /**
+     * Prints the file on a chosen printer
+     * @param imageView
+     */
     public void printFile(ImageView imageView) {
         try {
             PrinterJob printerJob = PrinterJob.createPrinterJob();
             Printer printer = getPrinter();
-            printerJob.setPrinter(printer);
-            PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
-            scaleImageViewToPrintableSection(pageLayout, imageView);
-            boolean success = printerJob.printPage(pageLayout, imageView);
-            if (success) {
-                printerJob.endJob();
-                Util.showDialog(2, "Printing Successfully", "Printing Successfully", "Your file was successfully printed " );
+            if (printer != null){
+                printerJob.setPrinter(printer);
+                PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.HARDWARE_MINIMUM);
+                scaleImageViewToPrintableSection(pageLayout, imageView);
+                boolean success = printerJob.printPage(pageLayout, imageView);
+                if (success) {
+                    printerJob.endJob();
+                    Util.showDialog(2, "Printing Successfully", "Printing Successfully", "Your file was successfully printed " );
+                }
             }
         } catch (Exception e) {
             Util.showDialog(1, "Print Error", "The System was unable to print", "Please check the printer");
         }
     }
 
+    /**
+     * Gets all Printers from the system and shows a Dialog for the user to choose the desired printer
+     * @return the chosen printer
+     */
     private Printer getPrinter() {
         Printer printer = null;
         ChoiceDialog dialog = new ChoiceDialog(Printer.getDefaultPrinter(), Printer.getAllPrinters());
@@ -72,6 +99,11 @@ public class PrintSaveChart {
         return printer;
     }
 
+    /**
+     * Scales a picture to the Printers A4 page size
+     * @param pageLayout    The Layout of the printable page
+     * @param imageView     The imageView to scale
+     */
     private void scaleImageViewToPrintableSection(PageLayout pageLayout, ImageView imageView) {
         double pWidth = pageLayout.getPrintableWidth();
         double pHeight = pageLayout.getPrintableHeight();

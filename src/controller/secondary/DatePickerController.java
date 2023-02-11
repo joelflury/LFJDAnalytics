@@ -39,6 +39,9 @@ public class DatePickerController {
         cbTemplatePeriods.disableProperty().bind(dpFromDate.valueProperty().isNotNull().or(dpToDate.valueProperty().isNotNull()));
     }
 
+    /**
+     * Closes the Stage and resets the Stage values
+     */
     @FXML
     protected void btnCancelClick() {
         resetStageValues();
@@ -46,6 +49,13 @@ public class DatePickerController {
         stage.close();
     }
 
+    /**
+     * Gets triggered when the Choose button is clicked
+     * 1. Checks which Period format was chosen and based on this sets the values for from date and to date
+     * 2. Checks which Controller did call this Scene
+     * 3. Checks if the chosen periods are valid
+     * 4. Sends back the Data to the calling scene
+     */
     @FXML
     protected void btnChooseClick() {
         if (cbTemplatePeriods.isDisabled()) {
@@ -88,6 +98,10 @@ public class DatePickerController {
         resetStageValues();
     }
 
+    /**
+     * 1. Checks which Controller did call this Scene
+     * Calls the function to populate the Choicebox with the correct data
+     */
     public void setPeriodsForChoiceBox() {
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
             cbTemplatePeriods.setItems(FXCollections.observableArrayList(Util.getPeriodNames()));
@@ -96,6 +110,9 @@ public class DatePickerController {
         }
     }
 
+    /**
+     * If a template has been chosen from the Datepicker, this method stes the crrect values for from and to date
+     */
     private void getDatesFromTemplate() {
         int index = cbTemplatePeriods.getSelectionModel().getSelectedIndex();
         if (LFJDAnalyticsApplication.getMainStage().getScene() == LFJDAnalyticsApplication.getAnalyseScene()) {
@@ -131,6 +148,9 @@ public class DatePickerController {
         }
     }
 
+    /**
+     * resets the satge values
+     */
     private void resetStageValues() {
         cbTemplatePeriods.setValue(null);
         dpToDate.setValue(null);
