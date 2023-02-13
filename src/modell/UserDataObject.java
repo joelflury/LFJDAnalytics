@@ -1,19 +1,19 @@
 package modell;
 
 public class UserDataObject {
-    private final String userName;
-    private final String password;
+    private final String USERNAME;
+    private final String PASSWORD;
 
-    public UserDataObject(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public UserDataObject(String USERNAME, String PASSWORD) {
+        this.USERNAME = USERNAME;
+        this.PASSWORD = PASSWORD;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUSERNAME() {
+        return USERNAME;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPASSWORD() {
+        return PASSWORD;
     }
 }

@@ -50,8 +50,8 @@ public class SalesForcecastAlgorithm {
                 double averageLastYear20Days = calculateAverage(salesLastYear20days);
                 double average2YearAgo20Days = calculateAverage(sales2YearAgo20days);
                 int predictedSalesamount = (int) Math.round(((2 * average7d + (3 * averageLastYear20Days * Math.pow(differenceLastYear, 2)) + (average2YearAgo20Days * difference2YearAgo)) / 6) * differencePerWeekday.get(Util.getWeekDay(date) - 1));
-                float price = predictedSalesamount * article.getPrice();
-                new SalesPerDay(article.getArticleID(), date.toString(), predictedSalesamount, price, true);
+                float price = predictedSalesamount * article.getPRICE();
+                new SalesPerDay(article.getARTICLEID(), date.toString(), predictedSalesamount, price, true);
             }
         }
     }
@@ -70,7 +70,7 @@ public class SalesForcecastAlgorithm {
         double average = 0;
         double dataAmount = 0;
         for (SalesPerDay sale : salesList) {
-            average += sale.getAmount();
+            average += sale.getAMOUNT();
             dataAmount++;
         }
         return average / dataAmount;
@@ -80,9 +80,9 @@ public class SalesForcecastAlgorithm {
         double average = 0;
         double dataAmount = 0;
         for (SalesPerDay sale : salesList) {
-            LocalDate date = LocalDate.parse(sale.getDate(), dtf);
+            LocalDate date = LocalDate.parse(sale.getDATE(), dtf);
             if (Util.getWeekDay(date) == weekDay) {
-                average += sale.getAmount();
+                average += sale.getAMOUNT();
                 dataAmount++;
             }
         }

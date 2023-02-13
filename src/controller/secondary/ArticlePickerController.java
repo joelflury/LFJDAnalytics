@@ -56,7 +56,7 @@ public class ArticlePickerController {
                 if (cb.isSelected()) {
                     articleAmount++;
                     for (Article article : articleList) {
-                        if (article.getArticlename().equals(cb.getText())) {
+                        if (article.getARTICLENAME().equals(cb.getText())) {
                             chosenArticleList.add(article);
                         }
                     }
@@ -102,7 +102,7 @@ public class ArticlePickerController {
         vBoxLeft.getChildren().clear();
         List<Article> articleList = Consumer.getArticles().getArticles();
         for (int i = 0; i < articleList.size(); i++) {
-            CheckBox cbArticle = new CheckBox(articleList.get(i).getArticlename());
+            CheckBox cbArticle = new CheckBox(articleList.get(i).getARTICLENAME());
             cbArticle.setStyle("-fx-text-fill: white");
             checkBoxList.add(cbArticle);
             VBox.setMargin(cbArticle, new Insets(0, 0, 5, 0));

@@ -125,9 +125,9 @@ public class TrendController {
         double monthGross = 0;
         for (Article article : chosenArticleList) {
             for (SalesPerDay spd : SalesPerDay.getSalesForecastList(fromDate, toDate)) {
-                if (article.getArticleID() == spd.getArticleID()) {
-                    monthGross += spd.getPrice();
-                    monthAmount += spd.getAmount();
+                if (article.getARTICLEID() == spd.getARTICLEID()) {
+                    monthGross += spd.getPRICE();
+                    monthAmount += spd.getAMOUNT();
                 }
             }
         }

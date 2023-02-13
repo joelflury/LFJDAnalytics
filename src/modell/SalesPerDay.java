@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerDay {
-    private final int articleID;
-    private final String date;
-    private final int amount;
-    private final float price;
+    private final int ARTICLEID;
+    private final String DATE;
+    private final int AMOUNT;
+    private final float PRICE;
 
     private static final List<SalesPerDay> salesPerDayList = new ArrayList<>();
     private static final List<SalesPerDay> salesForecastList = new ArrayList<>();
 
-    public SalesPerDay(int articleID, String date, int amount, float price, boolean prediction) {
-        this.articleID = articleID;
-        this.date = date;
-        this.price = price;
-        this.amount = amount;
+    public SalesPerDay(int ARTICLEID, String DATE, int AMOUNT, float PRICE, boolean prediction) {
+        this.ARTICLEID = ARTICLEID;
+        this.DATE = DATE;
+        this.PRICE = PRICE;
+        this.AMOUNT = AMOUNT;
         if (!prediction) {
             salesPerDayList.add(this);
         } else {
@@ -26,20 +26,20 @@ public class SalesPerDay {
         }
     }
 
-    public int getArticleID() {
-        return articleID;
+    public int getARTICLEID() {
+        return ARTICLEID;
     }
 
-    public String getDate() {
-        return date;
+    public String getDATE() {
+        return DATE;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPRICE() {
+        return PRICE;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getAMOUNT() {
+        return AMOUNT;
     }
 
     public static void setSalesPerDayList(SalesPerDay salesPerDay) {
@@ -63,7 +63,7 @@ public class SalesPerDay {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (SalesPerDay sale : salesForecastList) {
-            LocalDate date = LocalDate.parse(sale.getDate(), dtf);
+            LocalDate date = LocalDate.parse(sale.getDATE(), dtf);
             if (date.isAfter(fromDate.minusDays(1)) && date.isBefore(toDate.plusDays(1))) {
                 tempSalesForecastList.add(sale);
             }
@@ -75,10 +75,10 @@ public class SalesPerDay {
     @Override
     public String toString() {
         return "ArticlePerDay{" +
-                "articleID=" + articleID +
-                ", date='" + date + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
+                "ARTICLEID=" + ARTICLEID +
+                ", DATE='" + DATE + '\'' +
+                ", PRICE=" + PRICE +
+                ", AMOUNT=" + AMOUNT +
                 '}';
     }
 

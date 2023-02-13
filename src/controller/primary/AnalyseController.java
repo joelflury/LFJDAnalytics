@@ -133,9 +133,9 @@ public class AnalyseController {
         double monthGross = 0;
         for (Article article : chosenArticleList) {
             for (SalesPerDay spd : Consumer.getSales().getArticlePerDay()) {
-                if (article.getArticleID() == spd.getArticleID()) {
-                    monthGross += spd.getPrice();
-                    monthAmount += spd.getAmount();
+                if (article.getARTICLEID() == spd.getARTICLEID()) {
+                    monthGross += spd.getPRICE();
+                    monthAmount += spd.getAMOUNT();
                 }
             }
         }

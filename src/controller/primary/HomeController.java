@@ -90,12 +90,12 @@ public class HomeController {
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article : Consumer.getArticles().getArticles()) {
             XYChart.Series serie = new XYChart.Series();
-            serie.setName(article.getArticlename());
+            serie.setName(article.getARTICLENAME());
             for (SalesPerDay spd : salesList) {
-                if (spd.getArticleID() == article.getArticleID()) {
-                    serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
-                    monthGross += spd.getPrice();
-                    monthAmount += spd.getAmount();
+                if (spd.getARTICLEID() == article.getARTICLEID()) {
+                    serie.getData().add(new XYChart.Data(spd.getDATE(), spd.getAMOUNT()));
+                    monthGross += spd.getPRICE();
+                    monthAmount += spd.getAMOUNT();
                 }
             }
             seriesList.add(serie);

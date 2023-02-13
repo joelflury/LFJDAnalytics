@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="320.0" minWidth="200.0" styleClass="date-picker-root-container" stylesheets="@../../resources/css/date-picker-stage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.secondary.DatePickerController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="320.0" minWidth="200.0" styleClass="DATE-picker-root-container" stylesheets="@../../resources/css/DATE-picker-stage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.secondary.DatePickerController">
    <children>
       <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Please choose a free time period" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
          <VBox.margin>
@@ -30,17 +30,17 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin></DatePicker>
       <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Choose from Template:" textFill="WHITE" VBox.vgrow="ALWAYS" />
-      <ChoiceBox fx:id="cbTemplatePeriods" maxWidth="1.7976931348623157E308" styleClass="date-picker-button" VBox.vgrow="ALWAYS">
+      <ChoiceBox fx:id="cbTemplatePeriods" maxWidth="1.7976931348623157E308" styleClass="DATE-picker-button" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="20.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin>
       </ChoiceBox>
-      <Button fx:id="btnChoose" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnChooseClick" styleClass="date-picker-button" text="Choose" VBox.vgrow="ALWAYS">
+      <Button fx:id="btnChoose" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnChooseClick" styleClass="DATE-picker-button" text="Choose" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" />
          </VBox.margin>
       </Button>
-      <Button fx:id="btnCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCancelClick" prefWidth="180.0" styleClass="date-picker-button" text="Cancel" VBox.vgrow="ALWAYS">
+      <Button fx:id="btnCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCancelClick" prefWidth="180.0" styleClass="DATE-picker-button" text="Cancel" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
          </VBox.margin>

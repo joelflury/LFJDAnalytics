@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesDataObject {
-    private final List<SalesPerDay> salesPerDay;
+    private List<SalesPerDay> salesPerDay;
 
     public SalesDataObject(List<SalesPerDay> salesPerDay) {
         this.salesPerDay = salesPerDay;
@@ -20,8 +20,8 @@ public class SalesDataObject {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         List<SalesPerDay> selectedSalesList = new ArrayList<>();
         for (SalesPerDay sales : salesPerDay) {
-            if (sales.getArticleID() == article.getArticleID()) {
-                LocalDate date = LocalDate.parse(sales.getDate(), dtf);
+            if (sales.getARTICLEID() == article.getARTICLEID()) {
+                LocalDate date = LocalDate.parse(sales.getDATE(), dtf);
                 if (date.isAfter(firstDate.minusDays(1))) {
                     if (date.isBefore(lastDate.plusDays(1))) {
                         selectedSalesList.add(sales);

@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Article {
-    private final int articleID;
-    private final String articlename;
-    private final float price;
-    private static final List<Article> articles = new ArrayList<>();
+    private final int ARTICLEID;
+    private final String ARTICLENAME;
+    private final float PRICE;
+    private static List<Article> articles = new ArrayList<>();
 
-    public Article(int articleID, String articlename, float price) {
-        this.articleID = articleID;
-        this.articlename = articlename;
-        this.price = price;
+    public Article(int articleID, String articlename, float PRICE) {
+        this.ARTICLEID = articleID;
+        this.ARTICLENAME = articlename;
+        this.PRICE = PRICE;
         articles.add(this);
     }
 
-    public int getArticleID() {
-        return articleID;
+    public int getARTICLEID() {
+        return ARTICLEID;
     }
 
-    public String getArticlename() {
-        return articlename;
+    public String getARTICLENAME() {
+        return ARTICLENAME;
     }
 
-    public float getPrice() {
-        return price;
+    public float getPRICE() {
+        return PRICE;
     }
 
     public static List<Article> getArticles() {
@@ -39,9 +39,9 @@ public class Article {
     @Override
     public String toString() {
         return "Article{" +
-                "articleID=" + articleID +
-                ", articlename='" + articlename + '\'' +
-                ", price=" + price +
+                "ARTICLEID=" + ARTICLEID +
+                ", ARTICLENAME='" + ARTICLENAME + '\'' +
+                ", PRICE=" + PRICE +
                 '}';
     }
 }

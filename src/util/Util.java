@@ -4,7 +4,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import logic.DateRangeAnalyzer.DateRangeAnalyzer;
-import logic.consumer.Consumer;
 import modell.Article;
 import modell.SalesPerDay;
 import modell.SalesPerWeek;
@@ -92,13 +91,13 @@ public class Util {
         List<XYChart.Series> seriesList = new ArrayList<>();
         for (Article article : chosenArticleList) {
             XYChart.Series serie = new XYChart.Series();
-            serie.setName(article.getArticlename());
+            serie.setName(article.getARTICLENAME());
             DateRangeAnalyzer dateRangeAnalyzer = new DateRangeAnalyzer();
             if (DAYS.between(fromDate, toDate) > dateRangeAnalyzer.getAmountOfDaysUntilSwitchToWeek()) {
-                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getArticleID(), article.getPrice());
+                List<SalesPerWeek> tempSalesPerWeekList = dateRangeAnalyzer.analyze(tempSalesPerDayList, article.getARTICLEID(), article.getPRICE());
                 for (SalesPerWeek spw : tempSalesPerWeekList) {
-                    if (spw.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data("KW " + spw.getWeek(), spw.getAmount()));
+                    if (spw.getARTICLEID() == article.getARTICLEID()) {
+                        serie.getData().add(new XYChart.Data("KW " + spw.getWEEK(), spw.getAMOUNT()));
                     }
                 }
                 seriesList.add(serie);
@@ -110,8 +109,8 @@ public class Util {
 
             } else {
                 for (SalesPerDay spd : tempSalesPerDayList) {
-                    if (spd.getArticleID() == article.getArticleID()) {
-                        serie.getData().add(new XYChart.Data(spd.getDate(), spd.getAmount()));
+                    if (spd.getARTICLEID() == article.getARTICLEID()) {
+                        serie.getData().add(new XYChart.Data(spd.getDATE(), spd.getAMOUNT()));
                     }
                 }
                 seriesList.add(serie);

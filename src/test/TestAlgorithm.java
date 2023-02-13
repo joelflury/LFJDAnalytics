@@ -13,7 +13,7 @@ public class TestAlgorithm {
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static Consumer consumer = new Consumer();
     private static LocalDate fromDate = LocalDate.now().minusDays(90);
-    private static LocalDate toDate = LocalDate.parse(Consumer.getDateRange().getToDate(), dtf);
+    private static LocalDate toDate = LocalDate.parse(Consumer.getDateRange().getTODATE(), dtf);
     private static SalesForcecastAlgorithm algorithm = new SalesForcecastAlgorithm(fromDate, toDate, Article.getArticles());
 
     public static void test() {
@@ -33,23 +33,23 @@ public class TestAlgorithm {
         System.out.println("Daterange: " + fromDate + " - " + toDate);
         //Loop through all articles and calculate the deviation between real sales and predicted sales
         for (Article article : Consumer.getArticles().getArticles()) {
-            System.out.println(article.getArticlename());
+            System.out.println(article.getARTICLENAME());
             int deviation;
             int realAmount = 0;
             int predictedAmount = 0;
             for (SalesPerDay sale : realSales) {
-                LocalDate saleDate = LocalDate.parse(sale.getDate(), dtf);
+                LocalDate saleDate = LocalDate.parse(sale.getDATE(), dtf);
                 if (saleDate.isAfter(fromDate.minusDays(1)) && saleDate.isBefore(toDate.plusDays(1))) {
-                    if (sale.getArticleID() == article.getArticleID()) {
-                        realAmount = realAmount + sale.getAmount();
+                    if (sale.getARTICLEID() == article.getARTICLEID()) {
+                        realAmount = realAmount + sale.getAMOUNT();
                     }
                 }
             }
             for (SalesPerDay sale : predictedSales) {
-                LocalDate saleDate = LocalDate.parse(sale.getDate(), dtf);
+                LocalDate saleDate = LocalDate.parse(sale.getDATE(), dtf);
                 if (saleDate.isAfter(fromDate.minusDays(1)) && saleDate.isBefore(toDate.plusDays(1))) {
-                    if (sale.getArticleID() == article.getArticleID()) {
-                        predictedAmount = predictedAmount + sale.getAmount();
+                    if (sale.getARTICLEID() == article.getARTICLEID()) {
+                        predictedAmount = predictedAmount + sale.getAMOUNT();
                     }
                 }
             }
@@ -77,16 +77,16 @@ public class TestAlgorithm {
                 int predictedAmount = 0;
                 int deviation;
                 for (SalesPerDay sale : realSales) {
-                    if (sale.getDate().equals(date.toString())) {
-                        if (sale.getArticleID() == article.getArticleID()) {
-                            realAmount = sale.getAmount();
+                    if (sale.getDATE().equals(date.toString())) {
+                        if (sale.getARTICLEID() == article.getARTICLEID()) {
+                            realAmount = sale.getAMOUNT();
                         }
                     }
                 }
                 for (SalesPerDay sale : predictedSales) {
-                    if (sale.getDate().equals(date.toString())) {
-                        if (sale.getArticleID() == article.getArticleID()) {
-                            predictedAmount = sale.getAmount();
+                    if (sale.getDATE().equals(date.toString())) {
+                        if (sale.getARTICLEID() == article.getARTICLEID()) {
+                            predictedAmount = sale.getAMOUNT();
                         }
                     }
                 }
@@ -95,7 +95,7 @@ public class TestAlgorithm {
                 if (deviation > 5) {
                     System.out.println("-- High deviation --");
                     System.out.println(date);
-                    System.out.println(article.getArticlename());
+                    System.out.println(article.getARTICLENAME());
                     System.out.println("Real Amount: " + realAmount);
                     System.out.println("Predicted Amount: " + predictedAmount);
                     System.out.println("Deviation: " + deviation);

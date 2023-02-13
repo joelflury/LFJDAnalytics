@@ -4,25 +4,25 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateRangeDataObject {
-    private final String fromDate;
-    private final String toDate;
+    private final String FROMDATE;
+    private final String TODATE;
 
-    public String getFromDate() {
-        return fromDate;
+    public String getFROMDATE() {
+        return FROMDATE;
     }
 
-    public String getToDate() {
-        return toDate;
+    public String getTODATE() {
+        return TODATE;
     }
 
     public DateRangeDataObject(String firstDate, String lastDate) {
-        this.fromDate = firstDate;
-        this.toDate = lastDate;
+        this.FROMDATE = firstDate;
+        this.TODATE = lastDate;
     }
 
     public DateRangeDataObject() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.fromDate = dtf.format(LocalDate.now().minusDays(365));
-        this.toDate = dtf.format(LocalDate.now());
+        this.FROMDATE = dtf.format(LocalDate.now().minusDays(365));
+        this.TODATE = dtf.format(LocalDate.now());
     }
 }
