@@ -12,11 +12,11 @@ public class DateRangeAnalyzer {
     private final int AMOUNT_OF_DAYS_UNTIL_SWITCH_TO_WEEK = 62;
 
     /**
-     * This function checks if the period is longer than 60 Days and if so blblalaal
+     * This function to summarize Sales Per Day Objects into Week
      * @param salesList     The List of Data to be analyzed
-     * @param articleID
-     * @param articlePrice
-     * @return
+     * @param articleID     The ID of the Article to be analyzed
+     * @param articlePrice  The Price of the Article to be analyzed
+     * @return  List of SalesPerWeek Objects
      */
     public List<SalesPerWeek> analyze(List<SalesPerDay> salesList, int articleID, float articlePrice) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");

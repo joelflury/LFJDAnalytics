@@ -31,6 +31,10 @@ public class SalesForcecastAlgorithm {
         this.articles = articles;
     }
 
+    /**
+     * Calculates the SalesForecast according to the settings defined in constructor
+     * SalesForecast is saved in static salesForecastList inside SalesPerDay Class
+     */
     public void calculate() {
         for (Article article : articles) {
             int amountofDays = (int) ChronoUnit.DAYS.between(fromDate, toDate);
@@ -56,6 +60,11 @@ public class SalesForcecastAlgorithm {
         }
     }
 
+    /**
+     *
+     * @param salesLast365days  List of SalesPerDay to be analyzed
+     * @return  List of Differences per WeekDay
+     */
     private List<Double> calculateDifferenceWeekDay(List<SalesPerDay> salesLast365days) {
         double average365d = calculateAverage(salesLast365days);
         List<Double> differencePerWeekday = new ArrayList();
@@ -66,6 +75,11 @@ public class SalesForcecastAlgorithm {
         return differencePerWeekday;
     }
 
+    /**
+     *
+     * @param salesList List of SalesPerDay to be analyzed
+     * @return  Average of specified Sales List
+     */
     private double calculateAverage(List<SalesPerDay> salesList) {
         double average = 0;
         double dataAmount = 0;
@@ -76,6 +90,12 @@ public class SalesForcecastAlgorithm {
         return average / dataAmount;
     }
 
+    /**
+     *
+     * @param salesList List of SalesPerDay to be analyzed
+     * @param weekDay   Weekday to be analyzed
+     * @return  Average of specified Sales List for the specified day
+     */
     private double calculateAverage(List<SalesPerDay> salesList, int weekDay) {
         double average = 0;
         double dataAmount = 0;

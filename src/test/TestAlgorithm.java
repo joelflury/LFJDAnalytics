@@ -22,7 +22,9 @@ public class TestAlgorithm {
         testPerArticle();
     }
 
-    // Test the Algorithm to calculate the deviation per article between real sales and predicted sales
+    /**
+     * Test the Algorithm to calculate the deviation per article between real sales and predicted sales
+     */
     private static void testPerArticle() {
         consumer.getSalesData(LocalDate.now().plusDays(1), LocalDate.now().plusDays(31));
         List<SalesPerDay> realSales = Consumer.getSales().getArticlePerDay();
@@ -64,7 +66,9 @@ public class TestAlgorithm {
         System.out.println();
     }
 
-    // Test the Algorithm to calculate the deviation per day between realsales and predicted sales
+    /**
+     * Test the Algorithm to calculate the deviation per day between realsales and predicted sales
+     */
     private static void testPerDay() {
         consumer.getSalesData(LocalDate.now().plusDays(1), LocalDate.now().plusDays(31));
         List<SalesPerDay> realSales = Consumer.getSales().getArticlePerDay();
